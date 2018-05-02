@@ -17,7 +17,7 @@ class Posts extends Component {
       <PostsSection>
         Posts
         {this.props.posts.map(post => {
-          return <Post key={post._id} text={post.text} />;
+          return <Post key={post._id} text={post.text} time={post.date} />;
         })}
       </PostsSection>
     );
