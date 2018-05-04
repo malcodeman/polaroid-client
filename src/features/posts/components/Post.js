@@ -25,7 +25,7 @@ const Post = props => {
   return (
     <Article>
       <Text>{props.text}</Text>
-      <Time>{distanceInWordsToNow(props.time)} ago</Time>
+      <Time>{distanceInWordsToNow(props.date)} ago</Time>
     </Article>
   );
 };

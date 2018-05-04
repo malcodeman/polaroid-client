@@ -6,6 +6,8 @@ import { getPosts } from "../actions/posts_actions";
 
 const PostsSection = styled.section`
   padding: 20px;
+  max-width: 992px;
+  margin: 0 auto;
 `;
 
 class Posts extends Component {
@@ -15,9 +17,8 @@ class Posts extends Component {
   render() {
     return (
       <PostsSection>
-        Posts
         {this.props.posts.map(post => {
-          return <Post key={post._id} text={post.text} time={post.date} />;
+          return <Post key={post._id} text={post.text} date={post.date} />;
         })}
       </PostsSection>
     );
