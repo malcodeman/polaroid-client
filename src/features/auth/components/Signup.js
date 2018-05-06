@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import SignupForm from "./SignupForm";
+
+import { saveUser } from "../actions/auth_actions";
 
 const Wrapper = styled.div`
   background-color: #fafafa;
@@ -40,7 +43,7 @@ class Signup extends Component {
     return (
       <Wrapper>
         <Content>
-          <SignupForm />
+          <SignupForm saveUser={this.props.saveUser} />
           <LoginWrapper>
             <Text>
               Have an account? <StyledLink to="/login">Log in</StyledLink>
@@ -52,4 +55,16 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+const mapStateToProps = state => {
+  return {
+    posts: state.posts.posts
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveUser: newUser => dispatch(saveUser(newUser))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
