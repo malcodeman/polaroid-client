@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
+import { distanceInWordsToNow } from "date-fns";
 
 const Article = styled.article`
   border-radius: 3px;

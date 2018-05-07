@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import SignupForm from "./SignupForm";
 
@@ -40,6 +41,9 @@ const StyledLink = styled(Link)`
 
 class Signup extends Component {
   render() {
+    if (this.props.signup_success) {
+      return <Redirect to="/" />;
+    }
     return (
       <Wrapper>
         <Content>
@@ -57,7 +61,8 @@ class Signup extends Component {
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts.posts
+    posts: state.posts.posts,
+    signup_success: state.auth.signup_success
   };
 };
 
