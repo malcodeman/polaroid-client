@@ -65,7 +65,7 @@ class FormikForm extends Component {
         </FormItem>
         <FormItem>
           <Label>Password</Label>
-          <Input type="text" name="password" />
+          <Input type="password" name="password" />
           {touched.password &&
             errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
         </FormItem>
@@ -86,6 +86,7 @@ const LoginForm = withFormik({
   }),
   handleSubmit(payload, bag) {
     bag.setSubmitting(false);
+    bag.props.login(payload);
     bag.resetForm();
   }
 })(FormikForm);

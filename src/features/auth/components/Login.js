@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import LoginForm from "./LoginForm";
+import { login } from "../actions/auth_actions";
 
 const Wrapper = styled.div`
   background-color: #fafafa;
@@ -37,10 +39,13 @@ const StyledLink = styled(Link)`
 
 class Login extends Component {
   render() {
+    if (this.props.login_success) {
+      return <Redirect to="/" />;
+    }
     return (
       <Wrapper>
         <Content>
-          <LoginForm />
+          <LoginForm login={this.props.login} />
           <LoginWrapper>
             <Text>
               Don't have an account?{" "}
@@ -53,4 +58,16 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    login_success: state.auth.login_success
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: user => dispatch(login(user))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
