@@ -17,9 +17,13 @@ class Posts extends Component {
   render() {
     return (
       <PostsSection>
-        {this.props.posts.map(post => {
-          return <Post key={post._id} text={post.text} date={post.date} />;
-        })}
+        {this.props.posts.length > 0 ? (
+          this.props.posts.map(post => {
+            return <Post key={post._id} text={post.text} date={post.date} />;
+          })
+        ) : (
+          <p>No posts.</p>
+        )}
       </PostsSection>
     );
   }

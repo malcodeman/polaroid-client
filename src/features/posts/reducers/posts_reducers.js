@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
     case GET_POSTS_SUCCESS:
       return {
         ...state,
-        posts: action.payload
+        posts: action.payload.posts
       };
     default:
       return state;
