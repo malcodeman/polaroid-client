@@ -19,7 +19,9 @@ class Posts extends Component {
       <PostsSection>
         {this.props.posts.length > 0 ? (
           this.props.posts.map(post => {
-            return <Post key={post._id} text={post.text} date={post.date} />;
+            return (
+              <Post key={post.id} text={post.text} createdAt={post.createdAt} />
+            );
           })
         ) : (
           <p>No posts.</p>
