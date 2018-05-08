@@ -1,7 +1,5 @@
-import axios from "axios";
-axios.defaults.headers.common["Authorization"] = localStorage.getItem("token");
-const API_URL = process.env.REACT_APP_API_URL;
+import axios from "../../../state/axios";
 
 export const getPosts = () => {
-  return axios.get(`${API_URL}/posts`);
+  return axios.get(`/posts`);
 };
