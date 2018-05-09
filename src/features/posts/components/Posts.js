@@ -23,7 +23,9 @@ class Posts extends Component {
     return (
       <PostsSection>
         <Container>
-          {this.props.posts.length > 0 ? (
+          {this.props.loading ? (
+            <p>Loading...</p>
+          ) : (
             this.props.posts.map(post => {
               return (
                 <Post
@@ -33,8 +35,6 @@ class Posts extends Component {
                 />
               );
             })
-          ) : (
-            <p>No posts.</p>
           )}
         </Container>
       </PostsSection>
@@ -44,7 +44,8 @@ class Posts extends Component {
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts.posts
+    posts: state.posts.posts,
+    loading: state.posts.loading
   };
 };
 

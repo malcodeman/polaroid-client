@@ -45,7 +45,7 @@ export function* watchLoginRequest() {
 function* logoutUser(action) {
   try {
     const data = yield call(logout, action.payload);
-    localStorage.removeItem("token", data.data);
+    localStorage.removeItem("token");
     yield put({ type: LOGOUT_SUCCESS, payload: data.data });
     yield put(push("/login"));
   } catch (error) {

@@ -12,7 +12,7 @@ function* getPosts() {
     const data = yield call(getPostsApi);
     yield put({ type: GET_POSTS_SUCCESS, payload: data.data });
   } catch (error) {
-    yield put({ type: GET_POSTS_FAILURE, payload: error.message });
+    yield put({ type: GET_POSTS_FAILURE, error });
   }
 }
 

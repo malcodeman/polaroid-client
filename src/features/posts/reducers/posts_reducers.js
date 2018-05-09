@@ -1,7 +1,9 @@
 import { GET_POSTS_REQUEST, GET_POSTS_SUCCESS } from "../actions/posts_actions";
+import { LOGOUT_SUCCESS } from "../../auth/actions/auth_actions";
 
 const initialState = {
-  posts: []
+  posts: [],
+  loading: true
 };
 
 export default (state = initialState, action) => {
@@ -14,7 +16,14 @@ export default (state = initialState, action) => {
     case GET_POSTS_SUCCESS:
       return {
         ...state,
-        posts: action.payload
+        posts: action.payload,
+        loading: false
+      };
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        posts: [],
+        loading: true
       };
     default:
       return state;
