@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import LoginForm from "./LoginForm";
-import { login } from "../actions/auth_actions";
+import { login, loginReset } from "../actions/auth_actions";
 
 const Wrapper = styled.div`
   background-color: #fafafa;
@@ -38,6 +38,9 @@ const StyledLink = styled(Link)`
 `;
 
 class Login extends Component {
+  componentWillUnmount = () => {
+    this.props.loginReset();
+  };
   render() {
     if (this.props.login_success) {
       return <Redirect to="/" />;
@@ -66,7 +69,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: user => dispatch(login(user))
+    login: user => dispatch(login(user)),
+    loginReset: () => dispatch(loginReset())
   };
 };
 

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { logout } from "../../auth/actions/auth_actions";
 
 const Wrapper = styled.div`
   flex-basis: 64px;
@@ -26,8 +29,8 @@ const Nav = styled.nav`
 `;
 
 class Toolbar extends Component {
-  signout = () => {
-    localStorage.removeItem("token");
+  logoutHandler = () => {
+    this.props.logout(this.props.user);
   };
   render() {
     return (
@@ -35,7 +38,7 @@ class Toolbar extends Component {
         <Header>
           <Nav>
             <Link to="/">Confessio</Link>
-            <span onClick={this.signout}>Sign Out</span>
+            <span onClick={this.logoutHandler}>Log Out</span>
           </Nav>
         </Header>
       </Wrapper>
@@ -43,4 +46,17 @@ class Toolbar extends Component {
   }
 }
 
-export default Toolbar;
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user,
+    logout_success: state.auth.logout_success
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: user => dispatch(logout(user))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);

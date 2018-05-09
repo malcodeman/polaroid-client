@@ -86,7 +86,7 @@ const SignupForm = withFormik({
   }),
   handleSubmit(payload, bag) {
     bag.setSubmitting(false);
-    bag.props.saveUser(payload);
+    bag.props.signup(payload);
     bag.resetForm();
   }
 })(FormikForm);

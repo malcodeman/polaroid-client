@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 
 import SignupForm from "./SignupForm";
 
-import { saveUser } from "../actions/auth_actions";
+import { signup, signupReset } from "../actions/auth_actions";
 
 const Wrapper = styled.div`
   background-color: #fafafa;
@@ -40,6 +40,9 @@ const StyledLink = styled(Link)`
 `;
 
 class Signup extends Component {
+  componentWillUnmount = () => {
+    this.props.signupReset();
+  };
   render() {
     if (this.props.signup_success) {
       return <Redirect to="/" />;
@@ -47,7 +50,7 @@ class Signup extends Component {
     return (
       <Wrapper>
         <Content>
-          <SignupForm saveUser={this.props.saveUser} />
+          <SignupForm signup={this.props.signup} />
           <LoginWrapper>
             <Text>
               Have an account? <StyledLink to="/login">Log in</StyledLink>
@@ -68,7 +71,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveUser: newUser => dispatch(saveUser(newUser))
+    signup: newUser => dispatch(signup(newUser)),
+    signupReset: () => dispatch(signupReset())
   };
 };
 
