@@ -3,7 +3,13 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import Post from "./Post";
+import Header from "./Header";
 import { getPosts } from "../actions/posts_actions";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const PostsSection = styled.section`
   flex-grow: 1;
@@ -21,23 +27,26 @@ class Posts extends Component {
   };
   render() {
     return (
-      <PostsSection>
-        <Container>
-          {this.props.loading ? (
-            <p>Loading...</p>
-          ) : (
-            this.props.posts.map(post => {
-              return (
-                <Post
-                  key={post.id}
-                  text={post.text}
-                  createdAt={post.createdAt}
-                />
-              );
-            })
-          )}
-        </Container>
-      </PostsSection>
+      <Wrapper>
+        <Header />
+        <PostsSection>
+          <Container>
+            {this.props.loading ? (
+              <p>Loading...</p>
+            ) : (
+              this.props.posts.map(post => {
+                return (
+                  <Post
+                    key={post.id}
+                    text={post.text}
+                    createdAt={post.createdAt}
+                  />
+                );
+              })
+            )}
+          </Container>
+        </PostsSection>
+      </Wrapper>
     );
   }
 }

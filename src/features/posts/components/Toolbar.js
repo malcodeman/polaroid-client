@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { logout } from "../../auth/actions/auth_actions";
+import { createPostTrigger } from "../actions/posts_actions";
 
 const Wrapper = styled.div`
   flex-basis: 64px;
@@ -28,9 +29,26 @@ const Nav = styled.nav`
   padding: 0 20px;
 `;
 
+const Button = styled.button`
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.8);
+  margin: 0 6px;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+const Text = styled.span`
+  color: #007aff;
+`;
+
 class Toolbar extends Component {
   logoutHandler = () => {
     this.props.logout(this.props.user);
+  };
+  createPostHandler = () => {
+    this.props.createPostTrigger();
   };
   render() {
     return (
@@ -38,7 +56,14 @@ class Toolbar extends Component {
         <Header>
           <Nav>
             <Link to="/">Confessio</Link>
-            <span onClick={this.logoutHandler}>Log Out</span>
+            <div>
+              <Button onClick={this.createPostHandler}>
+                <Text>Post</Text>
+              </Button>
+              <Button onClick={this.logoutHandler}>
+                <span>Log Out</span>
+              </Button>
+            </div>
           </Nav>
         </Header>
       </Wrapper>
@@ -55,7 +80,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: user => dispatch(logout(user))
+    logout: user => dispatch(logout(user)),
+    createPostTrigger: () => dispatch(createPostTrigger())
   };
 };
 

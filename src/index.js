@@ -7,7 +7,8 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import "./index.css";
 import store from "./state/store";
 import history from "./state/history";
-import Homepage from "./features/homepage/components/Homepage";
+import Posts from "./features/posts/components/Posts";
+import PostsNew from "./features/posts/components/PostsNew";
 import Login from "./features/auth/components/Login";
 import Signup from "./features/auth/components/Signup";
 
@@ -31,11 +32,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Switch>
-        <PrivateRoute path="/" exact={true} component={Homepage} />
+      <React.Fragment>
+        <PrivateRoute path="/" exact component={Posts} />
+        <PrivateRoute path="/new-post" exact component={PostsNew} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-      </Switch>
+      </React.Fragment>
     </Router>
   </Provider>,
   document.getElementById("root")

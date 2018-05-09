@@ -13,6 +13,7 @@ const Article = styled.article`
 const Text = styled.p`
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.8);
+  word-wrap: break-word;
 `;
 
 const Time = styled.time`
