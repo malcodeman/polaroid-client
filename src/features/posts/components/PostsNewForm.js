@@ -26,17 +26,6 @@ const Input = styled(Field)`
   margin-bottom: 2px;
 `;
 
-const Button = styled.button`
-  background: #007aff;
-  color: #fff;
-  border: 0;
-  cursor: pointer;
-  height: 36px;
-  border-radius: 2px;
-  font-size: 0.8rem;
-  padding: 0;
-`;
-
 const ErrorMessage = styled.span`
   font-size: 0.8rem;
   color: #b00e23;
@@ -53,7 +42,7 @@ class FormikForm extends Component {
     }
   };
   render() {
-    const { errors, touched, isSubmitting } = this.props;
+    const { errors, touched } = this.props;
     return (
       <StyledForm>
         <FormItem>
