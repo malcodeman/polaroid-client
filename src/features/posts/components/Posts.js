@@ -25,27 +25,28 @@ class Posts extends Component {
   componentDidMount = () => {
     this.props.getPosts();
   };
+  renderLoading = () => {
+    return this.props.loading ? <p>Loading...</p> : null;
+  };
+  renderPosts = () => {
+    if (this.props.posts.length === 0 && this.props.loading === false) {
+      return <p>No posts</p>;
+    } else {
+      return this.props.posts.map(post => {
+        return (
+          <Post key={post.id} text={post.text} createdAt={post.createdAt} />
+        );
+      });
+    }
+  };
   render() {
     return (
       <Wrapper>
         <Header />
         <PostsSection>
           <Container>
-            {this.props.loading ? (
-              <p>Loading...</p>
-            ) : this.props.posts.length === 0 ? (
-              <p>No posts</p>
-            ) : (
-              this.props.posts.map(post => {
-                return (
-                  <Post
-                    key={post.id}
-                    text={post.text}
-                    createdAt={post.createdAt}
-                  />
-                );
-              })
-            )}
+            {this.renderLoading()}
+            {this.renderPosts()}
           </Container>
         </PostsSection>
       </Wrapper>
@@ -60,10 +61,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getPosts: () => dispatch(getPosts())
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps, { getPosts })(Posts);
