@@ -17,7 +17,7 @@ import {
 function* signupUser(action) {
   try {
     const data = yield call(signup, action.payload);
-    localStorage.setItem("token", data.data.token);
+    localStorage.setItem("token", data.data);
     yield put({ type: SIGNUP_SUCCESS, payload: data.data });
   } catch (error) {
     yield put({ type: SIGNUP_FAILURE, error });
