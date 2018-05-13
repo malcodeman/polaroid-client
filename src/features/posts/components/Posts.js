@@ -33,6 +33,8 @@ class Posts extends Component {
           <Container>
             {this.props.loading ? (
               <p>Loading...</p>
+            ) : this.props.posts.length === 0 ? (
+              <p>No posts</p>
             ) : (
               this.props.posts.map(post => {
                 return (
