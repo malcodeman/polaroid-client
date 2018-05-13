@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import PostLoading from "./PostLoading";
 import Post from "./Post";
 import Header from "./Header";
 import { getPosts } from "../actions/posts_actions";
@@ -26,7 +27,7 @@ class Posts extends Component {
     this.props.getPosts();
   };
   renderLoading = () => {
-    return this.props.loading ? <p>Loading...</p> : null;
+    return this.props.loading ? <PostLoading /> : null;
   };
   renderPosts = () => {
     if (this.props.posts.length === 0 && this.props.loading === false) {
