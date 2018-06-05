@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import PostLoading from "./PostLoading";
 import Post from "./Post";
-import Header from "./Header";
+import Header from "../../header/containers";
 import { getPosts } from "../actions/posts_actions";
 
 const Wrapper = styled.div`

@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 
 import { logout } from "../../auth/actions/auth_actions";
 
+import user from "../images/user.svg";
+
 const Wrapper = styled.div`
   flex-basis: 64px;
 `;
@@ -38,6 +40,19 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Image = styled.img`
+  height: ${props => props.height};
+  width: ${props => props.width};
+  ${props => {
+    if (props.circle) {
+      return "border-radius: 50%";
+    } else if (props.margin) {
+      return "margin: 0 6px";
+    }
+  }};
+  object-fit: cover;
+`;
+
 class Header extends Component {
   logoutHandler = () => {
     this.props.logout(this.props.user);
@@ -55,6 +70,9 @@ class Header extends Component {
               <Button onClick={this.logoutHandler}>
                 <span>Log Out</span>
               </Button>
+              <Link to={`${this.props.user.email}`}>
+                <Image height="20" width="20" margin src={user} />
+              </Link>
             </div>
           </Nav>
         </StyledHeader>
@@ -76,4 +94,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);
