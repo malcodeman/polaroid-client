@@ -45,7 +45,7 @@ class Signup extends Component {
   };
   render() {
     if (this.props.signup_success) {
-      return <Redirect to="/" />;
+      return <Redirect to="/posts" />;
     }
     return (
       <Wrapper>

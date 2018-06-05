@@ -62,7 +62,7 @@ class Header extends Component {
       <Wrapper>
         <StyledHeader>
           <Nav>
-            <Link to="/">Confessio</Link>
+            <Link to="/posts">Confessio</Link>
             <div>
               <Link to="/new-post">
                 <Button>New Post</Button>
