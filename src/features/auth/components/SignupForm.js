@@ -64,6 +64,18 @@ class FormikForm extends Component {
             errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
         </FormItem>
         <FormItem>
+          <Label>Full name</Label>
+          <Input type="text" name="name" />
+          {touched.name &&
+            errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
+        </FormItem>
+        <FormItem>
+          <Label>Username</Label>
+          <Input type="text" name="username" />
+          {touched.username &&
+            errors.username && <ErrorMessage>{errors.username}</ErrorMessage>}
+        </FormItem>
+        <FormItem>
           <Label>Password</Label>
           <Input type="password" name="password" />
           {touched.password &&
@@ -78,10 +90,14 @@ class FormikForm extends Component {
 const SignupForm = withFormik({
   mapPropsToValues: props => ({
     email: props.email || "",
+    name: props.name || "",
+    username: props.username || "",
     password: props.password || ""
   }),
   validationSchema: Yup.object().shape({
     email: Yup.string().required("Email is required"),
+    name: Yup.string().required("Name is required"),
+    username: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required")
   }),
   handleSubmit(payload, bag) {

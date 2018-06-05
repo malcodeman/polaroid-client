@@ -58,10 +58,10 @@ class FormikForm extends Component {
     return (
       <StyledForm>
         <FormItem>
-          <Label>Email</Label>
-          <Input type="email" name="email" />
-          {touched.email &&
-            errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
+          <Label>Username or email</Label>
+          <Input type="text" name="username" />
+          {touched.username &&
+            errors.username && <ErrorMessage>{errors.username}</ErrorMessage>}
         </FormItem>
         <FormItem>
           <Label>Password</Label>
@@ -77,11 +77,11 @@ class FormikForm extends Component {
 
 const LoginForm = withFormik({
   mapPropsToValues: props => ({
-    email: props.email || "",
+    username: props.username || "",
     password: props.password || ""
   }),
   validationSchema: Yup.object().shape({
-    email: Yup.string().required("Email is required"),
+    username: Yup.string().required("Username or email is required"),
     password: Yup.string().required("Password is required")
   }),
   handleSubmit(payload, bag) {

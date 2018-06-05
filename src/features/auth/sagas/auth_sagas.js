@@ -17,7 +17,8 @@ import {
 function* signupUser(action) {
   try {
     const data = yield call(signup, action.payload);
-    localStorage.setItem("token", data.data);
+    const { token } = data.data;
+    localStorage.setItem("token", token);
     yield put({ type: SIGNUP_SUCCESS, payload: data.data });
   } catch (error) {
     yield put({ type: SIGNUP_FAILURE, error });
@@ -31,7 +32,8 @@ export function* watchSignupRequest() {
 function* loginUser(action) {
   try {
     const data = yield call(login, action.payload);
-    localStorage.setItem("token", data.data.token);
+    const { token } = data.data;
+    localStorage.setItem("token", token);
     yield put({ type: LOGIN_SUCCESS, payload: data.data });
   } catch (error) {
     yield put({ type: LOGIN_FAILURE, error });
