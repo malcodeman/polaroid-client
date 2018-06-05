@@ -5,7 +5,7 @@ import Signup from "../features/auth/components/Signup";
 
 export default [
   {
-    path: "/posts",
+    path: "/",
     component: Posts,
     exact: true,
     private: true

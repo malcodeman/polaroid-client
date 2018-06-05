@@ -43,7 +43,7 @@ class Login extends Component {
   };
   render() {
     if (this.props.login_success) {
-      return <Redirect to="/posts" />;
+      return <Redirect to="/" />;
     }
     return (
       <Wrapper>
