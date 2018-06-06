@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import Header from "../../header/components/Header";
 import NewPost from "../../header/components/NewPost";
 
-import { findMe } from "../actions";
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,12 +37,6 @@ const Text = styled.span`
 `;
 
 class Profile extends Component {
-  componentDidMount = () => {
-    const { me } = this.props;
-    if (me === null) {
-      this.props.findMe();
-    }
-  };
   renderMe = () => {
     const { me } = this.props;
     if (me !== null) {
@@ -81,5 +73,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { findMe }
+  null
 )(Profile);

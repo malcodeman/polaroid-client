@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { logout } from "../../auth/actions/auth_actions";
+import { findMe } from "../../users/actions";
 
 import user from "../images/user.svg";
 
@@ -31,9 +32,15 @@ const Image = styled.img`
 `;
 
 class Toolbar extends Component {
+  componentDidMount = () => {
+    const { me, findMe } = this.props;
+    if (me === null) {
+      findMe();
+    }
+  };
   logoutHandler = () => {
-    const { logout, user } = this.props;
-    logout(user);
+    const { logout, me } = this.props;
+    logout(me);
   };
   renderUser = () => {
     const { me } = this.props;
@@ -65,7 +72,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: user => dispatch(logout(user))
+    logout: user => dispatch(logout(user)),
+    findMe: () => dispatch(findMe())
   };
 };
 
