@@ -74,7 +74,7 @@ class Header extends Component {
           <Nav>
             <Link to="/">Confessio</Link>
             <div>
-              <Link to="/new-post">
+              <Link to="/posts">
                 <Button>New Post</Button>
               </Link>
               <Button onClick={this.logoutHandler}>

@@ -1,12 +1,12 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import routes from "../routes";
 import PrivateRoute from "../routes/PrivateRoute";
 
 const App = () => {
   return (
-    <React.Fragment>
+    <Switch>
       {routes.map(route => {
         if (route.private) {
           return (
@@ -28,7 +28,7 @@ const App = () => {
           );
         }
       })}
-    </React.Fragment>
+    </Switch>
   );
 };
 

@@ -7,7 +7,7 @@ import Post from "./Post";
 import Header from "../../header/containers";
 
 import { getPosts } from "../actions/posts_actions";
-import {findMe} from "../../users/actions"
+import { findMe } from "../../users/actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,7 +26,10 @@ const Container = styled.div`
 
 class Posts extends Component {
   componentDidMount = () => {
-    this.props.findMe();
+    const { me } = this.props;
+    if (me === null) {
+      this.props.findMe();
+    }
     this.props.getPosts();
   };
   renderLoading = () => {
@@ -60,9 +63,13 @@ class Posts extends Component {
 
 const mapStateToProps = state => {
   return {
+    me: state.users.me,
     posts: state.posts.posts,
     loading: state.posts.loading
   };
 };
 
-export default connect(mapStateToProps, { findMe, getPosts })(Posts);
+export default connect(
+  mapStateToProps,
+  { findMe, getPosts }
+)(Posts);

@@ -2,6 +2,7 @@ import Posts from "../features/posts/components/Posts";
 import PostsNew from "../features/posts/components/PostsNew";
 import Login from "../features/auth/components/Login";
 import Signup from "../features/auth/components/Signup";
+import Profile from "../features/users/containers/Profile";
 
 export default [
   {
@@ -11,7 +12,7 @@ export default [
     private: true
   },
   {
-    path: "/new-post",
+    path: "/posts",
     component: PostsNew,
     private: true
   },
@@ -22,5 +23,10 @@ export default [
   {
     path: "/signup",
     component: Signup
+  },
+  {
+    path: "/:username",
+    component: Profile,
+    private: true
   }
 ];
