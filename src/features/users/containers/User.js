@@ -18,21 +18,16 @@ const Text = styled.span`
   margin: 4px 0;
 `;
 
-class Profile extends Component {
-  renderMe = () => {
-    const { me } = this.props;
-    if (me !== null) {
-      return (
-        <TextContainer>
-          <Text>Username: {me.username}</Text>
-          <Text>Email: {me.email}</Text>
-          <Text>Name: {me.name}</Text>
-        </TextContainer>
-      );
-    }
-  };
+class User extends Component {
+  componentDidMount = () => {};
   render() {
-    return <Center>{this.renderMe()}</Center>;
+    return (
+      <Center>
+        <TextContainer>
+          <Text>random user</Text>
+        </TextContainer>
+      </Center>
+    );
   }
 }
 
@@ -45,4 +40,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   null
-)(Profile);
+)(User);

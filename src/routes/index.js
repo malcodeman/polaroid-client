@@ -2,7 +2,7 @@ import Posts from "../features/posts/containers";
 import PostsNew from "../features/posts/containers/PostsNew";
 import Login from "../features/auth/containers/Login";
 import Signup from "../features/auth/containers/Signup";
-import Profile from "../features/users/containers/Profile";
+import RootUser from "../features/users/containers/";
 
 export default [
   {
@@ -26,7 +26,7 @@ export default [
   },
   {
     path: "/:username",
-    component: Profile,
+    component: RootUser,
     private: true
   }
 ];
