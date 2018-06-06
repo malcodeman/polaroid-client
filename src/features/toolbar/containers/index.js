@@ -69,9 +69,7 @@ class Toolbar extends Component {
   render() {
     return (
       <React.Fragment>
-        <Button onClick={this.logoutHandler}>
-          <span>Log Out</span>
-        </Button>
+        <Button onClick={this.logoutHandler}>Log Out</Button>
         {this.renderUser()}
       </React.Fragment>
     );
