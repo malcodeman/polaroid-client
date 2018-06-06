@@ -1,4 +1,4 @@
-import { FIND_ME_SUCCESS } from "../actions";
+import { FIND_ME_SUCCESS, UNLOAD_ME } from "../actions";
 
 const initialState = {
   me: null
@@ -10,6 +10,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         me: action.payload
+      };
+    case UNLOAD_ME:
+      return {
+        ...state,
+        me: null
       };
     default:
       return state;

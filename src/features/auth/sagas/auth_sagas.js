@@ -14,6 +14,8 @@ import {
   LOGOUT_FAILURE
 } from "../actions/auth_actions";
 
+import { UNLOAD_ME } from "../../users/actions";
+
 function* signupUser(action) {
   try {
     const data = yield call(signup, action.payload);
@@ -49,6 +51,7 @@ function* logoutUser(action) {
     const data = yield call(logout, action.payload);
     localStorage.removeItem("token");
     yield put({ type: LOGOUT_SUCCESS, payload: data.data });
+    yield put({ type: UNLOAD_ME });
     yield put(push("/login"));
   } catch (error) {
     yield put({ type: LOGOUT_FAILURE, error });
