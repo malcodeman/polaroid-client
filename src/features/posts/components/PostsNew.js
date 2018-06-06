@@ -4,8 +4,13 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import PostsNewForm from "./PostsNewForm";
-import Toolbar from "./Toolbar";
-import { createPost, createPostClear } from "../actions/posts_actions";
+import Header from "../../header/components/Header"
+
+import {
+  createPost,
+  createPostClear,
+  createPostTrigger
+} from "../actions/posts_actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,6 +27,16 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
+const Button = styled.button`
+  font-size: 0.8rem;
+  color: #007aff;
+  margin: 0 6px;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
 class PostsNew extends Component {
   componentWillUnmount = () => {
     this.props.createPostClear();
@@ -32,7 +47,11 @@ class PostsNew extends Component {
     }
     return (
       <Wrapper>
-        <Toolbar />
+        <Header>
+          <Button onClick={this.props.createPostTrigger}>
+            Post
+          </Button>
+        </Header>
         <PostsNewSection>
           <Container>
             <PostsNewForm
@@ -57,8 +76,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createPost: newPost => dispatch(createPost(newPost)),
-    createPostClear: () => dispatch(createPostClear())
+    createPostClear: () => dispatch(createPostClear()),
+    createPostTrigger: () => dispatch(createPostTrigger())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostsNew);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostsNew);

@@ -7,29 +7,6 @@ import { logout } from "../../auth/actions/auth_actions";
 
 import user from "../images/user.svg";
 
-const Wrapper = styled.div`
-  flex-basis: 64px;
-`;
-
-const StyledHeader = styled.header`
-  top: 0;
-  position: fixed;
-  background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  width: 100%;
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 992px;
-  margin: 0 auto;
-  width: 100%;
-  height: 64px;
-  padding: 0 20px;
-`;
-
 const Button = styled.button`
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.8);
@@ -53,15 +30,16 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
-class Header extends Component {
+class Toolbar extends Component {
   logoutHandler = () => {
-    this.props.logout(this.props.user);
+    const { logout, user } = this.props;
+    logout(user);
   };
   renderUser = () => {
     const { me } = this.props;
     if (me !== null) {
       return (
-        <Link to={`${this.props.me.username}`}>
+        <Link to={`${me.username}`}>
           <Image height="20" width="20" margin src={user} />
         </Link>
       );
@@ -69,22 +47,12 @@ class Header extends Component {
   };
   render() {
     return (
-      <Wrapper>
-        <StyledHeader>
-          <Nav>
-            <Link to="/">Confessio</Link>
-            <div>
-              <Link to="/posts">
-                <Button>New Post</Button>
-              </Link>
-              <Button onClick={this.logoutHandler}>
-                <span>Log Out</span>
-              </Button>
-              {this.renderUser()}
-            </div>
-          </Nav>
-        </StyledHeader>
-      </Wrapper>
+      <React.Fragment>
+        <Button onClick={this.logoutHandler}>
+          <span>Log Out</span>
+        </Button>
+        {this.renderUser()}
+      </React.Fragment>
     );
   }
 }
@@ -104,4 +72,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(Toolbar);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-import Header from "../../header/containers";
+import Header from "../../header/components/Header";
 
 import { findMe } from "../actions";
 

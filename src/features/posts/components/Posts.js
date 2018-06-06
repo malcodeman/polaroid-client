@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import PostLoading from "./PostLoading";
 import Post from "./Post";
-import Header from "../../header/containers";
+import Header from "../../header/components/Header";
 
 import { getPosts } from "../actions/posts_actions";
 import { findMe } from "../../users/actions";
@@ -22,6 +23,16 @@ const Container = styled.div`
   padding: 40px 20px;
   max-width: 992px;
   margin: 0 auto;
+`;
+
+const Button = styled.button`
+  font-size: 0.8rem;
+  color: #007aff;
+  margin: 0 6px;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 class Posts extends Component {
@@ -49,7 +60,11 @@ class Posts extends Component {
   render() {
     return (
       <Wrapper>
-        <Header />
+        <Header>
+          <Link to="/posts">
+            <Button>New Post</Button>
+          </Link>
+        </Header>
         <PostsSection>
           <Container>
             {this.renderLoading()}
