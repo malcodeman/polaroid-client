@@ -27,16 +27,21 @@ const Nav = styled.nav`
   padding: 0 20px;
 `;
 
+const RightSide = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const Header = props => {
   return (
     <Wrapper>
       <StyledHeader>
         <Nav>
           <Link to="/">Confessio</Link>
-          <div>
+          <RightSide>
             {props.children}
             <Toolbar />
-          </div>
+          </RightSide>
         </Nav>
       </StyledHeader>
     </Wrapper>

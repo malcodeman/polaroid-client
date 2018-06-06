@@ -31,6 +31,19 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
+const UserCircle = styled.div`
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background-color: #007aff;
+  color: #fff;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+`;
+
 class Toolbar extends Component {
   componentDidMount = () => {
     const { me, findMe } = this.props;
@@ -47,10 +60,10 @@ class Toolbar extends Component {
     if (me !== null) {
       return (
         <Link to={`${me.username}`}>
-          <Image height="20" width="20" margin src={user} />
+          <UserCircle>{me.initials}</UserCircle>
         </Link>
       );
-    } else return null;
+    } else return <UserCircle />;
   };
   render() {
     return (
