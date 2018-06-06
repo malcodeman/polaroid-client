@@ -42,6 +42,7 @@ const UserCircle = styled.div`
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  margin-left: 6px;
 `;
 
 class Toolbar extends Component {
