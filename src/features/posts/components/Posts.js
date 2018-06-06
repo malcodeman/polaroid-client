@@ -5,7 +5,9 @@ import { connect } from "react-redux";
 import PostLoading from "./PostLoading";
 import Post from "./Post";
 import Header from "../../header/containers";
+
 import { getPosts } from "../actions/posts_actions";
+import {findMe} from "../../users/actions"
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,6 +26,7 @@ const Container = styled.div`
 
 class Posts extends Component {
   componentDidMount = () => {
+    this.props.findMe();
     this.props.getPosts();
   };
   renderLoading = () => {
@@ -62,4 +65,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { findMe, getPosts })(Posts);

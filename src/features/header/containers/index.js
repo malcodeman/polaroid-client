@@ -57,6 +57,16 @@ class Header extends Component {
   logoutHandler = () => {
     this.props.logout(this.props.user);
   };
+  renderUser = () => {
+    const { me } = this.props;
+    if (me !== null) {
+      return (
+        <Link to={`${this.props.me.username}`}>
+          <Image height="20" width="20" margin src={user} />
+        </Link>
+      );
+    } else return null;
+  };
   render() {
     return (
       <Wrapper>
@@ -70,9 +80,7 @@ class Header extends Component {
               <Button onClick={this.logoutHandler}>
                 <span>Log Out</span>
               </Button>
-              <Link to={`${this.props.user.email}`}>
-                <Image height="20" width="20" margin src={user} />
-              </Link>
+              {this.renderUser()}
             </div>
           </Nav>
         </StyledHeader>
@@ -83,8 +91,7 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.user,
-    logout_success: state.auth.logout_success
+    me: state.users.me
   };
 };
 
