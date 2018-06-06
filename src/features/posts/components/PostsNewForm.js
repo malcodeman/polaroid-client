@@ -30,7 +30,6 @@ const Error = styled.div`
   font-size: 0.8rem;
   color: #fff;
   background-color: #b00e23;
-  display: inline-block;
   padding: 4px;
   margin: 4px 0;
   align-self: flex-start;
