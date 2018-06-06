@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import PostLoading from "./PostLoading";
 import Post from "./Post";
 import Header from "../../header/components/Header";
+import NewPost from "../../header/components/NewPost";
 
 import { getPosts } from "../actions/posts_actions";
 import { findMe } from "../../users/actions";
@@ -25,23 +25,14 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const Button = styled.button`
-  font-size: 0.8rem;
-  color: #007aff;
-  margin: 0 6px;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  cursor: pointer;
-`;
-
 class Posts extends Component {
   componentDidMount = () => {
-    const { me } = this.props;
+    // findMe should be called here since Posts is root route
+    const { me, findMe, getPosts } = this.props;
     if (me === null) {
-      this.props.findMe();
+      findMe();
     }
-    this.props.getPosts();
+    getPosts();
   };
   renderLoading = () => {
     return this.props.loading ? <PostLoading /> : null;
@@ -61,9 +52,7 @@ class Posts extends Component {
     return (
       <Wrapper>
         <Header>
-          <Link to="/posts">
-            <Button>New Post</Button>
-          </Link>
+          <NewPost />
         </Header>
         <PostsSection>
           <Container>

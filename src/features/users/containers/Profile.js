@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import Header from "../../header/components/Header";
+import NewPost from "../../header/components/NewPost";
 
 import { findMe } from "../actions";
 
@@ -59,7 +60,9 @@ class Profile extends Component {
   render() {
     return (
       <Wrapper>
-        <Header />
+        <Header>
+          <NewPost />
+        </Header>
         <Content>
           <Container>
             <Center>{this.renderMe()}</Center>
