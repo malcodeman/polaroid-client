@@ -26,9 +26,14 @@ const Input = styled(Field)`
   margin-bottom: 2px;
 `;
 
-const ErrorMessage = styled.span`
+const Error = styled.div`
   font-size: 0.8rem;
-  color: #b00e23;
+  color: #fff;
+  background-color: #b00e23;
+  display: inline-block;
+  padding: 4px;
+  margin: 4px 0;
+  align-self: flex-start;
 `;
 
 class FormikForm extends Component {
@@ -47,8 +52,7 @@ class FormikForm extends Component {
       <StyledForm>
         <FormItem>
           <Input type="text" name="text" />
-          {touched.text &&
-            errors.text && <ErrorMessage>{errors.text}</ErrorMessage>}
+          {touched.text && errors.text && <Error>{errors.text}</Error>}
         </FormItem>
       </StyledForm>
     );
