@@ -1,7 +1,7 @@
-import Posts from "../features/posts/components/Posts";
-import PostsNew from "../features/posts/components/PostsNew";
-import Login from "../features/auth/components/Login";
-import Signup from "../features/auth/components/Signup";
+import Posts from "../features/posts/containers";
+import PostsNew from "../features/posts/containers/PostsNew";
+import Login from "../features/auth/containers/Login";
+import Signup from "../features/auth/containers/Signup";
 import Profile from "../features/users/containers/Profile";
 
 export default [

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-import PostLoading from "./PostLoading";
-import Post from "./Post";
+import PostLoading from "../components/PostLoading";
+import Post from "../components/Post";
 import Header from "../../header/components/Header";
 import NewPost from "../../header/components/NewPost";
 
