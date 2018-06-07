@@ -8,7 +8,6 @@ import Header from "../../header/components/Header";
 import NewPost from "../../header/components/NewPost";
 
 import { getPosts } from "../actions/posts_actions";
-import { findMe } from "../../users/actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,11 +26,7 @@ const Container = styled.div`
 
 class Posts extends Component {
   componentDidMount = () => {
-    // findMe should be called here since Posts is root route
-    const { me, findMe, getPosts } = this.props;
-    if (me === null) {
-      findMe();
-    }
+    const { getPosts } = this.props;
     getPosts();
   };
   renderLoading = () => {
@@ -72,7 +67,6 @@ class Posts extends Component {
 
 const mapStateToProps = state => {
   return {
-    me: state.users.me,
     posts: state.posts.posts,
     loading: state.posts.loading
   };
@@ -80,5 +74,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { findMe, getPosts }
+  { getPosts }
 )(Posts);
