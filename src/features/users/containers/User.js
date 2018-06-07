@@ -26,11 +26,22 @@ class User extends Component {
     const { findUserByUsername } = this.props;
     findUserByUsername(username);
   };
+  renderUser = () => {
+    const { user } = this.props;
+    if (user !== null) {
+      return (
+        <TextContainer>
+          <Text>Username: {user.username}</Text>
+          <Text>Name: {user.name}</Text>
+        </TextContainer>
+      );
+    }
+  };
   render() {
     return (
       <Center>
         <TextContainer>
-          <Text>random user</Text>
+          <Text>{this.renderUser()}</Text>
         </TextContainer>
       </Center>
     );

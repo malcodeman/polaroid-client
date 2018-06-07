@@ -1,7 +1,12 @@
-import { FIND_ME_SUCCESS, UNLOAD_ME } from "../actions";
+import {
+  FIND_ME_SUCCESS,
+  UNLOAD_ME,
+  FIND_USER_BY_USERNAME_SUCCESS
+} from "../actions";
 
 const initialState = {
-  me: null
+  me: null,
+  user: null
 };
 
 export default (state = initialState, action) => {
@@ -15,6 +20,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         me: null
+      };
+    case FIND_USER_BY_USERNAME_SUCCESS:
+      return {
+        ...state,
+        user: action.payload
       };
     default:
       return state;
