@@ -4,27 +4,43 @@ import { distanceInWordsToNow } from "date-fns";
 import { Link } from "react-router-dom";
 
 const Article = styled.article`
-  border-radius: 3px;
-  border: 1px solid #e6e6e6;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 40px;
-  padding: 10px;
 `;
 
 const Header = styled.header`
-  margin: 10px 0;
+  padding: 16px 10px;
+  border-top: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 `;
 
-const Text = styled.p`
+const Text = styled.span`
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.8);
-  word-wrap: break-word;
+`;
+
+const Photo = styled.img`
+  max-width: 100%;
 `;
 
 const Time = styled.time`
   font-size: 0.6rem;
   color: rgba(0, 0, 0, 0.6);
   text-transform: uppercase;
+`;
+
+const Footer = styled.footer`
+  padding: 16px 10px;
+  border-right: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 `;
 
 const Post = props => {
@@ -35,8 +51,10 @@ const Post = props => {
           <Text>{props.username}</Text>
         </Link>
       </Header>
-      <Text>{props.text}</Text>
-      <Time>{distanceInWordsToNow(props.createdAt)} ago</Time>
+      <Photo src={props.photoURL} />
+      <Footer>
+        <Time>{distanceInWordsToNow(props.createdAt)} ago</Time>
+      </Footer>
     </Article>
   );
 };

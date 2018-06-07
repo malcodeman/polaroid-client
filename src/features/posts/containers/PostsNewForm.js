@@ -50,8 +50,9 @@ class FormikForm extends Component {
     return (
       <StyledForm>
         <FormItem>
-          <Input type="text" name="text" />
-          {touched.text && errors.text && <Error>{errors.text}</Error>}
+          <Input type="text" name="photoURL" />
+          {touched.photoURL &&
+            errors.photoURL && <Error>{errors.photoURL}</Error>}
         </FormItem>
       </StyledForm>
     );
@@ -60,10 +61,10 @@ class FormikForm extends Component {
 
 const PostNewForm = withFormik({
   mapPropsToValues: props => ({
-    text: props.text || ""
+    photoURL: props.text || ""
   }),
   validationSchema: Yup.object().shape({
-    text: Yup.string().required("Post can't be empty")
+    photoURL: Yup.string().required("Photo URL can't be empty")
   }),
   handleSubmit(payload, bag) {
     bag.setSubmitting(false);

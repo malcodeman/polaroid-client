@@ -21,7 +21,7 @@ const PostsSection = styled.section`
 
 const Container = styled.div`
   padding: 40px 20px;
-  max-width: 992px;
+  max-width: 576px;
   margin: 0 auto;
 `;
 
@@ -46,7 +46,7 @@ class Posts extends Component {
           <Post
             key={post.id}
             username={post.user.username}
-            text={post.text}
+            photoURL={post.photoURL}
             createdAt={post.createdAt}
           />
         );
