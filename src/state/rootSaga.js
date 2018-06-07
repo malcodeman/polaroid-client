@@ -10,7 +10,10 @@ import {
   watchLogoutRequest
 } from "../features/auth/sagas/auth_sagas";
 
-import { watchFindMeRequest } from "../features/users/sagas";
+import {
+  watchFindMeRequest,
+  watchFindByUsernameRequest
+} from "../features/users/sagas";
 
 export default function* rootSaga() {
   yield all([
@@ -19,6 +22,7 @@ export default function* rootSaga() {
     watchSignupRequest(),
     watchLoginRequest(),
     watchLogoutRequest(),
-    watchFindMeRequest()
+    watchFindMeRequest(),
+    watchFindByUsernameRequest()
   ]);
 }

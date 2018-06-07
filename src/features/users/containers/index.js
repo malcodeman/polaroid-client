@@ -30,7 +30,7 @@ class Root extends Component {
       if (username === me.username) {
         return <Profile />;
       } else {
-        return <User />;
+        return <User username={username} />;
       }
     }
   };

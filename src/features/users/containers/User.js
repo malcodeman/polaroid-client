@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import { findUserByUsername } from "../actions";
+
 const Center = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,7 +21,11 @@ const Text = styled.span`
 `;
 
 class User extends Component {
-  componentDidMount = () => {};
+  componentDidMount = () => {
+    const { username } = this.props;
+    const { findUserByUsername } = this.props;
+    findUserByUsername(username);
+  };
   render() {
     return (
       <Center>
@@ -33,11 +39,11 @@ class User extends Component {
 
 const mapStateToProps = state => {
   return {
-    me: state.users.me
+    user: state.users.user
   };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  { findUserByUsername }
 )(User);
