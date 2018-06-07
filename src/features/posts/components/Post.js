@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { distanceInWordsToNow } from "date-fns";
+import { Link } from "react-router-dom";
 
 const Article = styled.article`
   border-radius: 3px;
@@ -8,6 +9,10 @@ const Article = styled.article`
   background-color: #fff;
   margin-bottom: 40px;
   padding: 10px;
+`;
+
+const Header = styled.header`
+  margin: 10px 0;
 `;
 
 const Text = styled.p`
@@ -25,6 +30,11 @@ const Time = styled.time`
 const Post = props => {
   return (
     <Article>
+      <Header>
+        <Link to={`/${props.username}`}>
+          <Text>{props.username}</Text>
+        </Link>
+      </Header>
       <Text>{props.text}</Text>
       <Time>{distanceInWordsToNow(props.createdAt)} ago</Time>
     </Article>

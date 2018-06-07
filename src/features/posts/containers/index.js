@@ -43,7 +43,12 @@ class Posts extends Component {
     } else {
       return this.props.posts.map(post => {
         return (
-          <Post key={post.id} text={post.text} createdAt={post.createdAt} />
+          <Post
+            key={post.id}
+            username={post.user.username}
+            text={post.text}
+            createdAt={post.createdAt}
+          />
         );
       });
     }
