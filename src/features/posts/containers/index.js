@@ -25,13 +25,9 @@ class Posts extends Component {
     const { getPosts } = this.props;
     getPosts();
   };
-  renderLoading = () => {
-    return this.props.loading ? <PostLoading /> : null;
-  };
   renderPosts = () => {
-    if (this.props.posts.length === 0 && this.props.loading === false) {
-      return <p>No posts</p>;
-    } else {
+    const { posts } = this.props;
+    if (posts !== null) {
       return this.props.posts.map(post => {
         return (
           <Post
@@ -42,6 +38,8 @@ class Posts extends Component {
           />
         );
       });
+    } else {
+      return <PostLoading />;
     }
   };
   render() {
@@ -50,10 +48,9 @@ class Posts extends Component {
         <Header>
           <NewPost />
         </Header>
-        <Container>
-          {this.renderLoading()}
-          {this.renderPosts()}
-        </Container>
+        <div>
+          <Container>{this.renderPosts()}</Container>
+        </div>
       </Wrapper>
     );
   }

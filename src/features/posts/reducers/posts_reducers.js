@@ -9,7 +9,7 @@ import {
 import { LOGOUT_SUCCESS } from "../../auth/actions/auth_actions";
 
 const initialState = {
-  posts: [],
+  posts: null,
   loading: true,
   create_post_success: false,
   create_post_failure: false,
