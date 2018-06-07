@@ -23,7 +23,6 @@ const Input = styled(Field)`
   outline: 0;
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 2px;
 `;
 
 const Error = styled.div`

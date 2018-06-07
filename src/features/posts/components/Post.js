@@ -26,6 +26,7 @@ const Text = styled.span`
 
 const Photo = styled.img`
   max-width: 100%;
+  object-fit: cover;
 `;
 
 const Time = styled.time`

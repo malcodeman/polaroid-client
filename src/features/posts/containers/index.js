@@ -14,10 +14,6 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const PostsSection = styled.section`
-  flex-grow: 1;
-`;
-
 const Container = styled.div`
   padding: 40px 20px;
   max-width: 576px;
@@ -54,12 +50,10 @@ class Posts extends Component {
         <Header>
           <NewPost />
         </Header>
-        <PostsSection>
-          <Container>
-            {this.renderLoading()}
-            {this.renderPosts()}
-          </Container>
-        </PostsSection>
+        <Container>
+          {this.renderLoading()}
+          {this.renderPosts()}
+        </Container>
       </Wrapper>
     );
   }

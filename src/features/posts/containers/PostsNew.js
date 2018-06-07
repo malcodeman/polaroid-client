@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import PostsNewForm from "./PostsNewForm";
-import Header from "../../header/components/Header"
+import Header from "../../header/components/Header";
 
 import {
   createPost,
@@ -17,14 +17,11 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const PostsNewSection = styled.section`
-  flex-grow: 1;
-`;
-
 const Container = styled.div`
   padding: 40px 20px;
   max-width: 992px;
   margin: 0 auto;
+  width: 100%;
 `;
 
 const Button = styled.button`
@@ -48,19 +45,15 @@ class PostsNew extends Component {
     return (
       <Wrapper>
         <Header>
-          <Button onClick={this.props.createPostTrigger}>
-            Post
-          </Button>
+          <Button onClick={this.props.createPostTrigger}>Post</Button>
         </Header>
-        <PostsNewSection>
-          <Container>
-            <PostsNewForm
-              createPost={this.props.createPost}
-              createPostClear={this.props.createPostClear}
-              createPostTrigger={this.props.create_post_trigger}
-            />
-          </Container>
-        </PostsNewSection>
+        <Container>
+          <PostsNewForm
+            createPost={this.props.createPost}
+            createPostClear={this.props.createPostClear}
+            createPostTrigger={this.props.create_post_trigger}
+          />
+        </Container>
       </Wrapper>
     );
   }

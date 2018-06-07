@@ -2,13 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import Posts from "../components/Posts";
 import { findUserByUsername } from "../actions";
-
-const Center = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const TextContainer = styled.div`
   display: flex;
@@ -30,21 +25,18 @@ class User extends Component {
     const { user } = this.props;
     if (user !== null) {
       return (
-        <TextContainer>
-          <Text>Username: {user.username}</Text>
-          <Text>Name: {user.name}</Text>
-        </TextContainer>
+        <React.Fragment>
+          <TextContainer>
+            <Text>Username: {user.username}</Text>
+            <Text>Name: {user.name}</Text>
+          </TextContainer>
+          <Posts posts={user.posts} />
+        </React.Fragment>
       );
     }
   };
   render() {
-    return (
-      <Center>
-        <TextContainer>
-          <Text>{this.renderUser()}</Text>
-        </TextContainer>
-      </Center>
-    );
+    return <div>{this.renderUser()}</div>;
   }
 }
 

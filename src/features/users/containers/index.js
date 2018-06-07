@@ -12,14 +12,13 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const Content = styled.section`
-  flex-grow: 1;
-`;
-
 const Container = styled.div`
-  padding: 40px 20px;
-  max-width: 992px;
-  margin: 0 auto;
+  padding: 40px 0;
+  @media (min-width: 768px) {
+    padding: 40px 20px;
+    max-width: 992px;
+    margin: 0 auto;
+  }
 `;
 
 class Root extends Component {
@@ -40,9 +39,7 @@ class Root extends Component {
         <Header>
           <NewPost />
         </Header>
-        <Content>
-          <Container>{this.renderUser()}</Container>
-        </Content>
+        <Container>{this.renderUser()}</Container>
       </Wrapper>
     );
   }
