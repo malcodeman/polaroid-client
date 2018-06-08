@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-const Center = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+import Posts from "../components/Posts";
 
 const TextContainer = styled.div`
   display: flex;
@@ -23,16 +19,19 @@ class Profile extends Component {
     const { me } = this.props;
     if (me !== null) {
       return (
-        <TextContainer>
-          <Text>Username: {me.username}</Text>
-          <Text>Email: {me.email}</Text>
-          <Text>Name: {me.name}</Text>
-        </TextContainer>
+        <React.Fragment>
+          <TextContainer>
+            <Text>Username: {me.username}</Text>
+            <Text>Email: {me.email}</Text>
+            <Text>Name: {me.name}</Text>
+          </TextContainer>
+          <Posts posts={me.posts} />
+        </React.Fragment>
       );
     }
   };
   render() {
-    return <Center>{this.renderMe()}</Center>;
+    return <div>{this.renderMe()}</div>;
   }
 }
 
