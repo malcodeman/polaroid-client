@@ -39,7 +39,9 @@ class Root extends Component {
         <Header>
           <NewPost />
         </Header>
-        <Container>{this.renderUser()}</Container>
+        <div>
+          <Container>{this.renderUser()}</Container>
+        </div>
       </Wrapper>
     );
   }

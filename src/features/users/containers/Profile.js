@@ -34,7 +34,6 @@ class Profile extends Component {
       );
     }
   };
-
   render() {
     return <div>{this.renderMe()}</div>;
   }
