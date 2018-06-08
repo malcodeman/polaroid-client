@@ -24,10 +24,13 @@ instance.interceptors.response.use(
     return Promise.resolve(response);
   },
   error => {
-    console.log(error);
-    localStorage.removeItem("token");
-    store.dispatch(push("/login"));
-    return Promise.reject(error);
+    console.log(error.response.status);
+    // Returns unauthorized user to login page
+    if (error.response.status === 401) {
+      localStorage.removeItem("token");
+      store.dispatch(push("/login"));
+      return Promise.reject(error);
+    }
   }
 );
 
