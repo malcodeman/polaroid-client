@@ -2,14 +2,22 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import ProfilePhoto from "./ProfilePhoto";
 import Posts from "../components/Posts";
 
-const TextContainer = styled.div`
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 10px;
+  margin-bottom: 20px;
+`;
+
+const Text = styled.span`
   display: flex;
   flex-direction: column;
 `;
 
-const Text = styled.span`
+const Typography = styled.span`
   font-size: 0.8rem;
   margin: 4px 0;
 `;
@@ -24,11 +32,15 @@ class Profile extends Component {
     } else if (me !== null && loading === false && error === false) {
       return (
         <React.Fragment>
-          <TextContainer>
-            <Text>Username: {me.username}</Text>
-            <Text>Name: {me.name}</Text>
-            <Text>Email: {me.email}</Text>
-          </TextContainer>
+          <Wrapper>
+            <ProfilePhoto nameFirstLetter={me.name[0]} />
+            <Text>
+              <Typography>Username: {me.username}</Typography>
+              <Typography>Name: {me.name}</Typography>
+              <Typography>Email: {me.email}</Typography>
+              <Typography>{me.posts.length} posts</Typography>
+            </Text>
+          </Wrapper>
           <Posts posts={me.posts} />
         </React.Fragment>
       );
