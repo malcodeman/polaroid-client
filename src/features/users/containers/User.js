@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import Posts from "../components/Posts";
-import { findUserByUsername } from "../actions";
+import { findUserByUsername, unloadUser } from "../actions";
 
 const TextContainer = styled.div`
   display: flex;
@@ -21,9 +21,17 @@ class User extends Component {
     const { findUserByUsername } = this.props;
     findUserByUsername(username);
   };
+  componentWillUnmount = () => {
+    const { unloadUser } = this.props;
+    unloadUser();
+  };
   renderUser = () => {
-    const { user } = this.props;
-    if (user !== null) {
+    const { user, loading, error } = this.props;
+    if (loading) {
+      return <p>Loading...</p>;
+    } else if (error) {
+      return <p>Sorry, this page isn't available.</p>;
+    } else if (user !== null && loading === false && error === false) {
       return (
         <React.Fragment>
           <TextContainer>
@@ -42,11 +50,13 @@ class User extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.users.user
+    user: state.users.user,
+    loading: state.users.loading,
+    error: state.users.error
   };
 };
 
 export default connect(
   mapStateToProps,
-  { findUserByUsername }
+  { findUserByUsername, unloadUser }
 )(User);

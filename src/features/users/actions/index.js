@@ -6,6 +6,7 @@ export const UNLOAD_ME = "UNLOAD_ME";
 export const FIND_USER_BY_USERNAME_REQUEST = "FIND_USER_BY_USERNAME_REQUEST";
 export const FIND_USER_BY_USERNAME_SUCCESS = "FIND_USER_BY_USERNAME_SUCCESS";
 export const FIND_USER_BY_USERNAME_FAILURE = "FIND_USER_BY_USERNAME_FAILURE";
+export const UNLOAD_USER = "UNLOAD_USER";
 
 export const findMe = () => {
   return {
@@ -19,5 +20,11 @@ export const findUserByUsername = username => {
     payload: {
       username
     }
+  };
+};
+
+export const unloadUser = () => {
+  return {
+    type: UNLOAD_USER
   };
 };

@@ -18,7 +18,7 @@ const findByUsernameApi = username => {
   return axios.get(`/users/${username}`);
 };
 
-function* findMe(action) {
+function* findMe() {
   try {
     const data = yield call(findMeApi);
     yield put({ type: FIND_ME_SUCCESS, payload: data.data });

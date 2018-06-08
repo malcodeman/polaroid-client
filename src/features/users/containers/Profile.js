@@ -16,20 +16,25 @@ const Text = styled.span`
 
 class Profile extends Component {
   renderMe = () => {
-    const { me } = this.props;
-    if (me !== null) {
+    const { me, loading, error } = this.props;
+    if (loading) {
+      return <p>Loading...</p>;
+    } else if (error) {
+      return <p>Sorry, this page isn't available.</p>;
+    } else if (me !== null && loading === false && error === false) {
       return (
         <React.Fragment>
           <TextContainer>
             <Text>Username: {me.username}</Text>
-            <Text>Email: {me.email}</Text>
             <Text>Name: {me.name}</Text>
+            <Text>Email: {me.email}</Text>
           </TextContainer>
           <Posts posts={me.posts} />
         </React.Fragment>
       );
     }
   };
+
   render() {
     return <div>{this.renderMe()}</div>;
   }
@@ -37,7 +42,9 @@ class Profile extends Component {
 
 const mapStateToProps = state => {
   return {
-    me: state.users.me
+    me: state.users.me,
+    loading: state.users.loading,
+    error: state.users.error
   };
 };
 
