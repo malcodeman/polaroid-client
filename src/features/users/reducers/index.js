@@ -27,7 +27,9 @@ export default (state = initialState, action) => {
     case FIND_ME_SUCCESS:
       return {
         ...state,
-        me: action.payload
+        me: action.payload,
+        loading: false,
+        error: false
       };
     case FIND_ME_FAILURE:
       return {
