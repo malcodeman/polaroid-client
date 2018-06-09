@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+import Modal from "../components/Modal";
+
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -20,10 +22,36 @@ const Photo = styled.div`
 `;
 
 class ProfilePhoto extends Component {
+  state = {
+    openModal: false
+  };
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleEscape, false);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleEscape, false);
+  }
+  handleClick = () => {
+    this.setState(prevState => ({
+      openModal: !prevState.openModal
+    }));
+  };
+  handleEscape = event => {
+    if (event.keyCode === 27) {
+      this.setState({ openModal: false });
+    }
+  };
+  renderModal = () => {
+    const { openModal } = this.state;
+    if (openModal) {
+      return <Modal />;
+    }
+  };
   render() {
     return (
       <Wrapper>
-        <Photo>{this.props.nameFirstLetter}</Photo>
+        <Photo onClick={this.handleClick}>{this.props.nameFirstLetter}</Photo>
+        {this.renderModal()}
       </Wrapper>
     );
   }
