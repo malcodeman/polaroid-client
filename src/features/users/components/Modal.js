@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const Modal = props => {
-  return <Wrapper>modal yo</Wrapper>;
+  return <Wrapper>{props.children}</Wrapper>;
 };
 
 export default Modal;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import Modal from "../components/Modal";
+import ProfilePhotoForm from "./ProfilePhotoForm";
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,7 +45,11 @@ class ProfilePhoto extends Component {
   renderModal = () => {
     const { openModal } = this.state;
     if (openModal) {
-      return <Modal />;
+      return (
+        <Modal>
+          <ProfilePhotoForm />
+        </Modal>
+      );
     }
   };
   render() {
