@@ -18,7 +18,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Image = styled.img`
+const Photo = styled.img`
   height: ${props => props.height};
   width: ${props => props.width};
   ${props => {
@@ -56,14 +56,18 @@ class Toolbar extends Component {
     const { logout, me } = this.props;
     logout(me);
   };
+  renderProfilePhoto = () => {
+    const { profilePhotoURL, nameFirstLetter } = this.props.me;
+    if (profilePhotoURL) {
+      return <Photo src={profilePhotoURL} height="24" width="24" circle />;
+    } else {
+      return <UserCircle>{nameFirstLetter}</UserCircle>;
+    }
+  };
   renderUser = () => {
     const { me } = this.props;
     if (me !== null) {
-      return (
-        <Link to={`${me.username}`}>
-          <UserCircle>{me.initials}</UserCircle>
-        </Link>
-      );
+      return <Link to={`${me.username}`}>{this.renderProfilePhoto()}</Link>;
     } else return <UserCircle />;
   };
   render() {

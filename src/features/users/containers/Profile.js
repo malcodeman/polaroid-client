@@ -33,7 +33,10 @@ class Profile extends Component {
       return (
         <React.Fragment>
           <Wrapper>
-            <ProfilePhoto nameFirstLetter={me.name[0]} />
+            <ProfilePhoto
+              profilePhotoURL={me.profilePhotoURL}
+              nameFirstLetter={me.nameFirstLetter}
+            />
             <Text>
               <Typography>Username: {me.username}</Typography>
               <Typography>Name: {me.name}</Typography>

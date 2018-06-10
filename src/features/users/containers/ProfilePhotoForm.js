@@ -63,14 +63,14 @@ const Button = styled.button`
 
 class FormikForm extends Component {
   render() {
-    const { errors, touched } = this.props;
+    const { errors, touched, closeModal } = this.props;
     const { profilePhotoURL } = this.props.values;
     return (
       <FormWrapper>
         <StyledForm>
           <Header />
           {profilePhotoURL ? (
-            <ProfilePhotoPreview src={this.props.values.profilePhotoURL} />
+            <ProfilePhotoPreview src={profilePhotoURL} />
           ) : (
             <InputWrapper>
               <Input
@@ -81,7 +81,7 @@ class FormikForm extends Component {
             </InputWrapper>
           )}
           <Footer>
-            <Button>Close</Button>
+            <Button onClick={closeModal}>Close</Button>
             <Button primary disabled={!profilePhotoURL}>
               Upload
             </Button>

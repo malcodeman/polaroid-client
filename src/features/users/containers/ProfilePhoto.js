@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const Photo = styled.div`
+const PhotoContainer = styled.div`
   border-radius: 50%;
   height: 64px;
   width: 64px;
@@ -20,6 +20,13 @@ const Photo = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+`;
+
+const Photo = styled.img`
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
 `;
 
 class ProfilePhoto extends Component {
@@ -47,15 +54,31 @@ class ProfilePhoto extends Component {
     if (openModal) {
       return (
         <Modal>
-          <ProfilePhotoForm />
+          <ProfilePhotoForm closeModal={this.handleClick} />
         </Modal>
+      );
+    }
+  };
+  renderProfilePhoto = () => {
+    const { profilePhotoURL, nameFirstLetter } = this.props;
+    if (profilePhotoURL) {
+      return (
+        <PhotoContainer>
+          <Photo onClick={this.handleClick} src={profilePhotoURL} />
+        </PhotoContainer>
+      );
+    } else {
+      return (
+        <PhotoContainer onClick={this.handleClick}>
+          {nameFirstLetter}
+        </PhotoContainer>
       );
     }
   };
   render() {
     return (
       <Wrapper>
-        <Photo onClick={this.handleClick}>{this.props.nameFirstLetter}</Photo>
+        {this.renderProfilePhoto()}
         {this.renderModal()}
       </Wrapper>
     );
