@@ -1,7 +1,7 @@
 import axios from "axios";
 import { push } from "react-router-redux";
 
-import store from "./store";
+import store from "../state/store";
 
 const API_URL = process.env.REACT_APP_API_URL;
 

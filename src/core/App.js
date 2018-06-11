@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import routes from "../routes";
-import PrivateRoute from "../routes/PrivateRoute";
+import routes from "./routes";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const App = () => {
   return (

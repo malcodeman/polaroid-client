@@ -1,4 +1,4 @@
-import axios from "../../../state/axios";
+import axios from "../../../core/http";
 
 export const signup = newUser => {
   return axios.post(`auth/signup`, newUser);

@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 
-import axios from "../../../state/axios";
+import axios from "../../../core/http";
 import {
   FIND_ME_FAILURE,
   FIND_ME_REQUEST,
