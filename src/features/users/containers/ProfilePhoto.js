@@ -23,6 +23,7 @@ const PhotoContainer = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  cursor: ${props => (props.cursor ? props.cursor : "default")};
 `;
 
 const Photo = styled.img`
@@ -66,19 +67,29 @@ class ProfilePhoto extends Component {
     }
   };
   renderProfilePhoto = () => {
-    const { profilePhotoURL, nameFirstLetter } = this.props;
-    if (profilePhotoURL) {
+    const { profile, profilePhotoURL, nameFirstLetter } = this.props;
+    if (profile && profilePhotoURL) {
       return (
-        <PhotoContainer>
+        <PhotoContainer cursor="pointer">
           <Photo onClick={this.handleClick} src={profilePhotoURL} />
         </PhotoContainer>
       );
-    } else {
+    } else if (profile && nameFirstLetter) {
       return (
-        <PhotoContainer onClick={this.handleClick}>
+        <PhotoContainer onClick={this.handleClick} cursor="pointer">
           {nameFirstLetter}
         </PhotoContainer>
       );
+    } else {
+      if (profilePhotoURL) {
+        return (
+          <PhotoContainer>
+            <Photo src={profilePhotoURL} />
+          </PhotoContainer>
+        );
+      } else {
+        return <PhotoContainer>{nameFirstLetter}</PhotoContainer>;
+      }
     }
   };
   render() {

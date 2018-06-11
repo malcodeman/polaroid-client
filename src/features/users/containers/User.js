@@ -1,19 +1,9 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 
+import Header from "../components/Header";
 import Posts from "../components/Posts";
 import { findUserByUsername, unloadUser } from "../actions";
-
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Text = styled.span`
-  font-size: 0.8rem;
-  margin: 4px 0;
-`;
 
 class User extends Component {
   componentDidMount = () => {
@@ -34,10 +24,14 @@ class User extends Component {
     } else if (user !== null && loading === false && error === false) {
       return (
         <React.Fragment>
-          <TextContainer>
-            <Text>Username: {user.username}</Text>
-            <Text>Name: {user.name}</Text>
-          </TextContainer>
+          <Header
+            profilePhotoURL={user.profilePhotoURL}
+            nameFirstLetter={user.nameFirstLetter}
+            username={user.username}
+            name={user.name}
+            email={user.email}
+            postsLength={user.posts.length}
+          />
           <Posts posts={user.posts} />
         </React.Fragment>
       );

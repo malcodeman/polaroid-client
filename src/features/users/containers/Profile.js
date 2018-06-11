@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import ProfilePhoto from "./ProfilePhoto";
+import Header from "../components/Header";
 import Posts from "../components/Posts";
 
 const Wrapper = styled.div`
@@ -32,18 +33,15 @@ class Profile extends Component {
     } else if (me !== null && loading === false && error === false) {
       return (
         <React.Fragment>
-          <Wrapper>
-            <ProfilePhoto
-              profilePhotoURL={me.profilePhotoURL}
-              nameFirstLetter={me.nameFirstLetter}
-            />
-            <Text>
-              <Typography>Username: {me.username}</Typography>
-              <Typography>Name: {me.name}</Typography>
-              <Typography>Email: {me.email}</Typography>
-              <Typography>{me.posts.length} posts</Typography>
-            </Text>
-          </Wrapper>
+          <Header
+            profile={true}
+            profilePhotoURL={me.profilePhotoURL}
+            nameFirstLetter={me.nameFirstLetter}
+            username={me.username}
+            name={me.name}
+            email={me.email}
+            postsLength={me.posts.length}
+          />
           <Posts posts={me.posts} />
         </React.Fragment>
       );
