@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post matches snapshot 1`] = `
+<article
+  className="sc-bdVaJa dBHXyT"
+>
+  <header
+    className="sc-bwzfXH gskia"
+  >
+    <a
+      className="sc-ifAKCX dCoIjQ"
+      href="/undefined"
+      onClick={[Function]}
+    >
+      <div
+        className="sc-bxivhb gAayHR"
+      />
+      <span
+        className="sc-EHOje hKCBvp"
+      />
+    </a>
+  </header>
+  <img
+    className="sc-bZQynM fLrTLK"
+    src={undefined}
+  />
+  <footer
+    className="sc-htoDjs bqEVDM"
+  >
+    <time
+      className="sc-gzVnrw bJdRVl"
+    >
+      almost NaN years
+       ago
+    </time>
+  </footer>
+</article>
+`;
+
+exports[`PostLoading matches snapshot 1`] = `
+<div
+  className="sc-dnqmqq hTcXeV"
+>
+  <div
+    className="sc-iwsKbI bsgtKF"
+  />
+  <div
+    className="sc-gZMcBi kSWmls"
+  />
+</div>
+`;
