@@ -10,6 +10,8 @@ import {
   UPDATE_ME_SUCCESS
 } from "../actions";
 
+import { CREATE_POST_SUCCESS } from "../../posts/actions/posts_actions";
+
 const initialState = {
   me: null,
   user: null,
@@ -83,6 +85,16 @@ export default (state = initialState, action) => {
         loading: false,
         error: false
       };
+    case CREATE_POST_SUCCESS:
+      if (state.me.id === action.payload.userId) {
+        return {
+          ...state,
+          me: {
+            ...state.me,
+            posts: [action.payload, ...state.me.posts]
+          }
+        };
+      }
     default:
       return state;
   }
