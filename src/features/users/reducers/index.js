@@ -6,7 +6,8 @@ import {
   FIND_USER_BY_USERNAME_REQUEST,
   FIND_USER_BY_USERNAME_SUCCESS,
   FIND_USER_BY_USERNAME_FAILURE,
-  UNLOAD_USER
+  UNLOAD_USER,
+  UPDATE_ME_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -37,6 +38,16 @@ export default (state = initialState, action) => {
         me: null,
         loading: false,
         error: true
+      };
+    case UPDATE_ME_SUCCESS:
+      return {
+        ...state,
+        me: {
+          ...state.me,
+          profilePhotoURL: action.payload.profilePhotoURL
+        },
+        loading: false,
+        error: false
       };
     case UNLOAD_ME:
       return {

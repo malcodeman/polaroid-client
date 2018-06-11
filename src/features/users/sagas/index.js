@@ -7,7 +7,10 @@ import {
   FIND_ME_SUCCESS,
   FIND_USER_BY_USERNAME_FAILURE,
   FIND_USER_BY_USERNAME_REQUEST,
-  FIND_USER_BY_USERNAME_SUCCESS
+  FIND_USER_BY_USERNAME_SUCCESS,
+  UPDATE_ME_FAILURE,
+  UPDATE_ME_REQUEST,
+  UPDATE_ME_SUCCESS
 } from "../actions";
 
 const findMeApi = () => {
@@ -16,6 +19,10 @@ const findMeApi = () => {
 
 const findByUsernameApi = username => {
   return axios.get(`/users/${username}`);
+};
+
+const updateMeApi = data => {
+  return axios.put(`/users/me`, data);
 };
 
 function* findMe() {
@@ -37,10 +44,24 @@ function* findByUsername(action) {
   }
 }
 
+function* updateMe(action) {
+  try {
+    const { data } = action.payload;
+    const updated = yield call(updateMeApi, data);
+    yield put({ type: UPDATE_ME_SUCCESS, payload: updated.data });
+  } catch (error) {
+    yield put({ type: UPDATE_ME_FAILURE, error });
+  }
+}
+
 export function* watchFindMeRequest() {
   yield takeLatest(FIND_ME_REQUEST, findMe);
 }
 
 export function* watchFindByUsernameRequest() {
   yield takeLatest(FIND_USER_BY_USERNAME_REQUEST, findByUsername);
+}
+
+export function* watchUpdateMeRequest() {
+  yield takeLatest(UPDATE_ME_REQUEST, updateMe);
 }

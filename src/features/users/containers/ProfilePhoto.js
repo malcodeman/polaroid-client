@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 import Modal from "../components/Modal";
 import ProfilePhotoForm from "./ProfilePhotoForm";
+
+import { updateMe } from "../actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -54,7 +57,10 @@ class ProfilePhoto extends Component {
     if (openModal) {
       return (
         <Modal>
-          <ProfilePhotoForm closeModal={this.handleClick} />
+          <ProfilePhotoForm
+            closeModal={this.handleClick}
+            updateMe={this.props.updateMe}
+          />
         </Modal>
       );
     }
@@ -85,4 +91,7 @@ class ProfilePhoto extends Component {
   }
 }
 
-export default ProfilePhoto;
+export default connect(
+  null,
+  { updateMe }
+)(ProfilePhoto);

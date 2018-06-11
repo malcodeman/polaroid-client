@@ -12,7 +12,8 @@ import {
 
 import {
   watchFindMeRequest,
-  watchFindByUsernameRequest
+  watchFindByUsernameRequest,
+  watchUpdateMeRequest
 } from "../features/users/sagas";
 
 export default function* rootSaga() {
@@ -23,6 +24,7 @@ export default function* rootSaga() {
     watchLoginRequest(),
     watchLogoutRequest(),
     watchFindMeRequest(),
-    watchFindByUsernameRequest()
+    watchFindByUsernameRequest(),
+    watchUpdateMeRequest()
   ]);
 }

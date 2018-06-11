@@ -58,6 +58,7 @@ const Button = styled.button`
   background-color: ${props => (props.primary ? "#007aff" : "rgba(0,0,0,.4)")};
   &:disabled {
     background-color: rgba(0, 122, 255, 0.4);
+    cursor: default;
   }
 `;
 
@@ -77,6 +78,7 @@ class FormikForm extends Component {
                 type="text"
                 name="profilePhotoURL"
                 placeholder="Paste a URL"
+                autoFocus
               />
             </InputWrapper>
           )}
@@ -101,8 +103,9 @@ const ProfilePhotoForm = withFormik({
   }),
   handleSubmit(payload, bag) {
     bag.setSubmitting(false);
-    bag.props.updateProfilePhoto(payload);
+    bag.props.updateMe(payload);
     bag.resetForm();
+    bag.props.closeModal();
   }
 })(FormikForm);
 
