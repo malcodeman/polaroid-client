@@ -33,6 +33,8 @@ class Posts extends Component {
           <Post
             key={post.id}
             username={post.user.username}
+            profilePhotoURL={post.user.profilePhotoURL}
+            nameFirstLetter={post.user.nameFirstLetter}
             photoURL={post.photoURL}
             createdAt={post.createdAt}
           />

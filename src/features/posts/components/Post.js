@@ -19,6 +19,33 @@ const Header = styled.header`
   border-top-right-radius: 3px;
 `;
 
+const ProfilePhoto = styled.img`
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+`;
+
+const NameFirstLetter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  color: #fff;
+  font-size: 0.8rem;
+  background-color: #007aff;
+`;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+`;
+
 const Text = styled.span`
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.8);
@@ -48,9 +75,14 @@ const Post = props => {
   return (
     <Article>
       <Header>
-        <Link to={`/${props.username}`}>
+        <StyledLink to={`/${props.username}`}>
+          {props.profilePhotoURL ? (
+            <ProfilePhoto src={props.profilePhotoURL} />
+          ) : (
+            <NameFirstLetter>{props.nameFirstLetter}</NameFirstLetter>
+          )}
           <Text>{props.username}</Text>
-        </Link>
+        </StyledLink>
       </Header>
       <Photo src={props.photoURL} />
       <Footer>
