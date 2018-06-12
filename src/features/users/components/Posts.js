@@ -17,13 +17,23 @@ const Post = styled.img`
   object-fit: cover;
 `;
 
+const NoPosts = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+`;
+
 const Posts = props => {
-  return (
+  const { posts } = props;
+  return posts && posts.length > 0 ? (
     <Grid>
-      {props.posts.map(post => {
+      {posts.map(post => {
         return <Post key={post.id} src={post.photoURL} />;
       })}
     </Grid>
+  ) : (
+    <NoPosts>No posts yet</NoPosts>
   );
 };
 

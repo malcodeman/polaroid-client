@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal matches snapshot 1`] = `
+<div
+  className="sc-bdVaJa eLBSzQ"
+/>
+`;
+
+exports[`Posts matches snapshot 1`] = `
+<div
+  className="sc-bwzfXH iZrXVz"
+>
+  <img
+    className="sc-htpNat brnEhT"
+    src="https://instagram.fsjj1-1.fna.fbcdn.net/vp/d290920f9a938d426f6edd3bfdf3a4e0/5BAB4F61/t51.2885-15/e35/33630509_2122355564708396_6000352995101900800_n.jpg"
+  />
+  <img
+    className="sc-htpNat brnEhT"
+    src="https://instagram.fsjj1-1.fna.fbcdn.net/vp/61faee47738a31b77346f3d524354d18/5BB89C6E/t51.2885-15/e35/33177999_204623263489562_6594454715688288256_n.jpg"
+  />
+</div>
+`;
+
+exports[`Posts(no posts) matches snapshot 1`] = `
+<div
+  className="sc-bxivhb efivZG"
+>
+  No posts yet
+</div>
+`;
