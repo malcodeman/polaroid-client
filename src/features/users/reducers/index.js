@@ -94,6 +94,10 @@ export default (state = initialState, action) => {
             posts: [action.payload, ...state.me.posts]
           }
         };
+      } else {
+        return {
+          ...state
+        };
       }
     default:
       return state;

@@ -1,27 +1,8 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 
-import ProfilePhoto from "./ProfilePhoto";
 import Header from "../components/Header";
 import Posts from "../components/Posts";
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 10px;
-  margin-bottom: 20px;
-`;
-
-const Text = styled.span`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Typography = styled.span`
-  font-size: 0.8rem;
-  margin: 4px 0;
-`;
 
 class Profile extends Component {
   renderMe = () => {

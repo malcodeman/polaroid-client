@@ -64,7 +64,7 @@ const Button = styled.button`
 
 class FormikForm extends Component {
   render() {
-    const { errors, touched, closeModal } = this.props;
+    const { closeModal } = this.props;
     const { profilePhotoURL } = this.props.values;
     return (
       <FormWrapper>

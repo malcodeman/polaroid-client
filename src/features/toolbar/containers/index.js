@@ -6,8 +6,6 @@ import { connect } from "react-redux";
 import { logout } from "../../auth/actions/auth_actions";
 import { findMe } from "../../users/actions";
 
-import user from "../images/user.svg";
-
 const Button = styled.button`
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.8);
