@@ -94,7 +94,7 @@ const Post = props => {
       <Footer>
         <Comments comments={props.comments} />
         <Time>{distanceInWordsToNow(props.createdAt)} ago</Time>
-        <CommentForm />
+        <CommentForm createComment={props.createComment} postId={props.id} />
       </Footer>
     </Article>
   );

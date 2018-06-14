@@ -7,7 +7,7 @@ import Post from "../components/Post";
 import Header from "../../header/components/Header";
 import NewPost from "../../header/components/NewPost";
 
-import { getPosts } from "../actions/posts_actions";
+import { getPosts, createComment } from "../actions/posts_actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,18 +26,20 @@ class Posts extends Component {
     getPosts();
   };
   renderPosts = () => {
-    const { posts } = this.props;
+    const { posts, createComment } = this.props;
     if (posts !== null) {
       return this.props.posts.map(post => {
         return (
           <Post
             key={post.id}
+            id={post.id}
             username={post.user.username}
             profilePhotoURL={post.user.profilePhotoURL}
             nameFirstLetter={post.user.nameFirstLetter}
             photoURL={post.photoURL}
             createdAt={post.createdAt}
             comments={post.comments}
+            createComment={createComment}
           />
         );
       });
@@ -68,5 +70,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getPosts }
+  { getPosts, createComment }
 )(Posts);

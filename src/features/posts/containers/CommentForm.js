@@ -20,7 +20,6 @@ const Input = styled(Field)`
 
 class FormikForm extends Component {
   render() {
-    const { errors, touched } = this.props;
     return (
       <Section>
         <Form>
@@ -33,10 +32,15 @@ class FormikForm extends Component {
 
 const CommentForm = withFormik({
   mapPropsToValues: props => ({
+    postId: props.postId,
     body: props.body || ""
   }),
   validationSchema: Yup.object().shape({
     body: Yup.string().required("Comment can't be empty")
+  }),
+  mapValuesToPayload: values => ({
+    postId: values.postId,
+    body: values.body || ""
   }),
   handleSubmit(payload, bag) {
     bag.setSubmitting(false);

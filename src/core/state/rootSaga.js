@@ -2,7 +2,8 @@ import { all } from "redux-saga/effects";
 
 import {
   watchGetPosts,
-  watchCreatePostRequest
+  watchCreatePost,
+  watchCreateComment
 } from "../../features/posts/sagas/posts_sagas";
 import {
   watchSignupRequest,
@@ -19,7 +20,8 @@ import {
 export default function* rootSaga() {
   yield all([
     watchGetPosts(),
-    watchCreatePostRequest(),
+    watchCreatePost(),
+    watchCreateComment(),
     watchSignupRequest(),
     watchLoginRequest(),
     watchLogoutRequest(),
