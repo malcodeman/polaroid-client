@@ -37,6 +37,7 @@ class Posts extends Component {
             nameFirstLetter={post.user.nameFirstLetter}
             photoURL={post.photoURL}
             createdAt={post.createdAt}
+            comments={post.comments}
           />
         );
       });

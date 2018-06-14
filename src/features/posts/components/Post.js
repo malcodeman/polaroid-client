@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { distanceInWordsToNow } from "date-fns";
 import { Link } from "react-router-dom";
 
+import Comments from "./Comments";
+import CommentForm from "../containers/CommentForm";
+
 const Article = styled.article`
   background-color: #fff;
   display: flex;
@@ -60,10 +63,13 @@ const Time = styled.time`
   font-size: 0.6rem;
   color: rgba(0, 0, 0, 0.6);
   text-transform: uppercase;
+  padding-bottom: 10px;
 `;
 
 const Footer = styled.footer`
-  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
   border-right: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
   border-left: 1px solid #e6e6e6;
@@ -86,7 +92,9 @@ const Post = props => {
       </Header>
       <Photo src={props.photoURL} />
       <Footer>
+        <Comments comments={props.comments} />
         <Time>{distanceInWordsToNow(props.createdAt)} ago</Time>
+        <CommentForm />
       </Footer>
     </Article>
   );
