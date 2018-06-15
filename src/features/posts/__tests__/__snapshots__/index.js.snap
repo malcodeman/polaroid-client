@@ -2,50 +2,107 @@
 
 exports[`Post matches snapshot 1`] = `
 <article
-  className="sc-bdVaJa dBHXyT"
+  className="sc-gzVnrw iyppNO"
 >
   <header
-    className="sc-bwzfXH gskia"
+    className="sc-htoDjs fmveqU"
   >
     <a
-      className="sc-ifAKCX dCoIjQ"
+      className="sc-gZMcBi hhbgDr"
       href="/undefined"
       onClick={[Function]}
     >
       <div
-        className="sc-bxivhb gAayHR"
+        className="sc-iwsKbI fCjeiw"
       />
       <span
-        className="sc-EHOje hKCBvp"
+        className="sc-gqjmRU fTsvZT"
       />
     </a>
   </header>
   <img
-    className="sc-bZQynM fLrTLK"
+    className="sc-VigVT bFgJIO"
     src={undefined}
   />
   <footer
-    className="sc-htoDjs bqEVDM"
+    className="sc-fjdhpX qtLIw"
   >
+    <section
+      className="sc-bdVaJa fCfEIu"
+    >
+      <ul
+        className="sc-bwzfXH hOJnpK"
+      >
+        <li
+          className="sc-htpNat dYBTAj"
+        >
+          <a
+            className="sc-bxivhb iWXIdB"
+            href="admin"
+            onClick={[Function]}
+          >
+            admin
+          </a>
+          <span
+            className="sc-ifAKCX jvpnUQ"
+          >
+            comment 1
+          </span>
+        </li>
+        <li
+          className="sc-htpNat dYBTAj"
+        >
+          <a
+            className="sc-bxivhb iWXIdB"
+            href="test"
+            onClick={[Function]}
+          >
+            test
+          </a>
+          <span
+            className="sc-ifAKCX jvpnUQ"
+          >
+            comment 2
+          </span>
+        </li>
+      </ul>
+    </section>
     <time
-      className="sc-gzVnrw bJdRVl"
+      className="sc-jTzLTM bEHoZo"
     >
       almost NaN years
        ago
     </time>
+    <section
+      className="sc-EHOje cvdUQJ"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          className="sc-bZQynM cENTRv"
+          name="body"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Add a comment..."
+          type="text"
+          value=""
+        />
+      </form>
+    </section>
   </footer>
 </article>
 `;
 
 exports[`PostLoading matches snapshot 1`] = `
 <div
-  className="sc-dnqmqq hTcXeV"
+  className="sc-jzJRlG deVHuK"
 >
   <div
-    className="sc-iwsKbI bsgtKF"
+    className="sc-cSHVUG hLpSCG"
   />
   <div
-    className="sc-gZMcBi kSWmls"
+    className="sc-kAzzGY hMoCcg"
   />
 </div>
 `;
