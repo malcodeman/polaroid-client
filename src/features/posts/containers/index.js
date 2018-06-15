@@ -39,6 +39,7 @@ class Posts extends Component {
             photoURL={post.photoURL}
             createdAt={post.createdAt}
             comments={post.comments}
+            likesCount={post.likesCount}
             createComment={createComment}
           />
         );

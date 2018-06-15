@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 10px 0;
+  padding-bottom: 10px;
 `;
 
 const List = styled.ul`
@@ -31,20 +31,27 @@ const Body = styled.span`
 
 const Comments = props => {
   const { comments } = props;
-  return (
-    <Section>
-      <List>
-        {comments.map(comment => (
-          <Comment key={comment.id}>
-            <Username to={`${comment.user.username}`}>
-              {comment.user.username}
-            </Username>
-            <Body>{comment.body}</Body>
-          </Comment>
-        ))}
-      </List>
-    </Section>
-  );
+  const renderComments = () => {
+    if (comments.length > 0) {
+      return (
+        <Section>
+          <List>
+            {comments.map(comment => (
+              <Comment key={comment.id}>
+                <Username to={`${comment.user.username}`}>
+                  {comment.user.username}
+                </Username>
+                <Body>{comment.body}</Body>
+              </Comment>
+            ))}
+          </List>
+        </Section>
+      );
+    } else {
+      return null;
+    }
+  };
+  return renderComments();
 };
 
 export default Comments;
