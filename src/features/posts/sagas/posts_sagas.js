@@ -10,7 +10,10 @@ import {
   CREATE_POST_FAILURE,
   CREATE_COMMENT_FAILURE,
   CREATE_COMMENT_REQUEST,
-  CREATE_COMMENT_SUCCESS
+  CREATE_COMMENT_SUCCESS,
+  CREATE_LIKE_FAILURE,
+  CREATE_LIKE_REQUEST,
+  CREATE_LIKE_SUCCESS
 } from "../actions/posts_actions";
 
 const getPostsApi = () => {
@@ -23,6 +26,10 @@ const createPostApi = post => {
 
 const createCommentApi = comment => {
   return axios.post(`/comments`, comment);
+};
+
+const createLikeApi = like => {
+  return axios.post(`/likes`, like);
 };
 
 function* getPosts() {
@@ -52,6 +59,15 @@ function* createComment(action) {
   }
 }
 
+function* createLike(action) {
+  try {
+    const data = yield call(createLikeApi, action.payload);
+    yield put({ type: CREATE_LIKE_SUCCESS, payload: data.data });
+  } catch (error) {
+    yield put({ type: CREATE_LIKE_FAILURE, error });
+  }
+}
+
 export function* watchGetPosts() {
   yield takeLatest(GET_POSTS_REQUEST, getPosts);
 }
@@ -62,4 +78,8 @@ export function* watchCreatePost() {
 
 export function* watchCreateComment() {
   yield takeLatest(CREATE_COMMENT_REQUEST, createComment);
+}
+
+export function* watchCreateLike() {
+  yield takeLatest(CREATE_LIKE_REQUEST, createLike);
 }

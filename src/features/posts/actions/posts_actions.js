@@ -12,6 +12,10 @@ export const CREATE_COMMENT_REQUEST = "CREATE_COMMENT_REQUEST";
 export const CREATE_COMMENT_SUCCESS = "CREATE_COMMENT_SUCCESS";
 export const CREATE_COMMENT_FAILURE = "CREATE_COMMENT_FAILURE";
 
+export const CREATE_LIKE_REQUEST = "CREATE_LIKE_REQUEST";
+export const CREATE_LIKE_SUCCESS = "CREATE_LIKE_SUCCESS";
+export const CREATE_LIKE_FAILURE = "CREATE_LIKE_FAILURE";
+
 export const getPosts = () => {
   return {
     type: GET_POSTS_REQUEST
@@ -41,5 +45,14 @@ export const createComment = comment => {
   return {
     type: CREATE_COMMENT_REQUEST,
     payload: comment
+  };
+};
+
+export const createLike = postId => {
+  return {
+    type: CREATE_LIKE_REQUEST,
+    payload: {
+      postId
+    }
   };
 };

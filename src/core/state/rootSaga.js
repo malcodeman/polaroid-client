@@ -3,7 +3,8 @@ import { all } from "redux-saga/effects";
 import {
   watchGetPosts,
   watchCreatePost,
-  watchCreateComment
+  watchCreateComment,
+  watchCreateLike
 } from "../../features/posts/sagas/posts_sagas";
 import {
   watchSignupRequest,
@@ -22,6 +23,7 @@ export default function* rootSaga() {
     watchGetPosts(),
     watchCreatePost(),
     watchCreateComment(),
+    watchCreateLike(),
     watchSignupRequest(),
     watchLoginRequest(),
     watchLogoutRequest(),

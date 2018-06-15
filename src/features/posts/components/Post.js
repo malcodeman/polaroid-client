@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { distanceInWordsToNow } from "date-fns";
 import { Link } from "react-router-dom";
 
+import Actions from "../components/Actions";
 import Likes from "./Likes";
 import Comments from "./Comments";
 import CommentForm from "../containers/CommentForm";
@@ -93,6 +94,7 @@ const Post = props => {
       </Header>
       <Photo src={props.photoURL} />
       <Footer>
+        <Actions createLike={props.createLike} postId={props.id} />
         <Likes likesCount={props.likesCount} />
         <Comments comments={props.comments} />
         <Time>{distanceInWordsToNow(props.createdAt)} ago</Time>
