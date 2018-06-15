@@ -5,7 +5,8 @@ import {
   CREATE_POST_FAILURE,
   CREATE_POST_CLEAR,
   CREATE_POST_TRIGGER,
-  CREATE_COMMENT_SUCCESS
+  CREATE_COMMENT_SUCCESS,
+  CREATE_LIKE_SUCCESS
 } from "../actions/posts_actions";
 import { LOGOUT_SUCCESS } from "../../auth/actions/auth_actions";
 
@@ -68,6 +69,20 @@ export default (state = initialState, action) => {
             return {
               ...post,
               comments: [...post.comments, action.payload]
+            };
+          } else {
+            return post;
+          }
+        })
+      };
+    case CREATE_LIKE_SUCCESS:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (post.id === action.payload.postId) {
+            return {
+              ...post,
+              likesCount: post.likesCount + 1
             };
           } else {
             return post;
