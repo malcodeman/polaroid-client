@@ -4,7 +4,8 @@ import {
   watchGetPosts,
   watchCreatePost,
   watchCreateComment,
-  watchCreateLike
+  watchCreateLike,
+  watchDestroyLike
 } from "../../features/posts/sagas/posts_sagas";
 import {
   watchSignupRequest,
@@ -24,6 +25,7 @@ export default function* rootSaga() {
     watchCreatePost(),
     watchCreateComment(),
     watchCreateLike(),
+    watchDestroyLike(),
     watchSignupRequest(),
     watchLoginRequest(),
     watchLogoutRequest(),

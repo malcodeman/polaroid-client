@@ -6,7 +6,8 @@ import {
   CREATE_POST_CLEAR,
   CREATE_POST_TRIGGER,
   CREATE_COMMENT_SUCCESS,
-  CREATE_LIKE_SUCCESS
+  CREATE_LIKE_SUCCESS,
+  DESTROY_LIKE_SUCCESS
 } from "../actions/posts_actions";
 import { LOGOUT_SUCCESS } from "../../auth/actions/auth_actions";
 
@@ -83,7 +84,24 @@ export default (state = initialState, action) => {
             return {
               ...post,
               likesCount: post.likesCount + 1,
-              liked: true
+              liked: {
+                likeId: action.payload.id
+              }
+            };
+          } else {
+            return post;
+          }
+        })
+      };
+    case DESTROY_LIKE_SUCCESS:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (post.id === action.payload.postId) {
+            return {
+              ...post,
+              likesCount: post.likesCount - 1,
+              liked: false
             };
           } else {
             return post;

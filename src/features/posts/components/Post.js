@@ -96,6 +96,7 @@ const Post = props => {
       <Footer>
         <Actions
           createLike={props.createLike}
+          destroyLike={props.destroyLike}
           postId={props.id}
           liked={props.liked}
         />

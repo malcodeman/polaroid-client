@@ -13,7 +13,10 @@ import {
   CREATE_COMMENT_SUCCESS,
   CREATE_LIKE_FAILURE,
   CREATE_LIKE_REQUEST,
-  CREATE_LIKE_SUCCESS
+  CREATE_LIKE_SUCCESS,
+  DESTROY_LIKE_FAILURE,
+  DESTROY_LIKE_REQUEST,
+  DESTROY_LIKE_SUCCESS
 } from "../actions/posts_actions";
 
 const getPostsApi = () => {
@@ -30,6 +33,10 @@ const createCommentApi = comment => {
 
 const createLikeApi = like => {
   return axios.post(`/likes`, like);
+};
+
+const destroyLikeApi = likeId => {
+  return axios.delete(`/likes/${likeId}`);
 };
 
 function* getPosts() {
@@ -68,6 +75,15 @@ function* createLike(action) {
   }
 }
 
+function* destroyLike(action) {
+  try {
+    const data = yield call(destroyLikeApi, action.payload);
+    yield put({ type: DESTROY_LIKE_SUCCESS, payload: data.data });
+  } catch (error) {
+    yield put({ type: DESTROY_LIKE_FAILURE, error });
+  }
+}
+
 export function* watchGetPosts() {
   yield takeLatest(GET_POSTS_REQUEST, getPosts);
 }
@@ -82,4 +98,8 @@ export function* watchCreateComment() {
 
 export function* watchCreateLike() {
   yield takeLatest(CREATE_LIKE_REQUEST, createLike);
+}
+
+export function* watchDestroyLike() {
+  yield takeLatest(DESTROY_LIKE_REQUEST, destroyLike);
 }

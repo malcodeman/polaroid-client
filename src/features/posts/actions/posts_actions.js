@@ -16,6 +16,10 @@ export const CREATE_LIKE_REQUEST = "CREATE_LIKE_REQUEST";
 export const CREATE_LIKE_SUCCESS = "CREATE_LIKE_SUCCESS";
 export const CREATE_LIKE_FAILURE = "CREATE_LIKE_FAILURE";
 
+export const DESTROY_LIKE_REQUEST = "DESTROY_LIKE_REQUEST";
+export const DESTROY_LIKE_SUCCESS = "DESTROY_LIKE_SUCCESS";
+export const DESTROY_LIKE_FAILURE = "DESTROY_LIKE_FAILURE";
+
 export const getPosts = () => {
   return {
     type: GET_POSTS_REQUEST
@@ -54,5 +58,12 @@ export const createLike = postId => {
     payload: {
       postId
     }
+  };
+};
+
+export const destroyLike = id => {
+  return {
+    type: DESTROY_LIKE_REQUEST,
+    payload: id
   };
 };

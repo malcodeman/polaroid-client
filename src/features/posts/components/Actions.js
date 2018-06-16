@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import heart from "../images/heart.svg";
+import heart_default from "../images/heart_default.svg";
 import heart_liked from "../images/heart_liked.svg";
 import comment from "../images/comment.svg";
 import save from "../images/save.svg";
@@ -19,14 +19,14 @@ const Icon = styled.img`
 `;
 
 const Actions = props => {
-  const { postId, createLike, liked } = props;
+  const { postId, liked, createLike, destroyLike } = props;
   return (
     <Section>
       <div>
         {liked ? (
-          <Icon src={heart_liked} />
+          <Icon src={heart_liked} onClick={() => destroyLike(liked.likeId)} />
         ) : (
-          <Icon src={heart} onClick={() => createLike(postId)} />
+          <Icon src={heart_default} onClick={() => createLike(postId)} />
         )}
         <Icon src={comment} />
       </div>
