@@ -96,9 +96,12 @@ const Post = props => {
       <Footer>
         <Actions
           createLike={props.createLike}
+          createBookmark={props.createBookmark}
+          destroyBookmark={props.destroyBookmark}
           destroyLike={props.destroyLike}
           postId={props.id}
           liked={props.liked}
+          bookmarked={props.bookmarked}
         />
         <Likes likesCount={props.likesCount} />
         <Comments comments={props.comments} />

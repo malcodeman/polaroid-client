@@ -20,6 +20,14 @@ export const DESTROY_LIKE_REQUEST = "DESTROY_LIKE_REQUEST";
 export const DESTROY_LIKE_SUCCESS = "DESTROY_LIKE_SUCCESS";
 export const DESTROY_LIKE_FAILURE = "DESTROY_LIKE_FAILURE";
 
+export const CREATE_BOOKMARK_REQUEST = "CREATE_BOOKMARK_REQUEST";
+export const CREATE_BOOKMARK_SUCCESS = "CREATE_BOOKMARK_SUCCESS";
+export const CREATE_BOOKMARK_FAILURE = "CREATE_BOOKMARK_FAILURE";
+
+export const DESTROY_BOOKMARK_REQUEST = "DESTROY_BOOKMARK_REQUEST";
+export const DESTROY_BOOKMARK_SUCCESS = "DESTROY_BOOKMARK_SUCCESS";
+export const DESTROY_BOOKMARK_FAILURE = "DESTROY_BOOKMARK_FAILURE";
+
 export const getPosts = () => {
   return {
     type: GET_POSTS_REQUEST
@@ -64,6 +72,22 @@ export const createLike = postId => {
 export const destroyLike = id => {
   return {
     type: DESTROY_LIKE_REQUEST,
+    payload: id
+  };
+};
+
+export const createBookmark = postId => {
+  return {
+    type: CREATE_BOOKMARK_REQUEST,
+    payload: {
+      postId
+    }
+  };
+};
+
+export const destroyBookmark = id => {
+  return {
+    type: DESTROY_BOOKMARK_REQUEST,
     payload: id
   };
 };

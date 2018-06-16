@@ -16,7 +16,13 @@ import {
   CREATE_LIKE_SUCCESS,
   DESTROY_LIKE_FAILURE,
   DESTROY_LIKE_REQUEST,
-  DESTROY_LIKE_SUCCESS
+  DESTROY_LIKE_SUCCESS,
+  CREATE_BOOKMARK_FAILURE,
+  CREATE_BOOKMARK_REQUEST,
+  CREATE_BOOKMARK_SUCCESS,
+  DESTROY_BOOKMARK_FAILURE,
+  DESTROY_BOOKMARK_REQUEST,
+  DESTROY_BOOKMARK_SUCCESS
 } from "../actions/posts_actions";
 
 const getPostsApi = () => {
@@ -37,6 +43,14 @@ const createLikeApi = like => {
 
 const destroyLikeApi = likeId => {
   return axios.delete(`/likes/${likeId}`);
+};
+
+const createBookmarkApi = like => {
+  return axios.post(`/bookmarks`, like);
+};
+
+const destroyBookmarkApi = bookmarkId => {
+  return axios.delete(`/bookmarks/${bookmarkId}`);
 };
 
 function* getPosts() {
@@ -84,6 +98,24 @@ function* destroyLike(action) {
   }
 }
 
+function* createBookmark(action) {
+  try {
+    const data = yield call(createBookmarkApi, action.payload);
+    yield put({ type: CREATE_BOOKMARK_SUCCESS, payload: data.data });
+  } catch (error) {
+    yield put({ type: CREATE_BOOKMARK_FAILURE, error });
+  }
+}
+
+function* destroyBookmark(action) {
+  try {
+    const data = yield call(destroyBookmarkApi, action.payload);
+    yield put({ type: DESTROY_BOOKMARK_SUCCESS, payload: data.data });
+  } catch (error) {
+    yield put({ type: DESTROY_BOOKMARK_FAILURE, error });
+  }
+}
+
 export function* watchGetPosts() {
   yield takeLatest(GET_POSTS_REQUEST, getPosts);
 }
@@ -102,4 +134,12 @@ export function* watchCreateLike() {
 
 export function* watchDestroyLike() {
   yield takeLatest(DESTROY_LIKE_REQUEST, destroyLike);
+}
+
+export function* watchCreateBookmark() {
+  yield takeLatest(CREATE_BOOKMARK_REQUEST, createBookmark);
+}
+
+export function* watchDestroyBookmark() {
+  yield takeLatest(DESTROY_BOOKMARK_REQUEST, destroyBookmark);
 }

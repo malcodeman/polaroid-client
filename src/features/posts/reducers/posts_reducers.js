@@ -7,7 +7,9 @@ import {
   CREATE_POST_TRIGGER,
   CREATE_COMMENT_SUCCESS,
   CREATE_LIKE_SUCCESS,
-  DESTROY_LIKE_SUCCESS
+  DESTROY_LIKE_SUCCESS,
+  CREATE_BOOKMARK_SUCCESS,
+  DESTROY_BOOKMARK_SUCCESS
 } from "../actions/posts_actions";
 import { LOGOUT_SUCCESS } from "../../auth/actions/auth_actions";
 
@@ -102,6 +104,36 @@ export default (state = initialState, action) => {
               ...post,
               likesCount: post.likesCount - 1,
               liked: false
+            };
+          } else {
+            return post;
+          }
+        })
+      };
+    case CREATE_BOOKMARK_SUCCESS:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (post.id === action.payload.postId) {
+            return {
+              ...post,
+              bookmarked: {
+                bookmarkId: action.payload.id
+              }
+            };
+          } else {
+            return post;
+          }
+        })
+      };
+    case DESTROY_BOOKMARK_SUCCESS:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (post.id === action.payload.postId) {
+            return {
+              ...post,
+              bookmarked: false
             };
           } else {
             return post;

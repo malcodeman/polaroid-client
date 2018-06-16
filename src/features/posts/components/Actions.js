@@ -4,7 +4,8 @@ import styled from "styled-components";
 import heart_default from "../images/heart_default.svg";
 import heart_liked from "../images/heart_liked.svg";
 import comment from "../images/comment.svg";
-import save from "../images/save.svg";
+import bookmark_icon from "../images/bookmark.svg";
+import bookmarked_icon from "../images/bookmarked.svg";
 
 const Section = styled.section`
   padding: 10px 0;
@@ -19,7 +20,15 @@ const Icon = styled.img`
 `;
 
 const Actions = props => {
-  const { postId, liked, createLike, destroyLike } = props;
+  const {
+    postId,
+    liked,
+    bookmarked,
+    createLike,
+    destroyLike,
+    createBookmark,
+    destroyBookmark
+  } = props;
   return (
     <Section>
       <div>
@@ -30,7 +39,14 @@ const Actions = props => {
         )}
         <Icon src={comment} />
       </div>
-      <Icon src={save} />
+      {bookmarked ? (
+        <Icon
+          src={bookmarked_icon}
+          onClick={() => destroyBookmark(bookmarked.bookmarkId)}
+        />
+      ) : (
+        <Icon src={bookmark_icon} onClick={() => createBookmark(postId)} />
+      )}
     </Section>
   );
 };

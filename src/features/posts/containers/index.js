@@ -11,7 +11,9 @@ import {
   getPosts,
   createComment,
   createLike,
-  destroyLike
+  destroyLike,
+  createBookmark,
+  destroyBookmark
 } from "../actions/posts_actions";
 
 const Wrapper = styled.div`
@@ -31,7 +33,14 @@ class Posts extends Component {
     getPosts();
   };
   renderPosts = () => {
-    const { posts, createComment, createLike, destroyLike } = this.props;
+    const {
+      posts,
+      createComment,
+      createLike,
+      destroyLike,
+      createBookmark,
+      destroyBookmark
+    } = this.props;
     if (posts !== null) {
       return this.props.posts.map(post => {
         return (
@@ -46,9 +55,12 @@ class Posts extends Component {
             comments={post.comments}
             likesCount={post.likesCount}
             liked={post.liked}
+            bookmarked={post.bookmarked}
             createComment={createComment}
+            createBookmark={createBookmark}
             createLike={createLike}
             destroyLike={destroyLike}
+            destroyBookmark={destroyBookmark}
           />
         );
       });
@@ -79,5 +91,12 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getPosts, createComment, createLike, destroyLike }
+  {
+    getPosts,
+    createComment,
+    createLike,
+    destroyLike,
+    createBookmark,
+    destroyBookmark
+  }
 )(Posts);
