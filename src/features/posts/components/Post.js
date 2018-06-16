@@ -94,7 +94,11 @@ const Post = props => {
       </Header>
       <Photo src={props.photoURL} />
       <Footer>
-        <Actions createLike={props.createLike} postId={props.id} />
+        <Actions
+          createLike={props.createLike}
+          postId={props.id}
+          liked={props.liked}
+        />
         <Likes likesCount={props.likesCount} />
         <Comments comments={props.comments} />
         <Time>{distanceInWordsToNow(props.createdAt)} ago</Time>

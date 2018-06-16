@@ -40,6 +40,7 @@ class Posts extends Component {
             createdAt={post.createdAt}
             comments={post.comments}
             likesCount={post.likesCount}
+            liked={post.liked}
             createComment={createComment}
             createLike={createLike}
           />

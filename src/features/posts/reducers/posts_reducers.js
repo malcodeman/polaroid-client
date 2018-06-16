@@ -82,7 +82,8 @@ export default (state = initialState, action) => {
           if (post.id === action.payload.postId) {
             return {
               ...post,
-              likesCount: post.likesCount + 1
+              likesCount: post.likesCount + 1,
+              liked: true
             };
           } else {
             return post;
