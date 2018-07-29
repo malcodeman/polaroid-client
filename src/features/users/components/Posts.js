@@ -29,7 +29,7 @@ const Posts = props => {
   return posts && posts.length > 0 ? (
     <Grid>
       {posts.map(post => {
-        return <Post key={post.id} src={post.photoURL} />;
+        return <Post key={post.id} src={post.photoURL || post.post.photoURL} />;
       })}
     </Grid>
   ) : (

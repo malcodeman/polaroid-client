@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Header from "../components/Header";
 import Posts from "../components/Posts";
+
+const Section = styled.section`
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+`;
 
 class Profile extends Component {
   renderMe = () => {
@@ -23,7 +30,9 @@ class Profile extends Component {
             email={me.email}
             postsLength={me.posts.length}
           />
-          <Posts posts={me.posts} />
+          <Section>
+            <Posts posts={me.posts} />
+          </Section>
         </React.Fragment>
       );
     }
