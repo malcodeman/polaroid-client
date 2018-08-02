@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import Profile from "./Profile";
 import User from "./User";
 import Header from "../../header/components/Header";
-import NewPost from "../../header/components/NewPost";
 
 const Wrapper = styled.div`
   display: flex;
@@ -36,9 +35,7 @@ class Root extends Component {
   render() {
     return (
       <Wrapper>
-        <Header>
-          <NewPost />
-        </Header>
+        <Header />
         <div>
           <Container>{this.renderUser()}</Container>
         </div>

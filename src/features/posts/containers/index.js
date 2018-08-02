@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import PostLoading from "../components/PostLoading";
 import Post from "../components/Post";
 import Header from "../../header/components/Header";
-import NewPost from "../../header/components/NewPost";
+import NewPostForm from "./PostsNewForm";
 
 import {
   getPosts,
@@ -71,11 +71,12 @@ class Posts extends Component {
   render() {
     return (
       <Wrapper>
-        <Header>
-          <NewPost />
-        </Header>
+        <Header />
         <div>
-          <Container>{this.renderPosts()}</Container>
+          <Container>
+            <NewPostForm />
+            {this.renderPosts()}
+          </Container>
         </div>
       </Wrapper>
     );

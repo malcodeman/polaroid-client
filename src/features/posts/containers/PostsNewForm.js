@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import { withFormik, Form, Field } from "formik";
 import Yup from "yup";
 import styled from "styled-components";
+import { connect } from "react-redux";
+
+import { createPost } from "../actions/posts_actions";
 
 const StyledForm = styled(Form)`
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
-`;
-
-const FormItem = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -34,25 +32,61 @@ const Error = styled.div`
   align-self: flex-start;
 `;
 
+const PhotoPreviewWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`;
+
+const PhotoPreview = styled.img`
+  object-fit: cover;
+  height: auto;
+  max-height: 256px;
+  border-radius: 2px;
+  @media (min-width: 576px) {
+    max-height: 512px;
+  }
+`;
+
+const PhotoPreviewFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+const Button = styled.button`
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 0.8rem;
+  padding: 10px;
+  background-color: ${props => (props.primary ? "#007aff" : "rgba(0,0,0,.4)")};
+  &:disabled {
+    background-color: rgba(0, 122, 255, 0.4);
+    cursor: default;
+  }
+`;
+
 class FormikForm extends Component {
-  componentDidUpdate = prevProps => {
-    if (
-      prevProps.createPostTrigger === false &&
-      prevProps.createPostTrigger !== this.props.createPostTrigger
-    ) {
-      this.props.submitForm();
-      this.props.createPostClear();
-    }
-  };
   render() {
-    const { errors, touched } = this.props;
-    return (
+    const { errors, touched, resetForm, submitForm } = this.props;
+    const { photoURL } = this.props.values;
+    return photoURL ? (
+      <PhotoPreviewWrapper>
+        <PhotoPreview src={photoURL} />
+        <PhotoPreviewFooter>
+          <Button onClick={resetForm}>Close</Button>
+          <Button primary onClick={submitForm}>
+            Upload
+          </Button>
+        </PhotoPreviewFooter>
+      </PhotoPreviewWrapper>
+    ) : (
       <StyledForm>
-        <FormItem>
-          <Input type="text" name="photoURL" />
-          {touched.photoURL &&
-            errors.photoURL && <Error>{errors.photoURL}</Error>}
-        </FormItem>
+        <Input type="text" name="photoURL" />
+        {touched.photoURL &&
+          errors.photoURL && <Error>{errors.photoURL}</Error>}
       </StyledForm>
     );
   }
@@ -72,4 +106,13 @@ const PostNewForm = withFormik({
   }
 })(FormikForm);
 
-export default PostNewForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    createPost: newPost => dispatch(createPost(newPost))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(PostNewForm);

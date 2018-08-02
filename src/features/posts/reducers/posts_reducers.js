@@ -4,7 +4,6 @@ import {
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
   CREATE_POST_CLEAR,
-  CREATE_POST_TRIGGER,
   CREATE_COMMENT_SUCCESS,
   CREATE_LIKE_SUCCESS,
   DESTROY_LIKE_SUCCESS,
@@ -17,8 +16,7 @@ const initialState = {
   posts: null,
   loading: true,
   create_post_success: false,
-  create_post_failure: false,
-  create_post_trigger: false
+  create_post_failure: false
 };
 
 export default (state = initialState, action) => {
@@ -40,29 +38,22 @@ export default (state = initialState, action) => {
         posts: [],
         loading: true
       };
-    case CREATE_POST_TRIGGER:
-      return {
-        ...state,
-        create_post_trigger: true
-      };
     case CREATE_POST_SUCCESS:
       return {
         ...state,
         create_post_success: true,
-        create_post_trigger: false
+        posts: [action.payload, ...state.posts]
       };
     case CREATE_POST_FAILURE:
       return {
         ...state,
-        create_post_failure: true,
-        create_post_trigger: false
+        create_post_failure: true
       };
     case CREATE_POST_CLEAR:
       return {
         ...state,
         create_post_success: false,
-        create_post_failure: false,
-        create_post_trigger: false
+        create_post_failure: false
       };
     case CREATE_COMMENT_SUCCESS:
       return {
