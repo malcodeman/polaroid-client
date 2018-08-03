@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import ProfilePhoto from "../containers/ProfilePhoto";
+import ProfilePhoto from '../containers/ProfilePhoto';
 
 const Wrapper = styled.div`
   display: grid;
@@ -21,18 +21,29 @@ const Typography = styled.span`
 `;
 
 const Header = props => {
+  const {
+    profile,
+    profilePhotoURL,
+    nameFirstLetter,
+    username,
+    name,
+    email,
+    postsLength,
+    bookmarksLength
+  } = props;
   return (
     <Wrapper>
       <ProfilePhoto
-        profile={props.profile}
-        profilePhotoURL={props.profilePhotoURL}
-        nameFirstLetter={props.nameFirstLetter}
+        profile={profile}
+        profilePhotoURL={profilePhotoURL}
+        nameFirstLetter={nameFirstLetter}
       />
       <Text>
-        <Typography>Username: {props.username}</Typography>
-        <Typography>Name: {props.name}</Typography>
-        {props.email ? <Typography>Email: {props.email}</Typography> : null}
-        <Typography>{props.postsLength} posts</Typography>
+        <Typography>Username: {username}</Typography>
+        <Typography>Name: {name}</Typography>
+        {email ? <Typography>Email: {email}</Typography> : null}
+        <Typography>{postsLength} posts </Typography>
+        {profile ? <Typography>{bookmarksLength} bookmarks</Typography> : null}
       </Text>
     </Wrapper>
   );

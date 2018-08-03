@@ -1,18 +1,39 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
+import { NavLink, withRouter, Route } from 'react-router-dom';
 
-import Header from "../components/Header";
-import Posts from "../components/Posts";
+import Header from '../components/Header';
+import Posts from '../components/Posts';
 
-const Section = styled.section`
-  padding: 20px 0;
+const PostsHeader = styled.div`
+  display: flex;
+  justify-content: center;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+`;
+
+const StyledNavLink = styled(NavLink)`
+  ${props => (props.margin ? 'margin-right: 48px;' : '')};
+  height: 48px;
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.4);
+  &.active {
+    color: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(0, 0, 0, 0.8);
+    margin-top: -1px;
+  }
+`;
+
+const Message = styled.p`
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.4);
+  margin: 24px 0;
 `;
 
 class Profile extends Component {
   renderMe = () => {
+    const { url } = this.props.match;
     const { me, loading, error } = this.props;
     if (loading) {
       return <p>Loading...</p>;
@@ -29,10 +50,34 @@ class Profile extends Component {
             name={me.name}
             email={me.email}
             postsLength={me.posts.length}
+            bookmarksLength={me.bookmarks.length}
           />
-          <Section>
-            <Posts posts={me.posts} />
-          </Section>
+          <React.Fragment>
+            <PostsHeader>
+              <StyledNavLink margin="true" to={url} exact>
+                Posts
+              </StyledNavLink>
+              <StyledNavLink to={`${url}/bookmarks`}>Bookmarks</StyledNavLink>
+            </PostsHeader>
+            <Route
+              path={url}
+              exact
+              render={() => (
+                <React.Fragment>
+                  <Posts posts={me.posts} />
+                </React.Fragment>
+              )}
+            />
+            <Route
+              path={`${url}/bookmarks`}
+              render={() => (
+                <React.Fragment>
+                  <Message>Only you can see what you've saved</Message>
+                  <Posts posts={me.bookmarks} />
+                </React.Fragment>
+              )}
+            />
+          </React.Fragment>
         </React.Fragment>
       );
     }
@@ -50,7 +95,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(Profile);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(Profile)
+);
