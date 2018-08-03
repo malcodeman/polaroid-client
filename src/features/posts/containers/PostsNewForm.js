@@ -69,19 +69,34 @@ const Button = styled.button`
 `;
 
 class FormikForm extends Component {
+  // TODO: add validPhoto() check to yup
+  getFileExtension = url => {
+    return url.split(".").pop();
+  };
+  validPhoto = url => {
+    switch (this.getFileExtension(url)) {
+      case "jpg":
+      case "png":
+        return true;
+      default:
+        return false;
+    }
+  };
   render() {
     const { errors, touched, resetForm, submitForm } = this.props;
     const { photoURL } = this.props.values;
-    return photoURL ? (
-      <PhotoPreviewWrapper>
-        <PhotoPreview src={photoURL} />
-        <PhotoPreviewFooter>
-          <Button onClick={resetForm}>Close</Button>
-          <Button primary onClick={submitForm}>
-            Upload
-          </Button>
-        </PhotoPreviewFooter>
-      </PhotoPreviewWrapper>
+    return photoURL && !errors.photoURL && this.validPhoto(photoURL) ? (
+      <StyledForm>
+        <PhotoPreviewWrapper>
+          <PhotoPreview src={photoURL} />
+          <PhotoPreviewFooter>
+            <Button onClick={resetForm}>Close</Button>
+            <Button primary onClick={submitForm}>
+              Upload
+            </Button>
+          </PhotoPreviewFooter>
+        </PhotoPreviewWrapper>
+      </StyledForm>
     ) : (
       <StyledForm>
         <Input type="text" name="photoURL" />
@@ -97,7 +112,9 @@ const PostNewForm = withFormik({
     photoURL: props.text || ""
   }),
   validationSchema: Yup.object().shape({
-    photoURL: Yup.string().required("Photo URL can't be empty")
+    photoURL: Yup.string()
+      .required("Photo URL can't be empty")
+      .url("Not a valid URL")
   }),
   handleSubmit(payload, bag) {
     bag.setSubmitting(false);
