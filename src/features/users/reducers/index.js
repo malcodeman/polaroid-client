@@ -10,7 +10,10 @@ import {
   UPDATE_ME_SUCCESS
 } from "../actions";
 
-import { CREATE_POST_SUCCESS } from "../../posts/actions/posts_actions";
+import {
+  CREATE_POST_SUCCESS,
+  CREATE_BOOKMARK_SUCCESS
+} from "../../posts/actions/posts_actions";
 
 const initialState = {
   me: null,
@@ -86,19 +89,21 @@ export default (state = initialState, action) => {
         error: false
       };
     case CREATE_POST_SUCCESS:
-      if (state.me.id === action.payload.userId) {
-        return {
-          ...state,
-          me: {
-            ...state.me,
-            posts: [action.payload, ...state.me.posts]
-          }
-        };
-      } else {
-        return {
-          ...state
-        };
-      }
+      return {
+        ...state,
+        me: {
+          ...state.me,
+          posts: [action.payload, ...state.me.posts]
+        }
+      };
+    case CREATE_BOOKMARK_SUCCESS:
+      return {
+        ...state,
+        me: {
+          ...state.me,
+          bookmarks: [action.payload, ...state.me.bookmarks]
+        }
+      };
     default:
       return state;
   }

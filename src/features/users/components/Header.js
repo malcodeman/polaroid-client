@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import ProfilePhoto from '../containers/ProfilePhoto';
+import ProfilePhoto from "../containers/ProfilePhoto";
 
 const Wrapper = styled.div`
   display: grid;
@@ -31,6 +31,20 @@ const Header = props => {
     postsLength,
     bookmarksLength
   } = props;
+  const renderPosts = postsLength => {
+    if (postsLength === 1) {
+      return <Typography>{postsLength} post</Typography>;
+    } else {
+      return <Typography>{postsLength} posts</Typography>;
+    }
+  };
+  const renderBookmarks = bookmarksLength => {
+    if (bookmarksLength === 1) {
+      return <Typography>{bookmarksLength} bookmark</Typography>;
+    } else {
+      return <Typography>{bookmarksLength} bookmarks</Typography>;
+    }
+  };
   return (
     <Wrapper>
       <ProfilePhoto
@@ -42,8 +56,8 @@ const Header = props => {
         <Typography>Username: {username}</Typography>
         <Typography>Name: {name}</Typography>
         {email ? <Typography>Email: {email}</Typography> : null}
-        <Typography>{postsLength} posts </Typography>
-        {profile ? <Typography>{bookmarksLength} bookmarks</Typography> : null}
+        {renderPosts(postsLength)}
+        {profile ? renderBookmarks(bookmarksLength) : null}
       </Text>
     </Wrapper>
   );
