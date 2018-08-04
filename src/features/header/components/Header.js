@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import Toolbar from "../../toolbar/containers";
+import DropdownMenu from "../../dropdown/containers/DropdownMenu";
 
 const Wrapper = styled.div`
   flex-basis: 64px;
@@ -27,21 +27,13 @@ const Nav = styled.nav`
   padding: 0 20px;
 `;
 
-const RightSide = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Header = props => {
+const Header = () => {
   return (
     <Wrapper>
       <StyledHeader>
         <Nav>
           <Link to="/">Confessio</Link>
-          <RightSide>
-            {props.children}
-            <Toolbar />
-          </RightSide>
+          <DropdownMenu />
         </Nav>
       </StyledHeader>
     </Wrapper>

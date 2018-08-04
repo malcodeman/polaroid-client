@@ -1,20 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { logout } from "../../auth/actions/auth_actions";
 import { findMe } from "../../users/actions";
-
-const Button = styled.button`
-  font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.8);
-  margin: 0 6px;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  cursor: pointer;
-`;
 
 const Photo = styled.img`
   height: ${props => props.height};
@@ -33,26 +21,21 @@ const UserCircle = styled.div`
   height: 24px;
   width: 24px;
   border-radius: 50%;
-  background-color: #007aff;
-  color: #fff;
+  border: 1px solid #007aff;
+  color: rgba(0, 0, 0, 0.8);
   font-size: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  margin-left: 6px;
 `;
 
 class Toolbar extends Component {
   componentDidMount = () => {
     const { me, findMe } = this.props;
-    if (me === null) {
+    if (me.username === "") {
       findMe();
     }
-  };
-  logoutHandler = () => {
-    const { logout, me } = this.props;
-    logout(me);
   };
   renderProfilePhoto = () => {
     const { profilePhotoURL, nameFirstLetter } = this.props.me;
@@ -65,16 +48,11 @@ class Toolbar extends Component {
   renderUser = () => {
     const { me } = this.props;
     if (me !== null) {
-      return <Link to={`${me.username}`}>{this.renderProfilePhoto()}</Link>;
+      return <React.Fragment>{this.renderProfilePhoto()}</React.Fragment>;
     } else return <UserCircle />;
   };
   render() {
-    return (
-      <React.Fragment>
-        <Button onClick={this.logoutHandler}>Log Out</Button>
-        {this.renderUser()}
-      </React.Fragment>
-    );
+    return this.renderUser();
   }
 }
 
@@ -86,7 +64,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: user => dispatch(logout(user)),
     findMe: () => dispatch(findMe())
   };
 };

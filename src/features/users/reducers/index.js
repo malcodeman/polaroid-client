@@ -17,7 +17,7 @@ import {
 } from "../../posts/actions/posts_actions";
 
 const initialState = {
-  me: null,
+  me: { username: "" },
   user: null,
   loading: false,
   error: false
@@ -58,7 +58,7 @@ export default (state = initialState, action) => {
     case UNLOAD_ME:
       return {
         ...state,
-        me: null,
+        me: { username: "" },
         loading: false,
         error: false
       };
