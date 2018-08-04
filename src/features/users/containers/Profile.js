@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { NavLink, withRouter, Route } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import styled from "styled-components";
+import { NavLink, withRouter, Route } from "react-router-dom";
 
-import Header from '../components/Header';
-import Posts from '../components/Posts';
+import Header from "../components/Header";
+import Posts from "../components/Posts";
 
 const PostsHeader = styled.div`
   display: flex;
@@ -13,15 +13,18 @@ const PostsHeader = styled.div`
 `;
 
 const StyledNavLink = styled(NavLink)`
-  ${props => (props.margin ? 'margin-right: 48px;' : '')};
+  ${props => (props.margin ? "margin-right: 48px;" : "")};
   height: 48px;
   display: flex;
   align-items: center;
   color: rgba(0, 0, 0, 0.4);
+  margin-top: -1px;
+  border-top: 1px solid transparent;
+  text-transform: uppercase;
+  font-size: 0.8rem;
   &.active {
     color: rgba(0, 0, 0, 0.8);
     border-top: 1px solid rgba(0, 0, 0, 0.8);
-    margin-top: -1px;
   }
 `;
 
