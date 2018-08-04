@@ -12,7 +12,8 @@ import {
 
 import {
   CREATE_POST_SUCCESS,
-  CREATE_BOOKMARK_SUCCESS
+  CREATE_BOOKMARK_SUCCESS,
+  DESTROY_BOOKMARK_SUCCESS
 } from "../../posts/actions/posts_actions";
 
 const initialState = {
@@ -102,6 +103,19 @@ export default (state = initialState, action) => {
         me: {
           ...state.me,
           bookmarks: [action.payload, ...state.me.bookmarks]
+        }
+      };
+    case DESTROY_BOOKMARK_SUCCESS:
+      return {
+        ...state,
+        me: {
+          ...state.me,
+          bookmarks: state.me.bookmarks.filter(bookmark => {
+            if (bookmark.id === action.payload.id) {
+              return null;
+            }
+            return bookmark;
+          })
         }
       };
     default:

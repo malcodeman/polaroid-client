@@ -99,7 +99,7 @@ class FormikForm extends Component {
       </StyledForm>
     ) : (
       <StyledForm>
-        <Input type="text" name="photoURL" />
+        <Input type="text" name="photoURL" placeholder="Paste a URL" />
         {touched.photoURL &&
           errors.photoURL && <Error>{errors.photoURL}</Error>}
       </StyledForm>
