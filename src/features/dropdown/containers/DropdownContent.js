@@ -35,7 +35,7 @@ class DropdownContent extends Component {
     const { me, handleToggleMenu } = this.props;
     return (
       <Wrapper>
-        <StyledLink to={`${me.username}`} onClick={handleToggleMenu}>
+        <StyledLink to={`/${me.username}`} onClick={handleToggleMenu}>
           Profile
         </StyledLink>
         <StyledLink to={`/settings`} onClick={handleToggleMenu}>
