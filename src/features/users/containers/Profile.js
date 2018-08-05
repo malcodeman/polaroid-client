@@ -6,6 +6,12 @@ import { NavLink, withRouter, Route } from "react-router-dom";
 import Header from "../components/Header";
 import Posts from "../components/Posts";
 
+const Container = styled.div`
+  max-width: 992px;
+  margin: 0 auto;
+  padding: 40px 20px;
+`;
+
 const PostsHeader = styled.div`
   display: flex;
   justify-content: center;
@@ -86,7 +92,7 @@ class Profile extends Component {
     }
   };
   render() {
-    return <div>{this.renderMe()}</div>;
+    return <Container>{this.renderMe()}</Container>;
   }
 }
 

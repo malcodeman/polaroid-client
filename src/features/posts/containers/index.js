@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
+import styled from "styled-components";
 
 import PostLoading from "../components/PostLoading";
 import Post from "../components/Post";
-import Header from "../../header/components/Header";
 import NewPostForm from "./PostsNewForm";
 
 import {
@@ -16,15 +15,10 @@ import {
   destroyBookmark
 } from "../actions/posts_actions";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const Container = styled.div`
-  padding: 40px 20px;
   max-width: 576px;
   margin: 0 auto;
+  padding: 40px 20px;
 `;
 
 class Posts extends Component {
@@ -70,15 +64,10 @@ class Posts extends Component {
   };
   render() {
     return (
-      <Wrapper>
-        <Header />
-        <div>
-          <Container>
-            <NewPostForm />
-            {this.renderPosts()}
-          </Container>
-        </div>
-      </Wrapper>
+      <Container>
+        <NewPostForm />
+        {this.renderPosts()}
+      </Container>
     );
   }
 }

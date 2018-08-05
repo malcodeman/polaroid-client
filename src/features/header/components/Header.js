@@ -4,10 +4,6 @@ import { Link } from "react-router-dom";
 
 import DropdownMenu from "../../dropdown/containers/DropdownMenu";
 
-const Wrapper = styled.div`
-  flex-basis: 64px;
-`;
-
 const StyledHeader = styled.header`
   top: 0;
   position: fixed;
@@ -29,14 +25,12 @@ const Nav = styled.nav`
 
 const Header = () => {
   return (
-    <Wrapper>
-      <StyledHeader>
-        <Nav>
-          <Link to="/">Confessio</Link>
-          <DropdownMenu />
-        </Nav>
-      </StyledHeader>
-    </Wrapper>
+    <StyledHeader>
+      <Nav>
+        <Link to="/">Confessio</Link>
+        <DropdownMenu />
+      </Nav>
+    </StyledHeader>
   );
 };
 

@@ -1,24 +1,8 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 
 import Profile from "./Profile";
 import User from "./User";
-import Header from "../../header/components/Header";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Container = styled.div`
-  padding: 40px 0;
-  @media (min-width: 768px) {
-    padding: 40px 20px;
-    max-width: 992px;
-    margin: 0 auto;
-  }
-`;
 
 class Root extends Component {
   renderUser = () => {
@@ -33,14 +17,7 @@ class Root extends Component {
     }
   };
   render() {
-    return (
-      <Wrapper>
-        <Header />
-        <div>
-          <Container>{this.renderUser()}</Container>
-        </div>
-      </Wrapper>
-    );
+    return this.renderUser();
   }
 }
 

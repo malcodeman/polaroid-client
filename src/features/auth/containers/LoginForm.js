@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import { withFormik, Form, Field } from "formik";
+import { connect } from "react-redux";
 import Yup from "yup";
 import styled from "styled-components";
 
+import { login } from "../actions/auth_actions";
+
 const StyledForm = styled(Form)`
-  padding: 24px;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
-  width: 256px;
-  border: 1px solid #e6e6e6;
-  border-radius: 2px;
-  margin-bottom: 10px;
+  padding: 24px 0;
 `;
 
 const FormItem = styled.div`
@@ -20,13 +18,8 @@ const FormItem = styled.div`
   margin-bottom: 20px;
 `;
 
-const Label = styled.label`
-  color: #999;
-  font-size: 0.8rem;
-`;
-
 const Input = styled(Field)`
-  color: #262626;
+  color: #3a3133;
   height: 36px;
   font-size: 0.8rem;
   padding: 0 4px;
@@ -37,7 +30,7 @@ const Input = styled(Field)`
 `;
 
 const Button = styled.button`
-  background: #007aff;
+  background-color: #3a3133;
   color: #fff;
   border: 0;
   cursor: pointer;
@@ -58,14 +51,12 @@ class FormikForm extends Component {
     return (
       <StyledForm>
         <FormItem>
-          <Label>Username or email</Label>
-          <Input type="text" name="username" />
+          <Input type="text" name="username" placeholder="Username or email" />
           {touched.username &&
             errors.username && <ErrorMessage>{errors.username}</ErrorMessage>}
         </FormItem>
         <FormItem>
-          <Label>Password</Label>
-          <Input type="password" name="password" />
+          <Input type="password" name="password" placeholder="Password" />
           {touched.password &&
             errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
         </FormItem>
@@ -91,4 +82,7 @@ const LoginForm = withFormik({
   }
 })(FormikForm);
 
-export default LoginForm;
+export default connect(
+  null,
+  { login }
+)(LoginForm);
