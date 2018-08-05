@@ -33,7 +33,6 @@ const ControlsItem = styled(NavLink)`
 
 class Account extends Component {
   render() {
-    console.log(this.props);
     const { pathname } = this.props.location;
     return (
       <React.Fragment>

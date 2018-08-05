@@ -15,7 +15,6 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
-  display: block;
   @media (min-width: 576px) {
     display: none;
   }
