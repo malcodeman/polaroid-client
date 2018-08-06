@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
 
 import Header from "../components/Header";
 import Posts from "../components/Posts";
 import { findUserByUsername, unloadUser } from "../actions";
+
+const Container = styled.div`
+  max-width: 992px;
+  margin: 0 auto;
+  padding: 40px 20px;
+`;
 
 class User extends Component {
   componentDidMount = () => {
@@ -38,7 +45,7 @@ class User extends Component {
     }
   };
   render() {
-    return <div>{this.renderUser()}</div>;
+    return <Container>{this.renderUser()}</Container>;
   }
 }
 
