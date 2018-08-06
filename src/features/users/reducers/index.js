@@ -50,6 +50,9 @@ export default (state = initialState, action) => {
         ...state,
         me: {
           ...state.me,
+          email: action.payload.email,
+          username: action.payload.username,
+          name: action.payload.name,
           profilePhotoURL: action.payload.profilePhotoURL
         },
         loading: false,
