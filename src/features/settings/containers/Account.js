@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import GoBack from "../components/GoBack";
 import NameFrom from "./forms/NameForm";
+import UsernameForm from "./forms/UsernameForm";
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ class Account extends Component {
         <GoBack />
         <span>Account</span>
         <NameFrom />
+        <UsernameForm />
       </Wrapper>
     );
   }
