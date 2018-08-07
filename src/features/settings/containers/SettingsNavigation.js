@@ -45,6 +45,7 @@ class Account extends Component {
             Notifications
           </ControlsItem>
           <ControlsItem to="/settings/labs">Labs</ControlsItem>
+          <ControlsItem to="/settings/themes">Themes</ControlsItem>
         </Controls>
         <ControlsDesktop>
           <ControlsItem
@@ -62,6 +63,7 @@ class Account extends Component {
             Notifications
           </ControlsItem>
           <ControlsItem to="/settings/labs">Labs</ControlsItem>
+          <ControlsItem to="/settings/themes">Themes</ControlsItem>
         </ControlsDesktop>
       </React.Fragment>
     );

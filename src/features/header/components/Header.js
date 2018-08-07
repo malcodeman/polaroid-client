@@ -7,9 +7,9 @@ import DropdownMenu from "../../dropdown/containers/DropdownMenu";
 const StyledHeader = styled.header`
   top: 0;
   position: fixed;
-  background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   width: 100%;
+  background-color: ${props => props.theme.background};
 `;
 
 const Nav = styled.nav`
@@ -23,11 +23,16 @@ const Nav = styled.nav`
   padding: 0 20px;
 `;
 
+const StyledLink = styled(Link)`
+  font-size: 0.8rem;
+  color: ${props => props.theme.primary};
+`;
+
 const Header = () => {
   return (
     <StyledHeader>
       <Nav>
-        <Link to="/">Confessio</Link>
+        <StyledLink to="/">Confessio</StyledLink>
         <DropdownMenu />
       </Nav>
     </StyledHeader>

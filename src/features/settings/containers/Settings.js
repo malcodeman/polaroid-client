@@ -6,6 +6,7 @@ import Account from "./Account";
 import Privacy from "./Privacy";
 import Notifications from "./Notifications";
 import Labs from "./Labs";
+import Themes from "./Themes";
 import SettingsNavigation from "./SettingsNavigation";
 
 const Container = styled.div`
@@ -44,6 +45,7 @@ class Settings extends Component {
           <Route path={"/settings/privacy"} component={Privacy} />
           <Route path={"/settings/notifications"} component={Notifications} />
           <Route path={"/settings/labs"} component={Labs} />
+          <Route path={"/settings/themes"} component={Themes} />
         </Main>
         <MainDesktop>
           <SettingsNavigation />
@@ -52,6 +54,7 @@ class Settings extends Component {
           <Route path={"/settings/privacy"} component={Privacy} />
           <Route path={"/settings/notifications"} component={Notifications} />
           <Route path={"/settings/labs"} component={Labs} />
+          <Route path={"/settings/themes"} component={Themes} />
         </MainDesktop>
       </Container>
     );

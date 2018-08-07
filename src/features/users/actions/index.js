@@ -11,6 +11,15 @@ export const FIND_USER_BY_USERNAME_SUCCESS = "FIND_USER_BY_USERNAME_SUCCESS";
 export const FIND_USER_BY_USERNAME_FAILURE = "FIND_USER_BY_USERNAME_FAILURE";
 export const UNLOAD_USER = "UNLOAD_USER";
 
+export const CHANGE_THEME = "CHANGE_THEME";
+
+export const changeTheme = newTheme => {
+  return {
+    type: CHANGE_THEME,
+    payload: newTheme
+  };
+};
+
 export const findMe = () => {
   return {
     type: FIND_ME_REQUEST

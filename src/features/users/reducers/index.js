@@ -7,7 +7,8 @@ import {
   FIND_USER_BY_USERNAME_SUCCESS,
   FIND_USER_BY_USERNAME_FAILURE,
   UNLOAD_USER,
-  UPDATE_ME_SUCCESS
+  UPDATE_ME_SUCCESS,
+  CHANGE_THEME
 } from "../actions";
 
 import {
@@ -20,7 +21,8 @@ const initialState = {
   me: { username: "" },
   user: null,
   loading: false,
-  error: false
+  error: false,
+  theme: "dark"
 };
 
 export default (state = initialState, action) => {
@@ -120,6 +122,11 @@ export default (state = initialState, action) => {
             return bookmark;
           })
         }
+      };
+    case CHANGE_THEME:
+      return {
+        ...state,
+        theme: action.payload
       };
     default:
       return state;
