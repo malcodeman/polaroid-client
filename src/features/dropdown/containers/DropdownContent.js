@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { logout } from "../../auth/actions/auth_actions";
-import { findMe } from "../../users/actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,12 +20,6 @@ const StyledLink = styled(Link)`
 `;
 
 class DropdownContent extends Component {
-  componentDidMount = () => {
-    const { me, findMe } = this.props;
-    if (me.username === "") {
-      findMe();
-    }
-  };
   handleLogout = () => {
     const { logout, me } = this.props;
     logout(me);
@@ -57,8 +50,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: user => dispatch(logout(user)),
-    findMe: () => dispatch(findMe())
+    logout: user => dispatch(logout(user))
   };
 };
 

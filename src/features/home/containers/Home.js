@@ -10,11 +10,19 @@ import Header from "../../header/components/Header";
 import lightTheme from "../../../core/styles/themes/light";
 import darkTheme from "../../../core/styles/themes/dark";
 
+import { findMe } from "../../users/actions/index";
+
 const Main = styled.main`
   margin-top: 64px;
 `;
 
 class Homepage extends Component {
+  componentDidMount = () => {
+    const { me, findMe } = this.props;
+    if (me.username === "") {
+      findMe();
+    }
+  };
   renderRoutes = routes => {
     return (
       <Switch>
@@ -56,13 +64,20 @@ class Homepage extends Component {
 
 const mapStateToProps = state => {
   return {
-    theme: state.users.theme
+    theme: state.users.theme,
+    me: state.users.me
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    findMe: () => dispatch(findMe())
   };
 };
 
 export default withRouter(
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   )(Homepage)
 );

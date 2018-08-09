@@ -2,18 +2,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-import { findMe } from "../../users/actions";
-
 const Photo = styled.img`
-  height: ${props => props.height};
-  width: ${props => props.width};
-  ${props => {
-    if (props.circle) {
-      return "border-radius: 50%";
-    } else if (props.margin) {
-      return "margin: 0 6px";
-    }
-  }};
+  height: 24px;
+  width: 24px;
+  border-radius: 50%
   object-fit: cover;
 `;
 
@@ -22,7 +14,7 @@ const UserCircle = styled.div`
   width: 24px;
   border-radius: 50%;
   border: 1px solid #007aff;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${props => props.theme.primary};
   font-size: 10px;
   display: flex;
   align-items: center;
@@ -31,16 +23,10 @@ const UserCircle = styled.div`
 `;
 
 class Toolbar extends Component {
-  componentDidMount = () => {
-    const { me, findMe } = this.props;
-    if (me.username === "") {
-      findMe();
-    }
-  };
   renderProfilePhoto = () => {
     const { profilePhotoURL, nameFirstLetter } = this.props.me;
     if (profilePhotoURL) {
-      return <Photo src={profilePhotoURL} height="24" width="24" circle />;
+      return <Photo src={profilePhotoURL} />;
     } else {
       return <UserCircle>{nameFirstLetter}</UserCircle>;
     }
@@ -62,13 +48,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    findMe: () => dispatch(findMe())
-  };
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Toolbar);
