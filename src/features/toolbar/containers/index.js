@@ -7,6 +7,7 @@ const Photo = styled.img`
   width: 24px;
   border-radius: 50%
   object-fit: cover;
+  display: ${props => (props.show ? "block" : "none")};
 `;
 
 const UserCircle = styled.div`
@@ -23,28 +24,48 @@ const UserCircle = styled.div`
 `;
 
 class Toolbar extends Component {
-  renderProfilePhoto = () => {
-    const { profilePhotoURL, nameFirstLetter } = this.props.me;
-    if (profilePhotoURL) {
-      return <Photo src={profilePhotoURL} />;
+  state = { imageLoaded: false };
+  handleImageLoaded = () => {
+    this.setState({ imageLoaded: true });
+  };
+  renderProfilePhoto = (profilePhotoURL, nameFirstLetter) => {
+    if (profilePhotoURL && !this.state.imageLoaded) {
+      return (
+        <React.Fragment>
+          <UserCircle>{nameFirstLetter}</UserCircle>
+          <Photo
+            src={profilePhotoURL}
+            onLoad={this.handleImageLoaded}
+            show={false}
+          />
+        </React.Fragment>
+      );
+    } else if (profilePhotoURL && this.state.imageLoaded) {
+      return (
+        <Photo
+          src={profilePhotoURL}
+          onLoad={this.handleImageLoaded}
+          show={this.state.imageLoaded}
+        />
+      );
     } else {
       return <UserCircle>{nameFirstLetter}</UserCircle>;
     }
   };
-  renderUser = () => {
-    const { me } = this.props;
-    if (me !== null) {
-      return <React.Fragment>{this.renderProfilePhoto()}</React.Fragment>;
-    } else return <UserCircle />;
-  };
   render() {
-    return this.renderUser();
+    const { loading } = this.props;
+    const { profilePhotoURL, nameFirstLetter } = this.props.me;
+    if (loading) {
+      return <UserCircle />;
+    }
+    return this.renderProfilePhoto(profilePhotoURL, nameFirstLetter);
   }
 }
 
 const mapStateToProps = state => {
   return {
-    me: state.users.me
+    me: state.users.me,
+    loading: state.users.loading
   };
 };
 
