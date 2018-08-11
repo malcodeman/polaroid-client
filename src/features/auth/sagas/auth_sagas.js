@@ -21,8 +21,8 @@ function* signupUser(action) {
     const data = yield call(signup, action.payload);
     const { token } = data.data;
     localStorage.setItem("token", token);
-    yield put(push("/"));
     yield put({ type: SIGNUP_SUCCESS, payload: data.data });
+    yield put(push("/"));
   } catch (error) {
     yield put({ type: SIGNUP_FAILURE, error });
   }
@@ -37,8 +37,8 @@ function* loginUser(action) {
     const data = yield call(login, action.payload);
     const { token } = data.data;
     localStorage.setItem("token", token);
-    yield put(push("/"));
     yield put({ type: LOGIN_SUCCESS, payload: data.data });
+    yield put(push("/"));
   } catch (error) {
     yield put({ type: LOGIN_FAILURE, error });
   }
