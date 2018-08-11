@@ -1,9 +1,20 @@
-import { SET_NAME_REQUEST } from "./settingsActionTypes";
+import {
+  UPDATE_NAME_REQUEST,
+  UPDATE_USERNAME_REQUEST
+} from "./settingsActionTypes";
 
-export const setName = (payload, meta) => {
+export const updateName = (payload, meta) => {
   return {
     payload,
     meta,
-    type: SET_NAME_REQUEST
+    type: UPDATE_NAME_REQUEST
+  };
+};
+
+export const updateUsername = (payload, meta) => {
+  return {
+    payload,
+    meta,
+    type: UPDATE_USERNAME_REQUEST
   };
 };

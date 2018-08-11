@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import Yup from "yup";
 import styled from "styled-components";
 
-import { updateMe } from "../../../users/actions/index";
+import Loader from "../../../loader/components/Loader";
+
+import { updateUsername } from "../../actions/settingsActions";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -28,10 +30,13 @@ const Button = styled.button`
   color: #fff;
   border: 0;
   cursor: pointer;
-  height: 36px;
+  min-height: 36px;
   border-radius: 2px;
   font-size: 0.8rem;
   padding: 0;
+  &:disabled {
+    opacity: 0.8;
+  }
 `;
 
 const ErrorMessage = styled.span`
@@ -47,7 +52,9 @@ class FormikForm extends Component {
         <Input type="text" name="username" placeholder="Username" />
         {touched.username &&
           errors.username && <ErrorMessage>{errors.username}</ErrorMessage>}
-        <Button disabled={isSubmitting}>Save</Button>
+        <Button disabled={isSubmitting}>
+          {isSubmitting ? <Loader message={"Saving"} /> : "Save"}
+        </Button>
       </StyledForm>
     );
   }
@@ -62,8 +69,7 @@ const UsernameForm = withFormik({
     username: Yup.string().required("Username is required")
   }),
   handleSubmit(payload, bag) {
-    bag.setSubmitting(false);
-    bag.props.updateMe(payload);
+    bag.props.updateUsername(payload, { setSubmitting: bag.setSubmitting });
   }
 })(FormikForm);
 
@@ -75,5 +81,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateMe }
+  { updateUsername }
 )(UsernameForm);

@@ -3,9 +3,10 @@ import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import Yup from "yup";
 import styled from "styled-components";
+
 import Loader from "../../../loader/components/Loader";
 
-import { setName } from "../../actions/settingsActions";
+import { updateName } from "../../actions/settingsActions";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -29,7 +30,7 @@ const Button = styled.button`
   color: #fff;
   border: 0;
   cursor: pointer;
-  height: 36px;
+  min-height: 36px;
   border-radius: 2px;
   font-size: 0.8rem;
   padding: 0;
@@ -68,7 +69,7 @@ const NameForm = withFormik({
     name: Yup.string().required("Name is required")
   }),
   handleSubmit(payload, bag) {
-    bag.props.setName(payload, { setSubmitting: bag.setSubmitting });
+    bag.props.updateName(payload, { setSubmitting: bag.setSubmitting });
   }
 })(FormikForm);
 
@@ -80,5 +81,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setName }
+  { updateName }
 )(NameForm);
