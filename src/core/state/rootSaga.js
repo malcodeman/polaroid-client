@@ -1,4 +1,4 @@
-import { all } from "redux-saga/effects";
+import { all, fork } from "redux-saga/effects";
 
 import {
   watchGetPosts,
@@ -21,8 +21,11 @@ import {
   watchUpdateMeRequest
 } from "../../features/users/sagas";
 
+import settingsSaga from "../../features/settings/sagas/settingsSagas";
+
 export default function* rootSaga() {
   yield all([
+    fork(settingsSaga),
     watchGetPosts(),
     watchCreatePost(),
     watchCreateComment(),

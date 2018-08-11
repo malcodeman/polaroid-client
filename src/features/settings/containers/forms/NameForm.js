@@ -3,8 +3,9 @@ import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import Yup from "yup";
 import styled from "styled-components";
+import Loader from "../../../loader/components/Loader";
 
-import { updateMe } from "../../../users/actions/index";
+import { setName } from "../../actions/settingsActions";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -32,6 +33,9 @@ const Button = styled.button`
   border-radius: 2px;
   font-size: 0.8rem;
   padding: 0;
+  &:disabled {
+    opacity: 0.8;
+  }
 `;
 
 const ErrorMessage = styled.span`
@@ -47,7 +51,9 @@ class FormikForm extends Component {
         <Input type="text" name="name" placeholder="Name" />
         {touched.name &&
           errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
-        <Button disabled={isSubmitting}>Save</Button>
+        <Button disabled={isSubmitting}>
+          {isSubmitting ? <Loader message={"Saving"} /> : "Save"}
+        </Button>
       </StyledForm>
     );
   }
@@ -62,8 +68,7 @@ const NameForm = withFormik({
     name: Yup.string().required("Name is required")
   }),
   handleSubmit(payload, bag) {
-    bag.setSubmitting(false);
-    bag.props.updateMe(payload);
+    bag.props.setName(payload, { setSubmitting: bag.setSubmitting });
   }
 })(FormikForm);
 
@@ -75,5 +80,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateMe }
+  { setName }
 )(NameForm);

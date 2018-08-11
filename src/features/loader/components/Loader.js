@@ -29,7 +29,7 @@ const StyledLoader = styled.div`
 
 const Message = styled.span`
   font-size: 0.8rem;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.brand};
 `;
 
 const Loader = props => {

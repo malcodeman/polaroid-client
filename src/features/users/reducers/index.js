@@ -17,6 +17,8 @@ import {
   DESTROY_BOOKMARK_SUCCESS
 } from "../../posts/actions/posts_actions";
 
+import { SET_NAME_SUCCESS } from "../../settings/actions/settingsActionTypes";
+
 const initialState = {
   me: { username: "" },
   user: null,
@@ -27,6 +29,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_NAME_SUCCESS:
+      return {
+        ...state,
+        me: {
+          ...state.me,
+          name: action.payload.name
+        }
+      };
     case FIND_ME_REQUEST:
       return {
         ...state,
