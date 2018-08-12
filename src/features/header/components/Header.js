@@ -26,13 +26,14 @@ const Nav = styled.nav`
 const StyledLink = styled(Link)`
   font-size: 0.8rem;
   color: ${props => props.theme.primary};
+  letter-spacing: 1px;
 `;
 
 const Header = () => {
   return (
     <StyledHeader>
       <Nav>
-        <StyledLink to="/">Confessio</StyledLink>
+        <StyledLink to="/">Polaroid</StyledLink>
         <DropdownMenu />
       </Nav>
     </StyledHeader>

@@ -1,1 +1,1 @@
-# Confessio
+# Polaroid, an instagram clone
