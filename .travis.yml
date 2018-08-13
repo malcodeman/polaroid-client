@@ -4,3 +4,10 @@ node_js:
 script:
   - npm test
   - npm run build
+deploy:
+  provider: heroku
+  api_key:
+    secure: "JKsrhVl+lM1J4EjKrdpG5bDhsvEMCsrelNb8Fh6S16BZG7fBX3I3XKoQRxMvULLeyJT5VsuJVxCgJTbEAhevwGhIUvx4PbCKt+hqQllAGWVv/A8QDC4QK2ar81PylvEBGo06FmDHWOKao0fXHw8hk+7im7T8NyT568r5icsFy/QGPgep20xFYPBnNWXZBaUQ7PmmIjYYYZ1ya0rEjWmKLbFdid4Y4NysUFxao7bXIwXmDfz2AVduO9+KowiKNYg1ElDBoylDkAKz2M42/HxjfyPu0xr4fnBJVHpbYe/JAw7HIQ4b2YgPHH7O3U77mIkdKRreX86VQRlEdGYXp/qYc5eUjIWobHR6GUndonO9XityueWkT6cVXwwZkKcsPj0Nrdk55as4OWmgBKuRNh2MyIke8JalFrdEjVm2IFA6OyUXoIR8Leg61lpW9fOEPiBjCoPj/iLBU1YAAoYYdEQdoX03+Iq9LSJudxvJCE0WOFVdxwAem1VAp9dGI+N8XUQVKGkufqw/6N3Eir8yKGTpR7W4yBY+lRKUrKYgo5v81Y1ynQBld437Dagm7Ke3aoxu07NZ9MdBCHf58JdlXMIW3Qt5yVZC1K2qCSs+i0rt56tpawD0QwisPGOYXHr6H/4nDJ4m5/eFOLOqfGPGWgiURyqex7jOVy2julHG24T8qn0="
+  app: polaroid-client
+  on:
+    repo: malcodeman/polaroid-client
