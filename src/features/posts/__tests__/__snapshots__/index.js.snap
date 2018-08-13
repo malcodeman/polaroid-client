@@ -100,26 +100,11 @@ exports[`Post matches snapshot 1`] = `
 }
 
 .c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   height: 30px;
   width: 30px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
-  color: #fff;
-  font-size: 0.8rem;
-  background-color: #007aff;
 }
 
 .c2 {
@@ -174,20 +159,23 @@ exports[`Post matches snapshot 1`] = `
   >
     <a
       className="c2"
-      href="/undefined"
+      href="/test_username"
       onClick={[Function]}
     >
-      <div
+      <img
         className="c3"
+        src="https://instagram.fsjj1-1.fna.fbcdn.net/vp/f08e4b6b37fe1f96a606668534c898b9/5BBD97E2/t51.2885-15/e35/35132935_188808391837094_8704942949919621120_n.jpg"
       />
       <span
         className="c4"
-      />
+      >
+        test_username
+      </span>
     </a>
   </header>
   <img
     className="c5"
-    src={undefined}
+    src="https://instagram.fprg2-1.fna.fbcdn.net/vp/28fd04be5b090942578954037710c8ab/5BCFD69E/t51.2885-15/e35/35273985_403106216853758_9170321326664056832_n.jpg"
   />
   <footer
     className="c6"
@@ -199,7 +187,7 @@ exports[`Post matches snapshot 1`] = `
         <img
           className="c8"
           onClick={[Function]}
-          src="heart_default.svg"
+          src="heart_liked.svg"
         />
         <img
           className="c8"
@@ -209,7 +197,7 @@ exports[`Post matches snapshot 1`] = `
       <img
         className="c8"
         onClick={[Function]}
-        src="bookmark.svg"
+        src="bookmarked.svg"
       />
     </section>
     <section
@@ -218,6 +206,7 @@ exports[`Post matches snapshot 1`] = `
       <span
         className="c10"
       >
+        33
          likes
       </span>
     </section>
@@ -264,7 +253,7 @@ exports[`Post matches snapshot 1`] = `
     <time
       className="c16"
     >
-      almost NaN years
+      9 days
        ago
     </time>
     <section
