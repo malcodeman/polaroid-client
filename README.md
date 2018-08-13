@@ -2,6 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![GitHub Issues](https://img.shields.io/github/issues/malcodeman/polaroid-client.svg)](https://github.com/malcodeman/polaroid-client/issues)
 [![GitHub contributors](https://img.shields.io/github/contributors/malcodeman/polaroid-client.svg)](https://github.com/malcodeman/polaroid-client)
