@@ -1,66 +1,260 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Post matches snapshot 1`] = `
+.c7 {
+  padding: 10px 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c8 {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.c9 {
+  padding-bottom: 10px;
+}
+
+.c10 {
+  color: rgba(0,0,0,1);
+  font-size: 0.8rem;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.c12 {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0.8rem;
+  padding: 4px 0;
+}
+
+.c14 {
+  color: #262626;
+  margin-right: 10px;
+}
+
+.c15 {
+  color: rgba(0,0,0,0.8);
+}
+
+.c17 {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 10px 0;
+}
+
+.c18 {
+  color: #262626;
+  height: 36px;
+  font-size: 0.8rem;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  width: 100%;
+}
+
+.c0 {
+  background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.c1 {
+  padding: 16px 10px;
+  border-top: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  color: #fff;
+  font-size: 0.8rem;
+  background-color: #007aff;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  font-size: 0.8rem;
+  color: rgba(0,0,0,0.8);
+}
+
+.c5 {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.c16 {
+  font-size: 0.6rem;
+  color: rgba(0,0,0,0.6);
+  text-transform: uppercase;
+  padding-bottom: 10px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 0 10px;
+  border-right: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
 <article
-  className="sc-gzVnrw iyppNO"
+  className="c0"
 >
   <header
-    className="sc-htoDjs fmveqU"
+    className="c1"
   >
     <a
-      className="sc-gZMcBi hhbgDr"
+      className="c2"
       href="/undefined"
       onClick={[Function]}
     >
       <div
-        className="sc-iwsKbI fCjeiw"
+        className="c3"
       />
       <span
-        className="sc-gqjmRU fTsvZT"
+        className="c4"
       />
     </a>
   </header>
   <img
-    className="sc-VigVT bFgJIO"
+    className="c5"
     src={undefined}
   />
   <footer
-    className="sc-fjdhpX qtLIw"
+    className="c6"
   >
     <section
-      className="sc-bdVaJa fCfEIu"
+      className="c7"
+    >
+      <div>
+        <img
+          className="c8"
+          onClick={[Function]}
+          src="heart_default.svg"
+        />
+        <img
+          className="c8"
+          src="comment.svg"
+        />
+      </div>
+      <img
+        className="c8"
+        onClick={[Function]}
+        src="bookmark.svg"
+      />
+    </section>
+    <section
+      className="c9"
+    >
+      <span
+        className="c10"
+      >
+         likes
+      </span>
+    </section>
+    <section
+      className="c11"
     >
       <ul
-        className="sc-bwzfXH hOJnpK"
+        className="c12"
       >
         <li
-          className="sc-htpNat dYBTAj"
+          className="c13"
         >
           <a
-            className="sc-bxivhb iWXIdB"
+            className="c14"
             href="admin"
             onClick={[Function]}
           >
             admin
           </a>
           <span
-            className="sc-ifAKCX jvpnUQ"
+            className="c15"
           >
             comment 1
           </span>
         </li>
         <li
-          className="sc-htpNat dYBTAj"
+          className="c13"
         >
           <a
-            className="sc-bxivhb iWXIdB"
+            className="c14"
             href="test"
             onClick={[Function]}
           >
             test
           </a>
           <span
-            className="sc-ifAKCX jvpnUQ"
+            className="c15"
           >
             comment 2
           </span>
@@ -68,19 +262,19 @@ exports[`Post matches snapshot 1`] = `
       </ul>
     </section>
     <time
-      className="sc-jTzLTM bEHoZo"
+      className="c16"
     >
       almost NaN years
        ago
     </time>
     <section
-      className="sc-EHOje cvdUQJ"
+      className="c17"
     >
       <form
         onSubmit={[Function]}
       >
         <input
-          className="sc-bZQynM cENTRv"
+          className="c18"
           name="body"
           onBlur={[Function]}
           onChange={[Function]}
@@ -95,14 +289,35 @@ exports[`Post matches snapshot 1`] = `
 `;
 
 exports[`PostLoading matches snapshot 1`] = `
+.c0 {
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+  margin-bottom: 40px;
+  padding: 10px;
+}
+
+.c1 {
+  height: 0.8rem;
+  background-color: rgba(0,0,0,0.1);
+  width: 25%;
+  margin-bottom: 10px;
+}
+
+.c2 {
+  height: 0.6rem;
+  background-color: rgba(0,0,0,0.1);
+  width: 10%;
+}
+
 <div
-  className="sc-jzJRlG deVHuK"
+  className="c0"
 >
   <div
-    className="sc-cSHVUG hLpSCG"
+    className="c1"
   />
   <div
-    className="sc-kAzzGY hMoCcg"
+    className="c2"
   />
 </div>
 `;
