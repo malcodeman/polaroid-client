@@ -221,7 +221,7 @@ exports[`Post matches snapshot 1`] = `
         >
           <a
             className="c14"
-            href="admin"
+            href="/admin"
             onClick={[Function]}
           >
             admin
@@ -237,7 +237,7 @@ exports[`Post matches snapshot 1`] = `
         >
           <a
             className="c14"
-            href="test"
+            href="/test"
             onClick={[Function]}
           >
             test
@@ -253,7 +253,7 @@ exports[`Post matches snapshot 1`] = `
     <time
       className="c16"
     >
-      9 days
+      about 8 years
        ago
     </time>
     <section

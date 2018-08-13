@@ -20,7 +20,7 @@ const testPost = {
   photoURL:
     "https://instagram.fprg2-1.fna.fbcdn.net/vp/28fd04be5b090942578954037710c8ab/5BCFD69E/t51.2885-15/e35/35273985_403106216853758_9170321326664056832_n.jpg",
   likesCount: 33,
-  createdAt: "2018-08-04 06:20:40"
+  createdAt: "2010-08-04 06:20:40"
 };
 
 test("Post matches snapshot", () => {

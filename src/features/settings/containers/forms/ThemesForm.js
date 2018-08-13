@@ -24,7 +24,7 @@ const Theme = styled.div`
 
 class ThemesForm extends Component {
   render() {
-    const { changeTheme, theme } = this.props;
+    const { changeTheme } = this.props;
     const themes = [
       {
         name: "light",
