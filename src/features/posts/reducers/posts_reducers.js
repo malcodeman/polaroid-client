@@ -1,6 +1,7 @@
 import {
   GET_POSTS_REQUEST,
   GET_POSTS_SUCCESS,
+  GET_POSTS_FAILURE,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
   CREATE_POST_CLEAR,
@@ -15,6 +16,7 @@ import { LOGOUT_SUCCESS } from "../../auth/actions/auth_actions";
 const initialState = {
   posts: null,
   loading: true,
+  error: true,
   create_post_success: false,
   create_post_failure: false
 };
@@ -30,6 +32,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         posts: action.payload,
+        loading: false,
+        error: false
+      };
+    case GET_POSTS_FAILURE:
+      return {
+        ...state,
+        error: true,
         loading: false
       };
     case LOGOUT_SUCCESS:

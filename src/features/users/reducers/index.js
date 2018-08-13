@@ -64,7 +64,6 @@ export default (state = initialState, action) => {
     case FIND_ME_FAILURE:
       return {
         ...state,
-        me: null,
         loading: false,
         error: true
       };
