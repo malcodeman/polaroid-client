@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import Yup from "yup";
 import styled from "styled-components";
 
-import { signup } from "../actions/auth_actions";
+import Loader from "../../loader/components/Loader";
+
+import { signup } from "../actions/authActions";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -70,7 +72,9 @@ class FormikForm extends Component {
           {touched.password &&
             errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
         </FormItem>
-        <Button disabled={isSubmitting}>Sign up</Button>
+        <Button disabled={isSubmitting}>
+          {isSubmitting ? <Loader /> : "Sign up"}
+        </Button>
       </StyledForm>
     );
   }
@@ -90,9 +94,7 @@ const SignupForm = withFormik({
     password: Yup.string().required("Password is required")
   }),
   handleSubmit(payload, bag) {
-    bag.setSubmitting(false);
-    bag.props.signup(payload);
-    bag.resetForm();
+    bag.props.signup(payload, { setSubmitting: bag.setSubmitting });
   }
 })(FormikForm);
 

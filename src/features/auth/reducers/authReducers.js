@@ -5,7 +5,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_RESET
-} from "../actions/auth_actions";
+} from "../actions/authActionTypes";
 
 const initialState = {
   user: {},

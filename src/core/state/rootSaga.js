@@ -9,11 +9,6 @@ import {
   watchCreateBookmark,
   watchDestroyBookmark
 } from "../../features/posts/sagas/posts_sagas";
-import {
-  watchSignupRequest,
-  watchLoginRequest,
-  watchLogoutRequest
-} from "../../features/auth/sagas/auth_sagas";
 
 import {
   watchFindMeRequest,
@@ -21,11 +16,13 @@ import {
   watchUpdateMeRequest
 } from "../../features/users/sagas";
 
+import authSaga from "../../features/auth/sagas/authSagas";
 import settingsSaga from "../../features/settings/sagas/settingsSagas";
 
 export default function* rootSaga() {
   yield all([
     fork(settingsSaga),
+    fork(authSaga),
     watchGetPosts(),
     watchCreatePost(),
     watchCreateComment(),
@@ -33,9 +30,6 @@ export default function* rootSaga() {
     watchCreateBookmark(),
     watchDestroyLike(),
     watchDestroyBookmark(),
-    watchSignupRequest(),
-    watchLoginRequest(),
-    watchLogoutRequest(),
     watchFindMeRequest(),
     watchFindByUsernameRequest(),
     watchUpdateMeRequest()

@@ -11,7 +11,7 @@ import {
   CREATE_BOOKMARK_SUCCESS,
   DESTROY_BOOKMARK_SUCCESS
 } from "../actions/posts_actions";
-import { LOGOUT_SUCCESS } from "../../auth/actions/auth_actions";
+import { LOGOUT_SUCCESS } from "../../auth/actions/authActionTypes";
 
 const initialState = {
   posts: null,

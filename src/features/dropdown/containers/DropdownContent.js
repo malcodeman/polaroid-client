@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { logout } from "../../auth/actions/auth_actions";
+import { logout } from "../../auth/actions/authActions";
 
 const Wrapper = styled.div`
   display: flex;

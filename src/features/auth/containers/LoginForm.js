@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import Yup from "yup";
 import styled from "styled-components";
 
-import { login } from "../actions/auth_actions";
+import Loader from "../../loader/components/Loader";
+
+import { login } from "../actions/authActions";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -46,6 +48,10 @@ const ErrorMessage = styled.span`
 `;
 
 class FormikForm extends Component {
+  componentWillUnmount = () => {
+    const { setSubmitting } = this.props;
+    setSubmitting(false);
+  };
   render() {
     const { errors, touched, isSubmitting } = this.props;
     return (
@@ -60,7 +66,9 @@ class FormikForm extends Component {
           {touched.password &&
             errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
         </FormItem>
-        <Button disabled={isSubmitting}>Log in</Button>
+        <Button disabled={isSubmitting}>
+          {isSubmitting ? <Loader /> : "Log in"}
+        </Button>
       </StyledForm>
     );
   }
@@ -76,9 +84,7 @@ const LoginForm = withFormik({
     password: Yup.string().required("Password is required")
   }),
   handleSubmit(payload, bag) {
-    bag.setSubmitting(false);
-    bag.props.login(payload);
-    bag.resetForm();
+    bag.props.login(payload, { setSubmitting: bag.setSubmitting });
   }
 })(FormikForm);
 
