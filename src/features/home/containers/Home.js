@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { ThemeProvider } from "styled-components";
 import { connect } from "react-redux";
 
 import routes from "../../../core/routes/privateRoutes";
 import Header from "../../header/components/Header";
-
-import lightTheme from "../../../core/styles/themes/light";
-import darkTheme from "../../../core/styles/themes/dark";
 
 import { findMe } from "../../users/actions/index";
 
@@ -39,32 +35,18 @@ class Homepage extends Component {
       </Switch>
     );
   };
-  getTheme = theme => {
-    switch (theme) {
-      case "light":
-        return lightTheme;
-      case "dark":
-        return darkTheme;
-      default:
-        return lightTheme;
-    }
-  };
   render() {
-    const { theme } = this.props;
     return (
-      <ThemeProvider theme={this.getTheme(theme)}>
-        <React.Fragment>
-          <Header />
-          <Main>{this.renderRoutes(routes)}</Main>
-        </React.Fragment>
-      </ThemeProvider>
+      <React.Fragment>
+        <Header />
+        <Main>{this.renderRoutes(routes)}</Main>
+      </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    theme: state.users.theme,
     me: state.users.me
   };
 };
