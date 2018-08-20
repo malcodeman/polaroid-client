@@ -19,7 +19,8 @@ import {
 
 import {
   UPDATE_NAME_SUCCESS,
-  UPDATE_USERNAME_SUCCESS
+  UPDATE_USERNAME_SUCCESS,
+  UPDATE_EMAIL_SUCCESS
 } from "../../settings/actions/settingsActionTypes";
 
 const initialState = {
@@ -46,6 +47,14 @@ export default (state = initialState, action) => {
         me: {
           ...state.me,
           username: action.payload.username
+        }
+      };
+    case UPDATE_EMAIL_SUCCESS:
+      return {
+        ...state,
+        me: {
+          ...state.me,
+          email: action.payload.email
         }
       };
     case FIND_ME_REQUEST:

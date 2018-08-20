@@ -7,7 +7,10 @@ import {
   UPDATE_NAME_SUCCESS,
   UPDATE_USERNAME_FAILURE,
   UPDATE_USERNAME_REQUEST,
-  UPDATE_USERNAME_SUCCESS
+  UPDATE_USERNAME_SUCCESS,
+  UPDATE_EMAIL_FAILURE,
+  UPDATE_EMAIL_REQUEST,
+  UPDATE_EMAIL_SUCCESS
 } from "../actions/settingsActionTypes";
 
 const updateMeApi = data => {
@@ -40,9 +43,23 @@ function* updateUsername(action) {
   }
 }
 
+function* updateEmail(action) {
+  try {
+    const { email } = action.payload;
+    const updated = yield call(updateMeApi, { email });
+    yield put({ type: UPDATE_EMAIL_SUCCESS, payload: updated.data });
+  } catch (error) {
+    yield put({ type: UPDATE_EMAIL_FAILURE, error });
+  } finally {
+    const { setSubmitting } = action.meta;
+    setSubmitting(false);
+  }
+}
+
 const saga = function*() {
   yield takeLatest(UPDATE_NAME_REQUEST, updateName);
   yield takeLatest(UPDATE_USERNAME_REQUEST, updateUsername);
+  yield takeLatest(UPDATE_EMAIL_REQUEST, updateEmail);
 };
 
 export default saga;
