@@ -100,8 +100,10 @@ class FormikForm extends Component {
           <PhotoPreviewWrapper>
             <PhotoPreview src={photoURL} />
             <PhotoPreviewFooter>
-              <Button onClick={resetForm}>Close</Button>
-              <Button primary onClick={submitForm}>
+              <Button onClick={resetForm} data-cy="photo-url-close">
+                Close
+              </Button>
+              <Button primary onClick={submitForm} data-cy="photo-url-submit">
                 Upload
               </Button>
             </PhotoPreviewFooter>
@@ -111,7 +113,12 @@ class FormikForm extends Component {
     } else {
       return (
         <StyledForm>
-          <Input type="text" name="photoURL" placeholder="Paste a URL" />
+          <Input
+            type="text"
+            name="photoURL"
+            placeholder="Paste a URL"
+            data-cy="photo-url-input"
+          />
           {touched.photoURL &&
             errors.photoURL && <Error>{errors.photoURL}</Error>}
         </StyledForm>
