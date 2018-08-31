@@ -33,10 +33,11 @@ export const getPosts = () => {
   };
 };
 
-export const createPost = newPost => {
+export const createPost = (payload, meta) => {
   return {
-    type: CREATE_POST_REQUEST,
-    payload: newPost
+    payload,
+    meta,
+    type: CREATE_POST_REQUEST
   };
 };
 

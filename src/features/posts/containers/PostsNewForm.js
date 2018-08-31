@@ -4,6 +4,8 @@ import Yup from "yup";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import Loader from "../../loader/components/Loader";
+
 import { createPost } from "../actions/posts_actions";
 
 const StyledForm = styled(Form)`
@@ -83,27 +85,38 @@ class FormikForm extends Component {
     }
   };
   render() {
-    const { errors, touched, resetForm, submitForm } = this.props;
+    const { errors, touched, resetForm, submitForm, isSubmitting } = this.props;
     const { photoURL } = this.props.values;
-    return photoURL && !errors.photoURL && this.validPhoto(photoURL) ? (
-      <StyledForm>
-        <PhotoPreviewWrapper>
-          <PhotoPreview src={photoURL} />
-          <PhotoPreviewFooter>
-            <Button onClick={resetForm}>Close</Button>
-            <Button primary onClick={submitForm}>
-              Upload
-            </Button>
-          </PhotoPreviewFooter>
-        </PhotoPreviewWrapper>
-      </StyledForm>
-    ) : (
-      <StyledForm>
-        <Input type="text" name="photoURL" placeholder="Paste a URL" />
-        {touched.photoURL &&
-          errors.photoURL && <Error>{errors.photoURL}</Error>}
-      </StyledForm>
-    );
+    if (isSubmitting) {
+      return <Loader />;
+    } else if (
+      photoURL &&
+      !isSubmitting &&
+      !errors.photoURL &&
+      this.validPhoto(photoURL)
+    ) {
+      return (
+        <StyledForm>
+          <PhotoPreviewWrapper>
+            <PhotoPreview src={photoURL} />
+            <PhotoPreviewFooter>
+              <Button onClick={resetForm}>Close</Button>
+              <Button primary onClick={submitForm}>
+                Upload
+              </Button>
+            </PhotoPreviewFooter>
+          </PhotoPreviewWrapper>
+        </StyledForm>
+      );
+    } else {
+      return (
+        <StyledForm>
+          <Input type="text" name="photoURL" placeholder="Paste a URL" />
+          {touched.photoURL &&
+            errors.photoURL && <Error>{errors.photoURL}</Error>}
+        </StyledForm>
+      );
+    }
   }
 }
 
@@ -117,19 +130,14 @@ const PostNewForm = withFormik({
       .url("Not a valid URL")
   }),
   handleSubmit(payload, bag) {
-    bag.setSubmitting(false);
-    bag.props.createPost(payload);
-    bag.resetForm();
+    bag.props.createPost(payload, {
+      setSubmitting: bag.setSubmitting,
+      resetForm: bag.resetForm
+    });
   }
 })(FormikForm);
 
-const mapDispatchToProps = dispatch => {
-  return {
-    createPost: newPost => dispatch(createPost(newPost))
-  };
-};
-
 export default connect(
   null,
-  mapDispatchToProps
+  { createPost }
 )(PostNewForm);
