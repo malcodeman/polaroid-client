@@ -64,10 +64,15 @@ function* getPosts() {
 
 function* createPost(action) {
   try {
-    const data = yield call(createPostApi, action.payload);
+    const { photoURL } = action.payload;
+    const data = yield call(createPostApi, { photoURL });
     yield put({ type: CREATE_POST_SUCCESS, payload: data.data });
   } catch (error) {
     yield put({ type: CREATE_POST_FAILURE, error });
+  } finally {
+    const { setSubmitting, resetForm } = action.meta;
+    setSubmitting(false);
+    resetForm();
   }
 }
 
