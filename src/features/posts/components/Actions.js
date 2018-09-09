@@ -33,9 +33,17 @@ const Actions = props => {
     <Section>
       <div>
         {liked ? (
-          <Icon src={heart_liked} onClick={() => destroyLike(liked.likeId)} />
+          <Icon
+            src={heart_liked}
+            onClick={() => destroyLike(liked.likeId)}
+            data-cy="unlike-btn"
+          />
         ) : (
-          <Icon src={heart_default} onClick={() => createLike(postId)} />
+          <Icon
+            src={heart_default}
+            onClick={() => createLike(postId)}
+            data-cy="like-btn"
+          />
         )}
         <Icon src={comment} />
       </div>
@@ -43,9 +51,14 @@ const Actions = props => {
         <Icon
           src={bookmarked_icon}
           onClick={() => destroyBookmark(bookmarked.bookmarkId)}
+          data-cy="unbookmark-btn"
         />
       ) : (
-        <Icon src={bookmark_icon} onClick={() => createBookmark(postId)} />
+        <Icon
+          src={bookmark_icon}
+          onClick={() => createBookmark(postId)}
+          data-cy="bookmark-btn"
+        />
       )}
     </Section>
   );
