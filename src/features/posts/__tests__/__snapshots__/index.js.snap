@@ -186,6 +186,7 @@ exports[`Post matches snapshot 1`] = `
       <div>
         <img
           className="c8"
+          data-cy="unlike-btn"
           onClick={[Function]}
           src="heart_liked.svg"
         />
@@ -196,6 +197,7 @@ exports[`Post matches snapshot 1`] = `
       </div>
       <img
         className="c8"
+        data-cy="unbookmark-btn"
         onClick={[Function]}
         src="bookmarked.svg"
       />
