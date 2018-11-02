@@ -7,17 +7,17 @@
     "date-fns": "^1.29.0",
     "formik": "^0.11.11",
     "history": "^4.7.2",
-    "react": "16",
-    "react-dom": "16",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "react-outside-click-handler": "^1.2.2",
     "react-popper": "^1.0.0",
-    "react-redux": "^5.0.7",
+    "react-redux": "^5.1.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.4",
-    "redux": "^4.0.0",
-    "redux-saga": "^0.16.0",
-    "styled-components": "^3.2.6",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2",
+    "styled-components": "^3.4.10",
     "yup": "^0.24.1"
   },
   "scripts": {
@@ -30,9 +30,9 @@
   },
   "devDependencies": {
     "cypress": "^3.1.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "jest-styled-components": "^6.0.1",
-    "react-test-renderer": "^16.4.0"
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "jest-styled-components": "^6.2.2",
+    "react-test-renderer": "^16.6.0"
   }
 }
