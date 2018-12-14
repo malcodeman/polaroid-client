@@ -7,7 +7,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: "J+1kU/NflXEkKbLfvBJkeUFsJ+aUy6/TKpKPFKDlUeRM52G4c+iwYirPpt8YgkJSu2U+wgDXY8hl/p+78kodGT7Ot8XggOIiSrzqsAt25HsgCdZpt/fEW5lDRw3xeZrgPaeaVCXCWSSOAnTPd9DIzxo2eukzXwdRkU0AaEUazordqonCeIq31Wt1hzYoxaERa21/oMR/j6PwEY/6FRfxcNtlbsv8WRrBz31WL6LUR7j5K6CtFwaTuqxZGsAXmtqkWu/Q56lXVgnRzZ+do+usrg0NlHe1Z7w1xSso4Imfrfl3FISZGDH2HyLV6JyTNNYrJ8rt6EZ+j9MDyh0Y7XV9jtwGFKVXApHI2ykBZ0C0oQ/o18GlVcabF92bcqA2J0kKDtJhF6YnoqU3jClX9RmrAoYyPlEHVFORW1m/4EyXM5P7CyTux1bRCp3FZ6I9gIUIEv+6gUOceWUlccj5jJ9Epo7v1kBnx6h6u1PAVHp+KbnYsBbsVBAATkWk2FSPzzTRx5WAGZu21z/1bpBjGPzGmMRDeq/WpBbKA11TGqJt4acPIJUtt293Q46qXbNdjOd+ZEWGElCGST+x6OfP4SEcu1b4G5IuvF3OPdbcpGLnCDxAg1frm5Y6nE6AsxGbnuqcNpFUgGUVP8JMMTGCIM5HS+JO4rcmlDX7LI5AOOtrBxk="
+    secure: $HEROKU_API_KEY
   app: polaroid-client
   on:
     repo: malcodeman/polaroid-client
