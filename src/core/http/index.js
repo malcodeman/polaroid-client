@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL;
+import history from "../routing/history";
 
-let instance = axios.create({
+const API_URL = process.env.REACT_APP_API_URL;
+const instance = axios.create({
   baseURL: API_URL
 });
 
@@ -12,21 +13,19 @@ instance.interceptors.request.use(
     return config;
   },
   error => {
-    return Promise.reject(error);
+    return Promise.reject(error.response);
   }
 );
-
 instance.interceptors.response.use(
   response => {
-    return Promise.resolve(response);
+    return response;
   },
   error => {
-    console.log(error.response.status);
-    // Returns unauthorized user to login page
     if (error.response.status === 401) {
       localStorage.removeItem("token");
-      return Promise.reject(error);
+      history.push("/login");
     }
+    return Promise.reject(error.response);
   }
 );
 
