@@ -54,14 +54,10 @@ function* updateMe(action) {
   }
 }
 
-export function* watchFindMeRequest() {
+const saga = function*() {
   yield takeLatest(FIND_ME_REQUEST, findMe);
-}
-
-export function* watchFindByUsernameRequest() {
   yield takeLatest(FIND_USER_BY_USERNAME_REQUEST, findByUsername);
-}
-
-export function* watchUpdateMeRequest() {
   yield takeLatest(UPDATE_ME_REQUEST, updateMe);
-}
+};
+
+export default saga;

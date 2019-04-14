@@ -121,30 +121,14 @@ function* destroyBookmark(action) {
   }
 }
 
-export function* watchGetPosts() {
+const saga = function*() {
   yield takeLatest(GET_POSTS_REQUEST, getPosts);
-}
-
-export function* watchCreatePost() {
   yield takeLatest(CREATE_POST_REQUEST, createPost);
-}
-
-export function* watchCreateComment() {
   yield takeLatest(CREATE_COMMENT_REQUEST, createComment);
-}
-
-export function* watchCreateLike() {
   yield takeLatest(CREATE_LIKE_REQUEST, createLike);
-}
-
-export function* watchDestroyLike() {
   yield takeLatest(DESTROY_LIKE_REQUEST, destroyLike);
-}
-
-export function* watchCreateBookmark() {
   yield takeLatest(CREATE_BOOKMARK_REQUEST, createBookmark);
-}
-
-export function* watchDestroyBookmark() {
   yield takeLatest(DESTROY_BOOKMARK_REQUEST, destroyBookmark);
-}
+};
+
+export default saga;
