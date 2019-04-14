@@ -10,7 +10,7 @@ import {
   DESTROY_LIKE_SUCCESS,
   CREATE_BOOKMARK_SUCCESS,
   DESTROY_BOOKMARK_SUCCESS
-} from "../actions/posts_actions";
+} from "../actions/postsActionTypes";
 import { LOGOUT_SUCCESS } from "../../auth/actions/authActionTypes";
 
 const initialState = {

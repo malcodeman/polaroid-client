@@ -2,8 +2,8 @@ import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 
 import auth from "../../features/auth/reducers/authReducers";
-import posts from "../../features/posts/reducers/posts_reducers";
-import users from "../../features/users/reducers";
+import posts from "../../features/posts/reducers/postsReducers";
+import users from "../../features/users/reducers/usersReducers";
 
 const rootReducer = combineReducers({
   auth,

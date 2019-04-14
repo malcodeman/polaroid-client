@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Modal from "../components/Modal";
 import ProfilePhotoForm from "./ProfilePhotoForm";
 
-import { updateMe } from "../actions";
+import { updateMe } from "../actions/usersActionCreators";
 
 const Wrapper = styled.div`
   display: flex;

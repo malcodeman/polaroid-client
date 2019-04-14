@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import Loader from "../../loader/components/Loader";
 
-import { login } from "../actions/authActions";
+import { login } from "../actions/authActionCreators";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -58,13 +58,15 @@ class FormikForm extends Component {
       <StyledForm>
         <FormItem>
           <Input type="text" name="username" placeholder="Username or email" />
-          {touched.username &&
-            errors.username && <ErrorMessage>{errors.username}</ErrorMessage>}
+          {touched.username && errors.username && (
+            <ErrorMessage>{errors.username}</ErrorMessage>
+          )}
         </FormItem>
         <FormItem>
           <Input type="password" name="password" placeholder="Password" />
-          {touched.password &&
-            errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
+          {touched.password && errors.password && (
+            <ErrorMessage>{errors.password}</ErrorMessage>
+          )}
         </FormItem>
         <Button disabled={isSubmitting}>
           {isSubmitting ? <Loader /> : "Log in"}

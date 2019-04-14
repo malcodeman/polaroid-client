@@ -11,7 +11,7 @@ import {
   UPDATE_ME_FAILURE,
   UPDATE_ME_REQUEST,
   UPDATE_ME_SUCCESS
-} from "../actions";
+} from "../actions/usersActionTypes";
 
 const findMeApi = () => {
   return axios.get(`/users/me`);

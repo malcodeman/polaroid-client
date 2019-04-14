@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import routes from "../../../core/routes/privateRoutes";
 import Header from "../../header/components/Header";
 
-import { findMe } from "../../users/actions/index";
+import { findMe } from "../../users/actions/usersActionCreators";
 
 const Main = styled.main`
   margin-top: 64px;

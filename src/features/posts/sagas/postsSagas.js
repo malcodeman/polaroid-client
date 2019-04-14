@@ -23,7 +23,7 @@ import {
   DESTROY_BOOKMARK_FAILURE,
   DESTROY_BOOKMARK_REQUEST,
   DESTROY_BOOKMARK_SUCCESS
-} from "../actions/posts_actions";
+} from "../actions/postsActionTypes";
 
 const getPostsApi = () => {
   return axios.get(`/posts`);

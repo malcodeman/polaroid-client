@@ -9,13 +9,13 @@ import {
   UNLOAD_USER,
   UPDATE_ME_SUCCESS,
   CHANGE_THEME
-} from "../actions";
+} from "../actions/usersActionTypes";
 
 import {
   CREATE_POST_SUCCESS,
   CREATE_BOOKMARK_SUCCESS,
   DESTROY_BOOKMARK_SUCCESS
-} from "../../posts/actions/posts_actions";
+} from "../../posts/actions/postsActionTypes";
 
 import {
   UPDATE_NAME_SUCCESS,

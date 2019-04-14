@@ -13,7 +13,7 @@ import {
   destroyLike,
   createBookmark,
   destroyBookmark
-} from "../actions/posts_actions";
+} from "../actions/postsActionCreators";
 
 const Container = styled.div`
   max-width: 576px;

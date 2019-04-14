@@ -15,7 +15,7 @@ import {
   LOGOUT_FAILURE
 } from "../actions/authActionTypes";
 
-import { UNLOAD_ME } from "../../users/actions";
+import { UNLOAD_ME } from "../../users/actions/usersActionTypes";
 
 const signup = newUser => {
   return axios.post(`auth/signup`, newUser);

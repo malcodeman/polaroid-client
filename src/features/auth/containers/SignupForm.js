@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import Loader from "../../loader/components/Loader";
 
-import { signup } from "../actions/authActions";
+import { signup } from "../actions/authActionCreators";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -54,23 +54,27 @@ class FormikForm extends Component {
       <StyledForm>
         <FormItem>
           <Input type="email" name="email" placeholder="Email" />
-          {touched.email &&
-            errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
+          {touched.email && errors.email && (
+            <ErrorMessage>{errors.email}</ErrorMessage>
+          )}
         </FormItem>
         <FormItem>
           <Input type="text" name="name" placeholder="Full name" />
-          {touched.name &&
-            errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
+          {touched.name && errors.name && (
+            <ErrorMessage>{errors.name}</ErrorMessage>
+          )}
         </FormItem>
         <FormItem>
           <Input type="text" name="username" placeholder="Username" />
-          {touched.username &&
-            errors.username && <ErrorMessage>{errors.username}</ErrorMessage>}
+          {touched.username && errors.username && (
+            <ErrorMessage>{errors.username}</ErrorMessage>
+          )}
         </FormItem>
         <FormItem>
           <Input type="password" name="password" placeholder="Password" />
-          {touched.password &&
-            errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
+          {touched.password && errors.password && (
+            <ErrorMessage>{errors.password}</ErrorMessage>
+          )}
         </FormItem>
         <Button disabled={isSubmitting}>
           {isSubmitting ? <Loader /> : "Sign up"}

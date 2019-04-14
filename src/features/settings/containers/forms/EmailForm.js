@@ -8,7 +8,7 @@ import Loader from "../../../loader/components/Loader";
 
 import editIcon from "./icons/edit.svg";
 
-import { updateEmail } from "../../actions/settingsActions";
+import { updateEmail } from "../../actions/settingsActionCreators";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -96,8 +96,9 @@ class FormikForm extends Component {
         <StyledForm>
           <Label>Email</Label>
           <Input type="text" name="email" placeholder="Email" />
-          {touched.email &&
-            errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
+          {touched.email && errors.email && (
+            <ErrorMessage>{errors.email}</ErrorMessage>
+          )}
           <ButtonsWrapper>
             <Button
               secondary

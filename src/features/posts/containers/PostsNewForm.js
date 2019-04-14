@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import Loader from "../../loader/components/Loader";
 
-import { createPost } from "../actions/posts_actions";
+import { createPost } from "../actions/postsActionCreators";
 
 const StyledForm = styled(Form)`
   background-color: #fff;
@@ -119,8 +119,9 @@ class FormikForm extends Component {
             placeholder="Paste a URL"
             data-cy="photo-url-input"
           />
-          {touched.photoURL &&
-            errors.photoURL && <Error>{errors.photoURL}</Error>}
+          {touched.photoURL && errors.photoURL && (
+            <Error>{errors.photoURL}</Error>
+          )}
         </StyledForm>
       );
     }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Header from "../components/Header";
 import Posts from "../components/Posts";
-import { findUserByUsername, unloadUser } from "../actions";
+import { findUserByUsername, unloadUser } from "../actions/usersActionCreators";
 
 const Container = styled.div`
   max-width: 992px;

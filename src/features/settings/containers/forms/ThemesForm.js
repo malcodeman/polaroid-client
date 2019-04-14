@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { changeTheme } from "../../../users/actions/index";
+import { changeTheme } from "../../../users/actions/usersActionCreators";
 
 const ThemesGrid = styled.div`
   display: grid;

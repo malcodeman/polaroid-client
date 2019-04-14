@@ -8,13 +8,13 @@ import {
   watchDestroyLike,
   watchCreateBookmark,
   watchDestroyBookmark
-} from "../../features/posts/sagas/posts_sagas";
+} from "../../features/posts/sagas/postsSagas";
 
 import {
   watchFindMeRequest,
   watchFindByUsernameRequest,
   watchUpdateMeRequest
-} from "../../features/users/sagas";
+} from "../../features/users/sagas/usersSagas";
 
 import authSaga from "../../features/auth/sagas/authSagas";
 import settingsSaga from "../../features/settings/sagas/settingsSagas";

@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import Loader from "../../../loader/components/Loader";
 
-import { updateUsername } from "../../actions/settingsActions";
+import { updateUsername } from "../../actions/settingsActionCreators";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -50,8 +50,9 @@ class FormikForm extends Component {
     return (
       <StyledForm>
         <Input type="text" name="username" placeholder="Username" />
-        {touched.username &&
-          errors.username && <ErrorMessage>{errors.username}</ErrorMessage>}
+        {touched.username && errors.username && (
+          <ErrorMessage>{errors.username}</ErrorMessage>
+        )}
         <Button disabled={isSubmitting}>
           {isSubmitting ? <Loader message={"Saving"} /> : "Save"}
         </Button>
