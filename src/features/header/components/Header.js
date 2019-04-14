@@ -1,15 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-import DropdownMenu from "../../dropdown/containers/DropdownMenu";
+import { ReactComponent as userIcon } from "../assets/user.svg";
 
 const StyledHeader = styled.header`
   top: 0;
   position: fixed;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   width: 100%;
-  background-color: ${props => props.theme.background};
+  background-color: ${props => props.theme.backgroundSecondary};
+  border-bottom: 1px solid ${props => props.theme.borderColor};
 `;
 
 const Nav = styled.nav`
@@ -20,24 +21,60 @@ const Nav = styled.nav`
   margin: 0 auto;
   width: 100%;
   height: 64px;
-  padding: 0 20px;
+  padding: 0 24px;
+`;
+
+const Links = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const StyledLink = styled(Link)`
   font-size: 0.8rem;
+  margin-right: 4px;
   color: ${props => props.theme.primary};
-  letter-spacing: 1px;
 `;
 
-const Header = () => {
+const UserIcon = styled(userIcon)`
+  height: 20px;
+  width: 20px;
+  color: ${props => props.theme.primary};
+`;
+
+const Header = props => {
+  const { me } = props;
+
+  function handleLogOut() {
+    localStorage.removeItem("token");
+  }
+
   return (
     <StyledHeader>
       <Nav>
-        <StyledLink to="/">Polaroid</StyledLink>
-        <DropdownMenu />
+        <Links>
+          <StyledLink to="/">Home</StyledLink>
+        </Links>
+        <Links>
+          <StyledLink to="/settings">Settings</StyledLink>
+          <StyledLink to="/" onClick={handleLogOut}>
+            Log Out
+          </StyledLink>
+          <Link to={`/${me.username}`}>
+            <UserIcon />
+          </Link>
+        </Links>
       </Nav>
     </StyledHeader>
   );
 };
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    me: state.users.me
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Header);

@@ -1,10 +1,11 @@
 export default {
-  brand: "#ed4956",
-  background: "rgba(255, 255, 255, 0.8)",
-  grey: "rgba(25, 25, 25, 1)",
-  black: "#000",
-  white: "#fff",
-  primary: "rgba(0, 0, 0, 0.8)",
-  secondary: "#ccc",
+  brand: "#0095ff",
+  primary: "#14171A",
+  secondary: "#657786",
+  backgroundPrimary: "#fff",
+  backgroundSecondary: "#fff",
+  error: "#b00e23",
+  link: "#1B95E0",
+  borderColor: "rgba(0, 0, 0, 0.2)",
   borderRadius: "3px"
 };
