@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import LoginForm from "../../auth/containers/LoginForm";
-import SignupForm from "../../auth/containers/SignupForm";
+import LoginForm from "../../auth/components/LoginForm";
+import SignupForm from "../../auth/components/SignupForm";
 
 import bg from "../bg.jpg";
 

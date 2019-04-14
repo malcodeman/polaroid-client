@@ -18,18 +18,18 @@ const LoaderWrapper = styled.div`
 `;
 
 const StyledLoader = styled.div`
-  border: 2px solid ${props => props.theme.black};
+  border: 2px solid #000;
   border-radius: 50%;
-  border-top: 2px solid ${props => props.theme.white};
+  border-top: 2px solid #fff;
   width: 24px;
   height: 24px;
   animation: ${rotate360} 2s linear infinite;
-  margin: 0 6px;
+  margin: 0 4px;
 `;
 
 const Message = styled.span`
   font-size: 0.8rem;
-  color: ${props => props.theme.white};
+  color: #fff;
 `;
 
 const Loader = props => {

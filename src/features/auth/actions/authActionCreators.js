@@ -1,42 +1,17 @@
-import {
-  LOGIN_REQUEST,
-  SIGNUP_REQUEST,
-  SIGNUP_RESET,
-  LOGIN_RESET,
-  LOGOUT_REQUEST
-} from "./authActionTypes";
-
-export const login = (payload, meta) => {
-  return {
-    payload,
-    meta,
-    type: LOGIN_REQUEST
-  };
-};
+import { SIGNUP_REQUEST, LOGIN_REQUEST } from "./authActionTypes";
 
 export const signup = (payload, meta) => {
   return {
+    type: SIGNUP_REQUEST,
     payload,
-    meta,
-    type: SIGNUP_REQUEST
+    meta
   };
 };
 
-export const signupReset = () => {
+export const login = (payload, meta) => {
   return {
-    type: SIGNUP_RESET
-  };
-};
-
-export const loginReset = () => {
-  return {
-    type: LOGIN_RESET
-  };
-};
-
-export const logout = user => {
-  return {
-    type: LOGOUT_REQUEST,
-    payload: user
+    type: LOGIN_REQUEST,
+    payload,
+    meta
   };
 };
