@@ -80,33 +80,35 @@ const Footer = styled.footer`
 `;
 
 const Post = props => {
+  const { post } = props;
+
   return (
     <Article>
       <Header>
-        <StyledLink to={`/${props.username}`}>
-          {props.profilePhotoURL ? (
-            <ProfilePhoto src={props.profilePhotoURL} />
+        <StyledLink to={`/${post.user.username}`}>
+          {post.user.profilePhotoURL ? (
+            <ProfilePhoto src={post.user.profilePhotoURL} />
           ) : (
-            <NameFirstLetter>{props.nameFirstLetter}</NameFirstLetter>
+            <NameFirstLetter>{post.user.nameFirstLetter}</NameFirstLetter>
           )}
-          <Text>{props.username}</Text>
+          <Text>{post.user.username}</Text>
         </StyledLink>
       </Header>
-      <Photo src={props.photoURL} />
+      <Photo src={post.photoURL} />
       <Footer>
         <Actions
           createLike={props.createLike}
           createBookmark={props.createBookmark}
           destroyBookmark={props.destroyBookmark}
           destroyLike={props.destroyLike}
-          postId={props.id}
-          liked={props.liked}
-          bookmarked={props.bookmarked}
+          postId={post.id}
+          liked={post.liked}
+          bookmarked={post.bookmarked}
         />
-        <Likes likesCount={props.likesCount} />
-        <Comments comments={props.comments} />
-        <Time>{distanceInWordsToNow(props.createdAt)} ago</Time>
-        <CommentForm createComment={props.createComment} postId={props.id} />
+        <Likes likesCount={post.likesCount} />
+        <Comments comments={post.comments} />
+        <Time>{distanceInWordsToNow(post.createdAt)} ago</Time>
+        <CommentForm createComment={props.createComment} postId={post.id} />
       </Footer>
     </Article>
   );

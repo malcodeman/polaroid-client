@@ -9,12 +9,6 @@ import Labs from "./Labs";
 import Themes from "./Themes";
 import SettingsNavigation from "./SettingsNavigation";
 
-const Container = styled.div`
-  max-width: 992px;
-  margin: 0 auto;
-  padding: 40px 20px;
-`;
-
 const Main = styled.main`
   @media (min-width: 576px) {
     display: none;
@@ -38,7 +32,7 @@ const MainDesktop = styled.main`
 class Settings extends Component {
   render() {
     return (
-      <Container>
+      <>
         <Main>
           <Route path={"/settings"} exact component={SettingsNavigation} />
           <Route path={"/settings/account"} component={Account} />
@@ -56,7 +50,7 @@ class Settings extends Component {
           <Route path={"/settings/labs"} component={Labs} />
           <Route path={"/settings/themes"} component={Themes} />
         </MainDesktop>
-      </Container>
+      </>
     );
   }
 }

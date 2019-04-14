@@ -22,9 +22,17 @@ import {
   UPDATE_USERNAME_SUCCESS,
   UPDATE_EMAIL_SUCCESS
 } from "../../settings/actions/settingsActionTypes";
+import { LOGIN_SUCCESS } from "../../auth/actions/authActionTypes";
 
 const initialState = {
-  me: { username: "" },
+  me: {
+    email: "",
+    name: "",
+    username: "",
+    nameFirstLetter: "",
+    profilePhotoURL: null,
+    createdAt: null
+  },
   user: null,
   loading: false,
   error: false,
@@ -156,6 +164,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         theme: action.payload
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        me: action.payload
       };
     default:
       return state;

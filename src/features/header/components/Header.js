@@ -48,21 +48,32 @@ const Header = props => {
     localStorage.removeItem("token");
   }
 
+  function isLoggedIn() {
+    return Boolean(localStorage.getItem("token"));
+  }
+
   return (
     <StyledHeader>
       <Nav>
         <Links>
           <StyledLink to="/">Home</StyledLink>
         </Links>
-        <Links>
-          <StyledLink to="/settings">Settings</StyledLink>
-          <StyledLink to="/" onClick={handleLogOut}>
-            Log Out
-          </StyledLink>
-          <Link to={`/${me.username}`}>
-            <UserIcon />
-          </Link>
-        </Links>
+        {isLoggedIn() ? (
+          <Links>
+            <StyledLink to="/settings">Settings</StyledLink>
+            <StyledLink to="/" onClick={handleLogOut}>
+              Log Out
+            </StyledLink>
+            <Link to={`/${me.username}`}>
+              <UserIcon />
+            </Link>
+          </Links>
+        ) : (
+          <Links>
+            <StyledLink to="/login">Log In </StyledLink>
+            <StyledLink to="/">Sign Up</StyledLink>
+          </Links>
+        )}
       </Nav>
     </StyledHeader>
   );

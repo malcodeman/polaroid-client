@@ -14,8 +14,8 @@ import {
 import { LOGOUT_SUCCESS } from "../../auth/actions/authActionTypes";
 
 const initialState = {
-  posts: null,
-  loading: true,
+  posts: [],
+  loading: false,
   error: true,
   create_post_success: false,
   create_post_failure: false
@@ -26,7 +26,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case GET_POSTS_REQUEST:
       return {
-        ...state
+        ...state,
+        loading: true
       };
     case GET_POSTS_SUCCESS:
       return {
