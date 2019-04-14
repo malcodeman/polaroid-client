@@ -1,5 +1,4 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { push } from "react-router-redux";
 
 import axios from "../../../core/http";
 
@@ -38,7 +37,6 @@ function* signupUser(action) {
     localStorage.setItem("token", token);
     yield put({ type: SIGNUP_SUCCESS, payload: data.data });
     setSubmitting(false);
-    yield put(push("/"));
   } catch (error) {
     yield put({ type: SIGNUP_FAILURE, error });
     setSubmitting(false);
@@ -54,7 +52,6 @@ function* loginUser(action) {
     localStorage.setItem("token", token);
     yield put({ type: LOGIN_SUCCESS, payload: data.data });
     setSubmitting(false);
-    yield put(push("/"));
   } catch (error) {
     yield put({ type: LOGIN_FAILURE, error });
     setSubmitting(false);
@@ -67,7 +64,6 @@ function* logoutUser(action) {
     localStorage.removeItem("token");
     yield put({ type: LOGOUT_SUCCESS, payload: data.data });
     yield put({ type: UNLOAD_ME });
-    yield put(push("/"));
   } catch (error) {
     yield put({ type: LOGOUT_FAILURE, error });
   }

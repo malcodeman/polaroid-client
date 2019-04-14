@@ -1,7 +1,4 @@
 import axios from "axios";
-import { push } from "react-router-redux";
-
-import store from "../state/store";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -28,7 +25,6 @@ instance.interceptors.response.use(
     // Returns unauthorized user to login page
     if (error.response.status === 401) {
       localStorage.removeItem("token");
-      store.dispatch(push("/login"));
       return Promise.reject(error);
     }
   }
