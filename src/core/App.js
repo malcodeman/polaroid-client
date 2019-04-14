@@ -1,11 +1,14 @@
-import React, { Component } from "react";
-import { ThemeProvider } from "styled-components";
+import React from "react";
 import { Route } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { Provider } from "react-redux";
+import { Router } from "react-router-dom";
 
-import Landing from "../features/landing/containers/Landing";
+import defaultTheme from "./styles/themes/light";
+import store from "./state/store";
+import history from "./routing/history";
+import Landing from "../features/landing/components/Landing";
 import Home from "../features/home/containers/Home";
-
-import lightTheme from "../core/styles/themes/light";
 
 const Root = () => {
   if (localStorage.getItem("token") === null) {
@@ -14,14 +17,17 @@ const Root = () => {
   return <Home />;
 };
 
-class App extends Component {
-  render() {
-    return (
-      <ThemeProvider theme={lightTheme}>
-        <Route exact path="/" component={Root} />
+const App = () => {
+  return (
+    <Provider store={store}>
+      <ThemeProvider theme={defaultTheme}>
+        <Router history={history}>
+          <Route exact path="/" component={Root} />
+          <Route path="/login" component={Landing} />
+        </Router>
       </ThemeProvider>
-    );
-  }
-}
+    </Provider>
+  );
+};
 
 export default App;
