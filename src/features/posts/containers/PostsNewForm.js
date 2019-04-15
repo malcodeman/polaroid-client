@@ -12,7 +12,7 @@ const StyledForm = styled(Form)`
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 `;
 
 const Input = styled(Field)`

@@ -12,7 +12,7 @@ const Article = styled.article`
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 `;
 
 const Header = styled.header`
