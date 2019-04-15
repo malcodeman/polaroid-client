@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { findMe } from "../../users/actions/usersActionCreators";
 import Header from "../../header/components/Header";
 import Posts from "../../posts/containers/Posts";
-import Settings from "../../settings/containers/Settings";
+import Settings from "../../settings/components/Settings";
 import RootUser from "../../users/components/RootUser";
 
 const Main = styled.main`
@@ -36,9 +36,11 @@ class Home extends React.Component {
         <Header />
         <Main>
           <Container>
-            <Route exact path="/" component={Posts} />
-            <Route path="/settings" component={Settings} />
-            <Route path="/:username" component={RootUser} />
+            <Switch>
+              <Route exact path="/" component={Posts} />
+              <Route path="/settings" component={Settings} />
+              <Route path="/:username" component={RootUser} />
+            </Switch>
           </Container>
         </Main>
       </>

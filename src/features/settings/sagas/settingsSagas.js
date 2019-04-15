@@ -21,11 +21,13 @@ function* updateName(action) {
   try {
     const { name } = action.payload;
     const updated = yield call(updateMeApi, { name });
+
     yield put({ type: UPDATE_NAME_SUCCESS, payload: updated.data });
   } catch (error) {
     yield put({ type: UPDATE_NAME_FAILURE, error });
   } finally {
     const { setSubmitting } = action.meta;
+
     setSubmitting(false);
   }
 }
@@ -34,11 +36,13 @@ function* updateUsername(action) {
   try {
     const { username } = action.payload;
     const updated = yield call(updateMeApi, { username });
+
     yield put({ type: UPDATE_USERNAME_SUCCESS, payload: updated.data });
   } catch (error) {
     yield put({ type: UPDATE_USERNAME_FAILURE, error });
   } finally {
     const { setSubmitting } = action.meta;
+
     setSubmitting(false);
   }
 }
@@ -47,11 +51,13 @@ function* updateEmail(action) {
   try {
     const { email } = action.payload;
     const updated = yield call(updateMeApi, { email });
+
     yield put({ type: UPDATE_EMAIL_SUCCESS, payload: updated.data });
   } catch (error) {
     yield put({ type: UPDATE_EMAIL_FAILURE, error });
   } finally {
     const { setSubmitting } = action.meta;
+
     setSubmitting(false);
   }
 }
