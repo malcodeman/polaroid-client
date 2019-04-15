@@ -6,7 +6,6 @@ import {
   FIND_USER_BY_USERNAME_REQUEST,
   FIND_USER_BY_USERNAME_SUCCESS,
   FIND_USER_BY_USERNAME_FAILURE,
-  UNLOAD_USER,
   UPDATE_ME_SUCCESS,
   CHANGE_THEME
 } from "../actions/usersActionTypes";
@@ -24,6 +23,15 @@ import {
 } from "../../settings/actions/settingsActionTypes";
 import { LOGIN_SUCCESS } from "../../auth/actions/authActionTypes";
 
+const userInitialState = {
+  profilePhotoURL: null,
+  nameFirstLetter: "",
+  username: "",
+  name: "",
+  email: "",
+  posts: []
+};
+
 const initialState = {
   me: {
     email: "",
@@ -33,7 +41,7 @@ const initialState = {
     profilePhotoURL: null,
     createdAt: null
   },
-  user: null,
+  user: userInitialState,
   loading: false,
   error: false,
   theme: "dark"
@@ -107,6 +115,7 @@ export default (state = initialState, action) => {
     case FIND_USER_BY_USERNAME_REQUEST:
       return {
         ...state,
+        user: userInitialState,
         loading: true,
         error: false
       };
@@ -120,16 +129,9 @@ export default (state = initialState, action) => {
     case FIND_USER_BY_USERNAME_FAILURE:
       return {
         ...state,
-        user: null,
+        user: userInitialState,
         loading: false,
         error: true
-      };
-    case UNLOAD_USER:
-      return {
-        ...state,
-        user: null,
-        loading: false,
-        error: false
       };
     case CREATE_POST_SUCCESS:
       return {

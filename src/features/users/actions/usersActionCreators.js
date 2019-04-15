@@ -2,8 +2,7 @@ import {
   CHANGE_THEME,
   FIND_ME_REQUEST,
   UPDATE_ME_REQUEST,
-  FIND_USER_BY_USERNAME_REQUEST,
-  UNLOAD_USER
+  FIND_USER_BY_USERNAME_REQUEST
 } from "./usersActionTypes";
 
 export const changeTheme = newTheme => {
@@ -34,11 +33,5 @@ export const findUserByUsername = username => {
     payload: {
       username
     }
-  };
-};
-
-export const unloadUser = () => {
-  return {
-    type: UNLOAD_USER
   };
 };

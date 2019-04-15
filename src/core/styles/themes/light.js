@@ -1,11 +1,11 @@
 export default {
   brand: "#0095ff",
-  primary: "#14171A",
-  secondary: "#657786",
+  primary: "#262626",
+  secondary: "#999",
   backgroundPrimary: "#fff",
   backgroundSecondary: "#fff",
   error: "#b00e23",
   link: "#1B95E0",
-  borderColor: "rgba(0, 0, 0, 0.2)",
+  borderColor: "#efefef",
   borderRadius: "3px"
 };

@@ -16,9 +16,12 @@ const Main = styled.main`
 `;
 
 const Container = styled.div`
-  padding: 24px;
   max-width: 992px;
   margin: 0 auto;
+  padding: 32px 0;
+  @media (min-width: 768px) {
+    padding: 64px 24px;
+  }
 `;
 
 class Home extends React.Component {

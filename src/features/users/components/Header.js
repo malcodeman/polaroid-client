@@ -31,20 +31,23 @@ const Header = props => {
     postsLength,
     bookmarksLength
   } = props;
-  const renderPosts = postsLength => {
+
+  function renderPosts(postsLength) {
     if (postsLength === 1) {
       return <Typography>{postsLength} post</Typography>;
     } else {
       return <Typography>{postsLength} posts</Typography>;
     }
-  };
-  const renderBookmarks = bookmarksLength => {
+  }
+
+  function renderBookmarks(bookmarksLength) {
     if (bookmarksLength === 1) {
       return <Typography>{bookmarksLength} bookmark</Typography>;
     } else {
       return <Typography>{bookmarksLength} bookmarks</Typography>;
     }
-  };
+  }
+
   return (
     <Wrapper>
       <ProfilePhoto

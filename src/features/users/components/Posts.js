@@ -3,12 +3,10 @@ import styled from "styled-components";
 
 const Grid = styled.div`
   display: grid;
-  grid-gap: 4px;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: auto;
-  align-items: stretch;
+  grid-gap: 4px;
   @media (min-width: 768px) {
-    grid-gap: 10px;
+    grid-gap: 16px;
   }
 `;
 
@@ -17,23 +15,15 @@ const Post = styled.img`
   object-fit: cover;
 `;
 
-const NoPosts = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 0;
-`;
-
 const Posts = props => {
   const { posts } = props;
-  return posts && posts.length > 0 ? (
+
+  return (
     <Grid>
       {posts.map(post => {
         return <Post key={post.id} src={post.photoURL || post.post.photoURL} />;
       })}
     </Grid>
-  ) : (
-    <NoPosts>No posts yet</NoPosts>
   );
 };
 

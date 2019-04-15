@@ -9,7 +9,7 @@ const RootUser = props => {
   const { me } = props;
 
   if (username === me.username) {
-    return <Profile />;
+    return <Profile username={username} />;
   }
   return <User username={username} />;
 };
