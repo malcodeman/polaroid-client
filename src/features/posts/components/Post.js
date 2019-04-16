@@ -9,24 +9,24 @@ import Comments from "./Comments";
 import CommentForm from "../containers/CommentForm";
 
 const Article = styled.article`
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
+  background-color: ${props => props.theme.backgroundSecondary};
 `;
 
 const Header = styled.header`
-  padding: 16px 10px;
-  border-top: 1px solid #e6e6e6;
-  border-right: 1px solid #e6e6e6;
-  border-left: 1px solid #e6e6e6;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  padding: 16px;
+  border-left: 1px solid ${props => props.theme.borderColor};
+  border-top: 1px solid ${props => props.theme.borderColor};
+  border-right: 1px solid ${props => props.theme.borderColor};
+  border-top-left-radius: ${props => props.theme.borderRadius};
+  border-top-right-radius: ${props => props.theme.borderRadius};
 `;
 
 const ProfilePhoto = styled.img`
-  height: 30px;
-  width: 30px;
+  height: 34px;
+  width: 34px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
@@ -36,8 +36,8 @@ const NameFirstLetter = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
-  width: 30px;
+  height: 34px;
+  width: 34px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
@@ -51,9 +51,9 @@ const StyledLink = styled(Link)`
   align-items: center;
 `;
 
-const Text = styled.span`
+const Username = styled.span`
   font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${props => props.theme.primary};
 `;
 
 const Photo = styled.img`
@@ -63,20 +63,20 @@ const Photo = styled.img`
 
 const Time = styled.time`
   font-size: 0.6rem;
-  color: rgba(0, 0, 0, 0.6);
   text-transform: uppercase;
-  padding-bottom: 10px;
+  padding: 0 16px;
+  margin-bottom: 8px;
+  color: ${props => props.theme.secondary};
 `;
 
 const Footer = styled.footer`
   display: flex;
   flex-direction: column;
-  padding: 0 10px;
-  border-right: 1px solid #e6e6e6;
-  border-bottom: 1px solid #e6e6e6;
-  border-left: 1px solid #e6e6e6;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-left: 1px solid ${props => props.theme.borderColor};
+  border-right: 1px solid ${props => props.theme.borderColor};
+  border-bottom: 1px solid ${props => props.theme.borderColor};
+  border-bottom-left-radius: ${props => props.theme.borderRadius};
+  border-bottom-right-radius: ${props => props.theme.borderRadius};
 `;
 
 const Post = props => {
@@ -91,7 +91,7 @@ const Post = props => {
           ) : (
             <NameFirstLetter>{post.user.nameFirstLetter}</NameFirstLetter>
           )}
-          <Text>{post.user.username}</Text>
+          <Username>{post.user.username}</Username>
         </StyledLink>
       </Header>
       <Photo src={post.photoURL} />
@@ -105,7 +105,11 @@ const Post = props => {
           liked={post.liked}
           bookmarked={post.bookmarked}
         />
-        <Likes likesCount={post.likesCount} />
+        <Likes
+          likesCount={post.likesCount}
+          postId={post.id}
+          createLike={props.createLike}
+        />
         <Comments comments={post.comments} />
         <Time>{distanceInWordsToNow(post.createdAt)} ago</Time>
         <CommentForm createComment={props.createComment} postId={post.id} />

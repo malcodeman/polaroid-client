@@ -1,22 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-import heart_default from "../images/heart_default.svg";
-import heart_liked from "../images/heart_liked.svg";
-import comment from "../images/comment.svg";
-import bookmark_icon from "../images/bookmark.svg";
-import bookmarked_icon from "../images/bookmarked.svg";
+import {
+  LikeIcon,
+  CommentIcon,
+  ShareIcon,
+  BookmarkIcon
+} from "../styles/postsStyles";
 
 const Section = styled.section`
-  padding: 10px 0;
+  padding: 0 16px;
+  margin: 8px 0;
   display: flex;
-  justify-content: space-between;
-`;
-
-const Icon = styled.img`
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
+  svg:not(:last-child) {
+    margin-right: 8px;
+  }
+  svg:last-child {
+    margin-left: auto;
+  }
 `;
 
 const Actions = props => {
@@ -29,33 +30,30 @@ const Actions = props => {
     createBookmark,
     destroyBookmark
   } = props;
+
   return (
     <Section>
-      <div>
-        {liked ? (
-          <Icon
-            src={heart_liked}
-            onClick={() => destroyLike(liked.likeId)}
-            data-cy="unlike-btn"
-          />
-        ) : (
-          <Icon
-            src={heart_default}
-            onClick={() => createLike(postId)}
-            data-cy="like-btn"
-          />
-        )}
-        <Icon src={comment} />
-      </div>
+      {liked ? (
+        <LikeIcon
+          onClick={() => destroyLike(liked.likeId)}
+          fill="#ed4956"
+          stroke="#ed4956"
+          data-cy="unlike-btn"
+        />
+      ) : (
+        <LikeIcon onClick={() => createLike(postId)} data-cy="like-btn" />
+      )}
+      <CommentIcon />
+      <ShareIcon />
       {bookmarked ? (
-        <Icon
-          src={bookmarked_icon}
+        <BookmarkIcon
           onClick={() => destroyBookmark(bookmarked.bookmarkId)}
+          fill="#262626"
+          stroke="#262626"
           data-cy="unbookmark-btn"
         />
       ) : (
-        <Icon
-          src={bookmark_icon}
+        <BookmarkIcon
           onClick={() => createBookmark(postId)}
           data-cy="bookmark-btn"
         />

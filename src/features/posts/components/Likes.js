@@ -2,24 +2,40 @@ import React from "react";
 import styled from "styled-components";
 
 const Section = styled.section`
-  padding-bottom: 10px;
+  padding: 0 16px;
+  margin-bottom: 8px;
 `;
 
-const Typography = styled.span`
-  color: rgba(0, 0, 0, 1);
+const Text = styled.span`
   font-size: 0.8rem;
+  color: ${props => props.theme.primary};
+  font-weight: ${props => (props.bold ? "600" : "normal")};
+`;
+
+const Button = styled.button`
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
 `;
 
 const Likes = props => {
-  const { likesCount } = props;
+  const { likesCount, postId, createLike } = props;
+
   const renderLikes = () => {
     if (likesCount === 0) {
-      return <Typography>Be the first to like this</Typography>;
+      return (
+        <Text>
+          Be the first to{" "}
+          <Button onClick={() => createLike(postId)}>like this</Button>
+        </Text>
+      );
     } else if (likesCount === 1) {
-      return <Typography>{likesCount} like</Typography>;
-    } else {
-      return <Typography>{likesCount} likes</Typography>;
+      return <Text bold>{likesCount} like</Text>;
     }
+    return <Text bold>{likesCount} likes</Text>;
   };
   return <Section>{renderLikes()}</Section>;
 };
