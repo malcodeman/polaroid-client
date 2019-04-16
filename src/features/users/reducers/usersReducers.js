@@ -39,7 +39,9 @@ const initialState = {
     username: "",
     nameFirstLetter: "",
     profilePhotoURL: null,
-    createdAt: null
+    createdAt: null,
+    posts: [],
+    bookmarks: []
   },
   user: userInitialState,
   loading: false,

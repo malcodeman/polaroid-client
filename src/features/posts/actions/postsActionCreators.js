@@ -39,31 +39,27 @@ export const createComment = comment => {
 export const createLike = postId => {
   return {
     type: CREATE_LIKE_REQUEST,
-    payload: {
-      postId
-    }
+    payload: postId
   };
 };
 
-export const destroyLike = id => {
+export const destroyLike = postId => {
   return {
     type: DESTROY_LIKE_REQUEST,
-    payload: id
+    payload: postId
   };
 };
 
 export const createBookmark = postId => {
   return {
     type: CREATE_BOOKMARK_REQUEST,
-    payload: {
-      postId
-    }
+    payload: postId
   };
 };
 
-export const destroyBookmark = id => {
+export const destroyBookmark = postId => {
   return {
     type: DESTROY_BOOKMARK_REQUEST,
-    payload: id
+    payload: postId
   };
 };

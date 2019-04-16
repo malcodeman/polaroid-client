@@ -74,9 +74,8 @@ export default (state = initialState, action) => {
               ...post,
               comments: [...post.comments, action.payload]
             };
-          } else {
-            return post;
           }
+          return post;
         })
       };
     case CREATE_LIKE_SUCCESS:
@@ -87,13 +86,10 @@ export default (state = initialState, action) => {
             return {
               ...post,
               likesCount: post.likesCount + 1,
-              liked: {
-                likeId: action.payload.id
-              }
+              liked: true
             };
-          } else {
-            return post;
           }
+          return post;
         })
       };
     case DESTROY_LIKE_SUCCESS:
@@ -106,9 +102,8 @@ export default (state = initialState, action) => {
               likesCount: post.likesCount - 1,
               liked: false
             };
-          } else {
-            return post;
           }
+          return post;
         })
       };
     case CREATE_BOOKMARK_SUCCESS:
@@ -118,13 +113,10 @@ export default (state = initialState, action) => {
           if (post.id === action.payload.postId) {
             return {
               ...post,
-              bookmarked: {
-                bookmarkId: action.payload.id
-              }
+              bookmarked: true
             };
-          } else {
-            return post;
           }
+          return post;
         })
       };
     case DESTROY_BOOKMARK_SUCCESS:
@@ -136,9 +128,8 @@ export default (state = initialState, action) => {
               ...post,
               bookmarked: false
             };
-          } else {
-            return post;
           }
+          return post;
         })
       };
     default:

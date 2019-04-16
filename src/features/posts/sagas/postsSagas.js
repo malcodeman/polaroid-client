@@ -34,23 +34,23 @@ const createPostApi = post => {
 };
 
 const createCommentApi = comment => {
-  return axios.post(`/comments`, comment);
+  return axios.post(`/posts/comments`, comment);
 };
 
-const createLikeApi = like => {
-  return axios.post(`/likes`, like);
+const createLikeApi = postId => {
+  return axios.post(`/posts/${postId}/likes`);
 };
 
-const destroyLikeApi = likeId => {
-  return axios.delete(`/likes/${likeId}`);
+const destroyLikeApi = postId => {
+  return axios.delete(`/posts/${postId}/likes`);
 };
 
-const createBookmarkApi = like => {
-  return axios.post(`/bookmarks`, like);
+const createBookmarkApi = postId => {
+  return axios.post(`/posts/${postId}/bookmarks`);
 };
 
-const destroyBookmarkApi = bookmarkId => {
-  return axios.delete(`/bookmarks/${bookmarkId}`);
+const destroyBookmarkApi = postId => {
+  return axios.delete(`/posts/${postId}/bookmarks`);
 };
 
 function* getPosts() {
@@ -79,6 +79,7 @@ function* createPost(action) {
 function* createComment(action) {
   try {
     const data = yield call(createCommentApi, action.payload);
+
     yield put({ type: CREATE_COMMENT_SUCCESS, payload: data.data });
   } catch (error) {
     yield put({ type: CREATE_COMMENT_FAILURE, error });
@@ -88,6 +89,7 @@ function* createComment(action) {
 function* createLike(action) {
   try {
     const data = yield call(createLikeApi, action.payload);
+
     yield put({ type: CREATE_LIKE_SUCCESS, payload: data.data });
   } catch (error) {
     yield put({ type: CREATE_LIKE_FAILURE, error });
@@ -97,6 +99,7 @@ function* createLike(action) {
 function* destroyLike(action) {
   try {
     const data = yield call(destroyLikeApi, action.payload);
+
     yield put({ type: DESTROY_LIKE_SUCCESS, payload: data.data });
   } catch (error) {
     yield put({ type: DESTROY_LIKE_FAILURE, error });
@@ -106,6 +109,7 @@ function* destroyLike(action) {
 function* createBookmark(action) {
   try {
     const data = yield call(createBookmarkApi, action.payload);
+
     yield put({ type: CREATE_BOOKMARK_SUCCESS, payload: data.data });
   } catch (error) {
     yield put({ type: CREATE_BOOKMARK_FAILURE, error });
@@ -115,6 +119,7 @@ function* createBookmark(action) {
 function* destroyBookmark(action) {
   try {
     const data = yield call(destroyBookmarkApi, action.payload);
+
     yield put({ type: DESTROY_BOOKMARK_SUCCESS, payload: data.data });
   } catch (error) {
     yield put({ type: DESTROY_BOOKMARK_FAILURE, error });

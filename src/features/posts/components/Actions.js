@@ -35,7 +35,7 @@ const Actions = props => {
     <Section>
       {liked ? (
         <LikeIcon
-          onClick={() => destroyLike(liked.likeId)}
+          onClick={() => destroyLike(postId)}
           fill="#ed4956"
           stroke="#ed4956"
           data-cy="unlike-btn"
@@ -47,7 +47,7 @@ const Actions = props => {
       <ShareIcon />
       {bookmarked ? (
         <BookmarkIcon
-          onClick={() => destroyBookmark(bookmarked.bookmarkId)}
+          onClick={() => destroyBookmark(postId)}
           fill="#262626"
           stroke="#262626"
           data-cy="unbookmark-btn"
