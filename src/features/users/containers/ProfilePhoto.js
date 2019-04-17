@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import Modal from "../components/Modal";
 import ProfilePhotoForm from "./ProfilePhotoForm";
 
-import { updateMe } from "../actions/usersActionCreators";
-
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -104,5 +102,5 @@ class ProfilePhoto extends Component {
 
 export default connect(
   null,
-  { updateMe }
+  null
 )(ProfilePhoto);

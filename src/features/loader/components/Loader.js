@@ -21,10 +21,10 @@ const StyledLoader = styled.div`
   border: 2px solid #000;
   border-radius: 50%;
   border-top: 2px solid #fff;
-  width: 24px;
-  height: 24px;
-  animation: ${rotate360} 2s linear infinite;
+  width: 16px;
+  height: 16px;
   margin: 0 4px;
+  animation: ${rotate360} 2s linear infinite;
 `;
 
 const Message = styled.span`

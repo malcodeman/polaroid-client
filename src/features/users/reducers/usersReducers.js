@@ -6,7 +6,6 @@ import {
   FIND_USER_BY_USERNAME_REQUEST,
   FIND_USER_BY_USERNAME_SUCCESS,
   FIND_USER_BY_USERNAME_FAILURE,
-  UPDATE_ME_SUCCESS,
   CHANGE_THEME
 } from "../actions/usersActionTypes";
 
@@ -56,7 +55,8 @@ export default (state = initialState, action) => {
         ...state,
         me: {
           ...state.me,
-          name: action.payload.name
+          name: action.payload.name,
+          nameFirstLetter: action.payload.nameFirstLetter
         }
       };
     case UPDATE_USERNAME_SUCCESS:
@@ -93,19 +93,6 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         error: true
-      };
-    case UPDATE_ME_SUCCESS:
-      return {
-        ...state,
-        me: {
-          ...state.me,
-          email: action.payload.email,
-          username: action.payload.username,
-          name: action.payload.name,
-          profilePhotoURL: action.payload.profilePhotoURL
-        },
-        loading: false,
-        error: false
       };
     case UNLOAD_ME:
       return {
