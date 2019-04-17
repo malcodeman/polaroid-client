@@ -17,7 +17,6 @@ import {
 
 import {
   UPDATE_NAME_SUCCESS,
-  UPDATE_USERNAME_SUCCESS,
   UPDATE_EMAIL_SUCCESS
 } from "../../settings/actions/settingsActionTypes";
 import { LOGIN_SUCCESS } from "../../auth/actions/authActionTypes";
@@ -57,14 +56,6 @@ export default (state = initialState, action) => {
           ...state.me,
           name: action.payload.name,
           nameFirstLetter: action.payload.nameFirstLetter
-        }
-      };
-    case UPDATE_USERNAME_SUCCESS:
-      return {
-        ...state,
-        me: {
-          ...state.me,
-          username: action.payload.username
         }
       };
     case UPDATE_EMAIL_SUCCESS:

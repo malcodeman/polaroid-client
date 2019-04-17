@@ -5,6 +5,7 @@ import NameForm from "../components/NameForm";
 
 import { EditIcon } from "../styles/settingsStyles";
 import EmailForm from "../components/EmailForm";
+import PasswordForm from "../components/PasswordForm";
 
 const StyledProfile = styled.div``;
 
@@ -87,26 +88,37 @@ const Edit = styled.span`
 class Profile extends React.Component {
   state = {
     nameForm: false,
-    emailForm: false
+    emailForm: false,
+    passwordForm: false
   };
 
   toggleNameForm = () => {
     this.setState(prevState => ({
       nameForm: !prevState.nameForm,
-      emailForm: false
+      emailForm: false,
+      passwordForm: false
     }));
   };
 
   toggleEmailForm = () => {
     this.setState(prevState => ({
+      nameForm: false,
       emailForm: !prevState.emailForm,
-      nameForm: false
+      passwordForm: false
+    }));
+  };
+
+  togglePasswordForm = () => {
+    this.setState(prevState => ({
+      nameForm: false,
+      emailForm: false,
+      passwordForm: !prevState.passwordForm
     }));
   };
 
   render() {
     const { me } = this.props;
-    const { nameForm, emailForm } = this.state;
+    const { nameForm, emailForm, passwordForm } = this.state;
 
     return (
       <StyledProfile>
@@ -134,11 +146,16 @@ class Profile extends React.Component {
                 </Edit>
               )}
             </AccountItem>
-            <Password>Update password</Password>
+            <Password onClick={this.togglePasswordForm}>
+              Update password
+            </Password>
           </Account>
         </Wrapper>
         {nameForm && <NameForm toggleNameForm={this.toggleNameForm} />}
         {emailForm && <EmailForm toggleEmailForm={this.toggleEmailForm} />}
+        {passwordForm && (
+          <PasswordForm togglePasswordForm={this.togglePasswordForm} />
+        )}
       </StyledProfile>
     );
   }
