@@ -8,9 +8,9 @@ import { ReactComponent as xIcon } from "../assets/icons/x.svg";
 
 export const EditIcon = styled(editIcon)`
   cursor: pointer;
-  margin-right: 4px;
   fill: ${props => props.fill};
   stroke: ${props => props.stroke};
+  margin: ${props => props.margin};
   width: ${props => props.width || "20px"};
   height: ${props => props.height || "20px"};
 `;

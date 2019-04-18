@@ -45,11 +45,25 @@ const ProfileImage = styled.div`
   border-radius: 50%;
   background-size: cover;
   cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  transition: 0.06s box-shadow ease-in;
   :hover {
     box-shadow: 0 0 0 6px hsla(0, 0%, 0%, 0.06);
   }
-  transition: 0.06s box-shadow ease-in;
   background-image: url(${props => props.bg});
+`;
+
+const EditIconWrapper = styled.div`
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${props => props.theme.secondary};
+  background-color: ${props => props.theme.backgroundPrimary};
 `;
 
 const Account = styled.div`
@@ -76,6 +90,7 @@ const Email = styled.span`
 
 const Password = styled.span`
   font-size: 0.8rem;
+  cursor: pointer;
   color: ${props => props.theme.brand};
 `;
 
@@ -137,7 +152,11 @@ class Profile extends React.Component {
             <ProfileImage
               bg={me.profilePhotoURL}
               onClick={this.toggleProfilePhotoForm}
-            />
+            >
+              <EditIconWrapper>
+                <EditIcon width="12px" height="12px" />
+              </EditIconWrapper>
+            </ProfileImage>
           ) : (
             <NameFirstLatter onClick={this.toggleProfilePhotoForm}>
               {me.nameFirstLetter}
@@ -148,7 +167,8 @@ class Profile extends React.Component {
               <Name>{me.name}</Name>
               {!nameForm && (
                 <Edit onClick={this.toggleNameForm}>
-                  <EditIcon width="12px" height="12px" /> Edit name
+                  <EditIcon width="12px" height="12px" margin="0 4px 0 0" />
+                  Edit name
                 </Edit>
               )}
             </AccountItem>
@@ -156,7 +176,8 @@ class Profile extends React.Component {
               <Email>{me.email}</Email>
               {!emailForm && (
                 <Edit onClick={this.toggleEmailForm}>
-                  <EditIcon width="12px" height="12px" /> Edit email
+                  <EditIcon width="12px" height="12px" margin="0 4px 0 0" />
+                  Edit email
                 </Edit>
               )}
             </AccountItem>
