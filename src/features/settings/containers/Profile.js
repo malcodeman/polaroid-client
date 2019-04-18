@@ -110,6 +110,20 @@ class Profile extends React.Component {
     profilePhotoForm: false
   };
 
+  componentDidMount = () => {
+    document.addEventListener("keydown", this.handleEscape);
+  };
+
+  componentWillUnmount = () => {
+    document.removeEventListener("keydown", this.handleEscape);
+  };
+
+  handleEscape = event => {
+    if (event.keyCode === 27) {
+      this.setState({ profilePhotoForm: false });
+    }
+  };
+
   toggleNameForm = () => {
     this.setState(prevState => ({
       nameForm: !prevState.nameForm,

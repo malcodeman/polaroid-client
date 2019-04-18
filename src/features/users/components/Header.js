@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import ProfilePhoto from "../containers/ProfilePhoto";
-
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -10,19 +8,45 @@ const Wrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-const Text = styled.span`
+const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const NameFirstLatter = styled.div`
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background-color: ${props => props.theme.brand};
+`;
+
+const ProfileImage = styled.div`
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  background-size: cover;
+  background-image: url(${props => props.bg});
+`;
+
+const Overview = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const Typography = styled.span`
+const Text = styled.span`
   font-size: 0.8rem;
   margin: 4px 0;
 `;
 
 const Header = props => {
   const {
-    profile,
     profilePhotoURL,
     nameFirstLetter,
     username,
@@ -34,34 +58,34 @@ const Header = props => {
 
   function renderPosts(postsLength) {
     if (postsLength === 1) {
-      return <Typography>{postsLength} post</Typography>;
-    } else {
-      return <Typography>{postsLength} posts</Typography>;
+      return <Text>{postsLength} post</Text>;
     }
+    return <Text>{postsLength} posts</Text>;
   }
 
   function renderBookmarks(bookmarksLength) {
     if (bookmarksLength === 1) {
-      return <Typography>{bookmarksLength} bookmark</Typography>;
-    } else {
-      return <Typography>{bookmarksLength} bookmarks</Typography>;
+      return <Text>{bookmarksLength} bookmark</Text>;
     }
+    return <Text>{bookmarksLength} bookmarks</Text>;
   }
 
   return (
     <Wrapper>
-      <ProfilePhoto
-        profile={profile}
-        profilePhotoURL={profilePhotoURL}
-        nameFirstLetter={nameFirstLetter}
-      />
-      <Text>
-        <Typography>Username: {username}</Typography>
-        <Typography>Name: {name}</Typography>
-        {email ? <Typography>Email: {email}</Typography> : null}
+      <Profile>
+        {profilePhotoURL ? (
+          <ProfileImage bg={profilePhotoURL} />
+        ) : (
+          <NameFirstLatter>{nameFirstLetter}</NameFirstLatter>
+        )}
+      </Profile>
+      <Overview>
+        <Text>Username: {username}</Text>
+        <Text>Name: {name}</Text>
+        {email && <Text>Email: {email}</Text>}
         {renderPosts(postsLength)}
-        {profile ? renderBookmarks(bookmarksLength) : null}
-      </Text>
+        {email && renderBookmarks(bookmarksLength)}
+      </Overview>
     </Wrapper>
   );
 };

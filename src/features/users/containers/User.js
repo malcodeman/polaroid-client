@@ -22,7 +22,6 @@ class User extends React.Component {
           nameFirstLetter={user.nameFirstLetter}
           username={user.username}
           name={user.name}
-          email={user.email}
           postsLength={user.posts.length}
         />
         <Posts posts={user.posts} />

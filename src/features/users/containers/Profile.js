@@ -47,7 +47,6 @@ class Profile extends React.Component {
     return (
       <>
         <Header
-          profile={true}
           profilePhotoURL={me.profilePhotoURL}
           nameFirstLetter={me.nameFirstLetter}
           username={me.username}
