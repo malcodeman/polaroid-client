@@ -2,10 +2,38 @@ import styled from "styled-components";
 import { Form, Field } from "formik";
 
 import { ReactComponent as editIcon } from "../assets/icons/edit.svg";
+import { ReactComponent as linkIcon } from "../assets/icons/link.svg";
+import { ReactComponent as attachmentIcon } from "../assets/icons/attachment.svg";
+import { ReactComponent as xIcon } from "../assets/icons/x.svg";
 
 export const EditIcon = styled(editIcon)`
   cursor: pointer;
   margin-right: 4px;
+  fill: ${props => props.fill};
+  stroke: ${props => props.stroke};
+  width: ${props => props.width || "20px"};
+  height: ${props => props.height || "20px"};
+`;
+
+export const LinkIcon = styled(linkIcon)`
+  cursor: pointer;
+  fill: ${props => props.fill};
+  stroke: ${props => props.stroke};
+  width: ${props => props.width || "20px"};
+  height: ${props => props.height || "20px"};
+`;
+
+export const AttachmentIcon = styled(attachmentIcon)`
+  cursor: pointer;
+  fill: ${props => props.fill};
+  stroke: ${props => props.stroke};
+  width: ${props => props.width || "20px"};
+  height: ${props => props.height || "20px"};
+`;
+
+export const XIcon = styled(xIcon)`
+  margin-left: auto;
+  cursor: pointer;
   fill: ${props => props.fill};
   stroke: ${props => props.stroke};
   width: ${props => props.width || "20px"};

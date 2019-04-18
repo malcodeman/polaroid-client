@@ -6,6 +6,8 @@ import NameForm from "../components/NameForm";
 import { EditIcon } from "../styles/settingsStyles";
 import EmailForm from "../components/EmailForm";
 import PasswordForm from "../components/PasswordForm";
+import Modal from "../../commonComponents/Modal";
+import ProfilePhotoForm from "./ProfilePhotoForm";
 
 const StyledProfile = styled.div``;
 
@@ -89,7 +91,8 @@ class Profile extends React.Component {
   state = {
     nameForm: false,
     emailForm: false,
-    passwordForm: false
+    passwordForm: false,
+    profilePhotoForm: false
   };
 
   toggleNameForm = () => {
@@ -116,18 +119,29 @@ class Profile extends React.Component {
     }));
   };
 
+  toggleProfilePhotoForm = () => {
+    this.setState(prevState => ({
+      profilePhotoForm: !prevState.profilePhotoForm
+    }));
+  };
+
   render() {
     const { me } = this.props;
-    const { nameForm, emailForm, passwordForm } = this.state;
+    const { nameForm, emailForm, passwordForm, profilePhotoForm } = this.state;
 
     return (
       <StyledProfile>
         <Title>Profile overview</Title>
         <Wrapper>
           {me.profilePhotoURL ? (
-            <ProfileImage bg={me.profilePhotoURL} />
+            <ProfileImage
+              bg={me.profilePhotoURL}
+              onClick={this.toggleProfilePhotoForm}
+            />
           ) : (
-            <NameFirstLatter>{me.nameFirstLetter}</NameFirstLatter>
+            <NameFirstLatter onClick={this.toggleProfilePhotoForm}>
+              {me.nameFirstLetter}
+            </NameFirstLatter>
           )}
           <Account>
             <AccountItem>
@@ -155,6 +169,13 @@ class Profile extends React.Component {
         {emailForm && <EmailForm toggleEmailForm={this.toggleEmailForm} />}
         {passwordForm && (
           <PasswordForm togglePasswordForm={this.togglePasswordForm} />
+        )}
+        {profilePhotoForm && (
+          <Modal dismiss={this.toggleProfilePhotoForm}>
+            <ProfilePhotoForm
+              toggleProfilePhotoForm={this.toggleProfilePhotoForm}
+            />
+          </Modal>
         )}
       </StyledProfile>
     );

@@ -1,7 +1,8 @@
 import {
   UPDATE_NAME_REQUEST,
   UPDATE_EMAIL_REQUEST,
-  UPDATE_PASSWORD_REQUEST
+  UPDATE_PASSWORD_REQUEST,
+  UPDATE_PROFILE_PHOTO_URL_REQUEST
 } from "./settingsActionTypes";
 
 export const updateName = (payload, meta) => {
@@ -25,5 +26,13 @@ export const updatePassword = (payload, meta) => {
     payload,
     meta,
     type: UPDATE_PASSWORD_REQUEST
+  };
+};
+
+export const updateProfilePhotoURL = (payload, meta) => {
+  return {
+    payload,
+    meta,
+    type: UPDATE_PROFILE_PHOTO_URL_REQUEST
   };
 };

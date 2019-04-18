@@ -17,7 +17,8 @@ import {
 
 import {
   UPDATE_NAME_SUCCESS,
-  UPDATE_EMAIL_SUCCESS
+  UPDATE_EMAIL_SUCCESS,
+  UPDATE_PROFILE_PHOTO_URL_SUCCESS
 } from "../../settings/actions/settingsActionTypes";
 import { LOGIN_SUCCESS } from "../../auth/actions/authActionTypes";
 
@@ -64,6 +65,14 @@ export default (state = initialState, action) => {
         me: {
           ...state.me,
           email: action.payload.email
+        }
+      };
+    case UPDATE_PROFILE_PHOTO_URL_SUCCESS:
+      return {
+        ...state,
+        me: {
+          ...state.me,
+          profilePhotoURL: action.payload.profilePhotoURL
         }
       };
     case FIND_ME_REQUEST:
