@@ -8,6 +8,12 @@ import Loader from "../../loader/components/Loader";
 import { ErrorMessage, LinkIcon } from "../styles/settingsStyles";
 import { updateProfilePhotoURL } from "../actions/settingsActionCreators";
 
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const StyledForm = styled(Form)`
   width: 100%;
   @media (min-width: 992px) {
@@ -51,20 +57,22 @@ const FormikForm = props => {
   const { errors, touched, isSubmitting } = props;
 
   return (
-    <StyledForm>
-      <FormItem>
-        <Input type="text" name="profilePhotoURL" placeholder="Enter a URL" />
-        <Submit disabled={isSubmitting}>
-          {isSubmitting ? <Loader /> : <LinkIcon />}
-        </Submit>
-      </FormItem>
-      <ErrorMessage>
-        {(touched.profilePhotoURL && errors.profilePhotoURL && (
-          <ErrorMessage>{errors.profilePhotoURL}</ErrorMessage>
-        )) ||
-          errors.general}
-      </ErrorMessage>
-    </StyledForm>
+    <Wrapper>
+      <StyledForm>
+        <FormItem>
+          <Input type="text" name="profilePhotoURL" placeholder="Enter a URL" />
+          <Submit disabled={isSubmitting}>
+            {isSubmitting ? <Loader /> : <LinkIcon />}
+          </Submit>
+        </FormItem>
+        <ErrorMessage>
+          {(touched.profilePhotoURL && errors.profilePhotoURL && (
+            <ErrorMessage>{errors.profilePhotoURL}</ErrorMessage>
+          )) ||
+            errors.general}
+        </ErrorMessage>
+      </StyledForm>
+    </Wrapper>
   );
 };
 

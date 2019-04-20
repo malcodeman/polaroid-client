@@ -7,7 +7,7 @@ import { EditIcon } from "../styles/settingsStyles";
 import EmailForm from "../components/EmailForm";
 import PasswordForm from "../components/PasswordForm";
 import Modal from "../../commonComponents/Modal";
-import ProfilePhotoForm from "./ProfilePhotoForm";
+import ProfilePhotoModal from "../components/ProfilePhotoModal";
 
 const StyledProfile = styled.div``;
 
@@ -207,7 +207,7 @@ class Profile extends React.Component {
         )}
         {profilePhotoForm && (
           <Modal dismiss={this.toggleProfilePhotoForm}>
-            <ProfilePhotoForm
+            <ProfilePhotoModal
               toggleProfilePhotoForm={this.toggleProfilePhotoForm}
             />
           </Modal>
