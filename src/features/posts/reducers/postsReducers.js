@@ -4,25 +4,25 @@ import {
   GET_POSTS_FAILURE,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
-  CREATE_POST_CLEAR,
   CREATE_COMMENT_SUCCESS,
   CREATE_LIKE_SUCCESS,
   DESTROY_LIKE_SUCCESS,
   CREATE_BOOKMARK_SUCCESS,
   DESTROY_BOOKMARK_SUCCESS
 } from "../actions/postsActionTypes";
-import { LOGOUT_SUCCESS } from "../../auth/actions/authActionTypes";
+import { LOGOUT } from "../../auth/actions/authActionTypes";
 
 const initialState = {
   posts: [],
   loading: false,
-  error: true,
-  create_post_success: false,
-  create_post_failure: false
+  error: false
 };
 
 export default (state = initialState, action) => {
-  console.log(action);
+  console.log(
+    `%c${action.type}`,
+    "background: #000; color: #22edfc; padding: 4px"
+  );
   switch (action.type) {
     case GET_POSTS_REQUEST:
       return {
@@ -42,28 +42,22 @@ export default (state = initialState, action) => {
         error: true,
         loading: false
       };
-    case LOGOUT_SUCCESS:
+    case LOGOUT:
       return {
         ...state,
         posts: [],
-        loading: true
+        loading: false,
+        error: false
       };
     case CREATE_POST_SUCCESS:
       return {
         ...state,
-        create_post_success: true,
         posts: [action.payload, ...state.posts]
       };
     case CREATE_POST_FAILURE:
       return {
         ...state,
-        create_post_failure: true
-      };
-    case CREATE_POST_CLEAR:
-      return {
-        ...state,
-        create_post_success: false,
-        create_post_failure: false
+        error: true
       };
     case CREATE_COMMENT_SUCCESS:
       return {

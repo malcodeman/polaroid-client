@@ -1,4 +1,4 @@
-import { SIGNUP_REQUEST, LOGIN_REQUEST } from "./authActionTypes";
+import { SIGNUP_REQUEST, LOGIN_REQUEST, LOGOUT } from "./authActionTypes";
 
 export const signup = (payload, meta) => {
   return {
@@ -13,5 +13,11 @@ export const login = (payload, meta) => {
     type: LOGIN_REQUEST,
     payload,
     meta
+  };
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT
   };
 };

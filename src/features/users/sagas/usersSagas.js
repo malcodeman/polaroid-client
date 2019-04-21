@@ -30,8 +30,7 @@ function* findMe() {
 
 function* findByUsername(action) {
   try {
-    const { username } = action.payload;
-    const data = yield call(findByUsernameApi, username);
+    const data = yield call(findByUsernameApi, action.payload);
 
     yield put({ type: FIND_USER_BY_USERNAME_SUCCESS, payload: data.data });
   } catch (error) {

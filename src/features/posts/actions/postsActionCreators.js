@@ -1,7 +1,6 @@
 import {
   GET_POSTS_REQUEST,
   CREATE_POST_REQUEST,
-  CREATE_POST_CLEAR,
   CREATE_COMMENT_REQUEST,
   CREATE_LIKE_REQUEST,
   DESTROY_LIKE_REQUEST,
@@ -20,12 +19,6 @@ export const createPost = (payload, meta) => {
     payload,
     meta,
     type: CREATE_POST_REQUEST
-  };
-};
-
-export const createPostClear = () => {
-  return {
-    type: CREATE_POST_CLEAR
   };
 };
 

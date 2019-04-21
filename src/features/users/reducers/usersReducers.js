@@ -2,11 +2,9 @@ import {
   FIND_ME_REQUEST,
   FIND_ME_SUCCESS,
   FIND_ME_FAILURE,
-  UNLOAD_ME,
   FIND_USER_BY_USERNAME_REQUEST,
   FIND_USER_BY_USERNAME_SUCCESS,
-  FIND_USER_BY_USERNAME_FAILURE,
-  CHANGE_THEME
+  FIND_USER_BY_USERNAME_FAILURE
 } from "../actions/usersActionTypes";
 
 import {
@@ -20,7 +18,7 @@ import {
   UPDATE_EMAIL_SUCCESS,
   UPDATE_PROFILE_PHOTO_URL_SUCCESS
 } from "../../settings/actions/settingsActionTypes";
-import { LOGIN_SUCCESS } from "../../auth/actions/authActionTypes";
+import { LOGIN_SUCCESS, LOGOUT } from "../../auth/actions/authActionTypes";
 
 const userInitialState = {
   profilePhotoURL: null,
@@ -31,21 +29,22 @@ const userInitialState = {
   posts: []
 };
 
+const meInitialState = {
+  email: "",
+  name: "",
+  username: "",
+  nameFirstLetter: "",
+  profilePhotoURL: null,
+  createdAt: null,
+  posts: [],
+  bookmarks: []
+};
+
 const initialState = {
-  me: {
-    email: "",
-    name: "",
-    username: "",
-    nameFirstLetter: "",
-    profilePhotoURL: null,
-    createdAt: null,
-    posts: [],
-    bookmarks: []
-  },
+  me: meInitialState,
   user: userInitialState,
   loading: false,
-  error: false,
-  theme: "dark"
+  error: false
 };
 
 export default (state = initialState, action) => {
@@ -93,13 +92,6 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         error: true
-      };
-    case UNLOAD_ME:
-      return {
-        ...state,
-        me: { username: "" },
-        loading: false,
-        error: false
       };
     case FIND_USER_BY_USERNAME_REQUEST:
       return {
@@ -151,15 +143,15 @@ export default (state = initialState, action) => {
           })
         }
       };
-    case CHANGE_THEME:
-      return {
-        ...state,
-        theme: action.payload
-      };
     case LOGIN_SUCCESS:
       return {
         ...state,
         me: action.payload
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        me: meInitialState
       };
     default:
       return state;

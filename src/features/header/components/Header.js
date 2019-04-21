@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { ReactComponent as userIcon } from "../assets/user.svg";
+import { logout } from "../../auth/actions/authActionCreators";
 
 const StyledHeader = styled.header`
   top: 0;
@@ -45,7 +46,10 @@ const Header = props => {
   const { me } = props;
 
   function handleLogOut() {
+    const { logout } = props;
+
     localStorage.removeItem("token");
+    logout();
   }
 
   function isLoggedIn() {
@@ -87,5 +91,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  null
+  { logout }
 )(Header);
