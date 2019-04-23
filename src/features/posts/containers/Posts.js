@@ -17,7 +17,6 @@ import {
   destroyBookmark
 } from "../actions/postsActionCreators";
 import Suggestions from "../components/Suggestions";
-import Stories from "../components/Stories";
 
 const Container = styled.div`
   display: grid;
@@ -61,6 +60,7 @@ const List = styled.ul`
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 24px;
 `;
 
 const ListItem = styled.li`
@@ -71,6 +71,12 @@ const ListItem = styled.li`
 
 const StyledLink = styled(Link)`
   font-size: 0.8rem;
+  color: ${props => props.theme.secondary};
+`;
+
+const Copyright = styled.span`
+  font-size: 0.8rem;
+  text-transform: uppercase;
   color: ${props => props.theme.secondary};
 `;
 
@@ -113,7 +119,6 @@ class Posts extends React.Component {
         </PostsContainer>
         <SidebarContainer>
           <Sidebar>
-            <Stories />
             <Suggestions />
             <Footer>
               <List>
@@ -125,6 +130,7 @@ class Posts extends React.Component {
                   );
                 })}
               </List>
+              <Copyright>© Polaroid</Copyright>
             </Footer>
           </Sidebar>
         </SidebarContainer>

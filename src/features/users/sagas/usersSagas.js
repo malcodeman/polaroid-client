@@ -7,7 +7,10 @@ import {
   FIND_ME_SUCCESS,
   FIND_USER_BY_USERNAME_FAILURE,
   FIND_USER_BY_USERNAME_REQUEST,
-  FIND_USER_BY_USERNAME_SUCCESS
+  FIND_USER_BY_USERNAME_SUCCESS,
+  FIND_SUGGESTIONS_FAILURE,
+  FIND_SUGGESTIONS_REQUEST,
+  FIND_SUGGESTIONS_SUCCESS
 } from "../actions/usersActionTypes";
 
 const findMeApi = () => {
@@ -16,6 +19,10 @@ const findMeApi = () => {
 
 const findByUsernameApi = username => {
   return axios.get(`/users/${username}`);
+};
+
+const findSuggestionsApi = () => {
+  return axios.get(`/users/suggestions`);
 };
 
 function* findMe() {
@@ -38,9 +45,20 @@ function* findByUsername(action) {
   }
 }
 
+function* findSuggestions(action) {
+  try {
+    const data = yield call(findSuggestionsApi);
+
+    yield put({ type: FIND_SUGGESTIONS_SUCCESS, payload: data.data });
+  } catch (error) {
+    yield put({ type: FIND_SUGGESTIONS_FAILURE, error });
+  }
+}
+
 const saga = function*() {
   yield takeLatest(FIND_ME_REQUEST, findMe);
   yield takeLatest(FIND_USER_BY_USERNAME_REQUEST, findByUsername);
+  yield takeLatest(FIND_SUGGESTIONS_REQUEST, findSuggestions);
 };
 
 export default saga;

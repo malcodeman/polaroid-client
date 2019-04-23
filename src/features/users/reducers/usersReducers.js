@@ -4,7 +4,8 @@ import {
   FIND_ME_FAILURE,
   FIND_USER_BY_USERNAME_REQUEST,
   FIND_USER_BY_USERNAME_SUCCESS,
-  FIND_USER_BY_USERNAME_FAILURE
+  FIND_USER_BY_USERNAME_FAILURE,
+  FIND_SUGGESTIONS_SUCCESS
 } from "../actions/usersActionTypes";
 
 import {
@@ -43,6 +44,7 @@ const meInitialState = {
 const initialState = {
   me: meInitialState,
   user: userInitialState,
+  followSuggestions: [],
   loading: false,
   error: false
 };
@@ -142,6 +144,11 @@ export default (state = initialState, action) => {
             return bookmark;
           })
         }
+      };
+    case FIND_SUGGESTIONS_SUCCESS:
+      return {
+        ...state,
+        followSuggestions: action.payload
       };
     case LOGIN_SUCCESS:
       return {
