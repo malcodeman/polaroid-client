@@ -17,7 +17,8 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "styled-components": "^4.2.0",
-    "yup": "^0.27.0"
+    "yup": "^0.27.0",
+    "snyk": "^1.161.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,7 +26,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
-    "cypress:all": "cypress run"
+    "cypress:all": "cypress run",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "cypress": "^3.2.0"
@@ -35,5 +38,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "snyk": true
 }
