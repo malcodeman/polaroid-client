@@ -19,7 +19,7 @@ const Main = styled.main`
   display: grid;
   grid-template-rows: auto 1fr;
   padding: 10px;
-  background-color: #fff;
+  background-color: ${props => props.theme.backgroundPrimary};
 `;
 
 const Header = styled.header`

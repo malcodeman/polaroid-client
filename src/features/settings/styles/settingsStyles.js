@@ -35,7 +35,7 @@ export const XIcon = styled(xIcon)`
   margin-left: auto;
   cursor: pointer;
   fill: ${props => props.fill};
-  stroke: ${props => props.stroke};
+  stroke: ${props => props.stroke || props.theme.primary};
   width: ${props => props.width || "20px"};
   height: ${props => props.height || "20px"};
 `;

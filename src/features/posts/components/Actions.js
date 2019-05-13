@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
 
 import {
   LikeIcon,
@@ -28,7 +28,8 @@ const Actions = props => {
     createLike,
     destroyLike,
     createBookmark,
-    destroyBookmark
+    destroyBookmark,
+    theme
   } = props;
 
   return (
@@ -48,8 +49,8 @@ const Actions = props => {
       {bookmarked ? (
         <BookmarkIcon
           onClick={() => destroyBookmark(postId)}
-          fill="#262626"
-          stroke="#262626"
+          fill={theme.primary}
+          stroke={theme.primary}
           data-cy="unbookmark-btn"
         />
       ) : (
@@ -62,4 +63,4 @@ const Actions = props => {
   );
 };
 
-export default Actions;
+export default withTheme(Actions);

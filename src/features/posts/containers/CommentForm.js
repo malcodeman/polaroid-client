@@ -13,13 +13,14 @@ const StyledForm = styled(Form)`
 `;
 
 const Input = styled(Field)`
-  height: 36px;
+  min-height: 36px;
   font-size: 0.8rem;
   padding: 0;
   outline: 0;
   border: 0;
   width: 100%;
   color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.backgroundSecondary};
 `;
 
 const Submit = styled.button`

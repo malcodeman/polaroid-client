@@ -19,6 +19,7 @@ const Button = styled.button`
   padding: 0;
   cursor: pointer;
   background-color: transparent;
+  color: ${props => props.theme.primary};
 `;
 
 const Likes = props => {

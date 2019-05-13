@@ -14,6 +14,7 @@ const StyledProfile = styled.div``;
 const Title = styled.h2`
   font-size: 1rem;
   margin-bottom: 24px;
+  color: ${props => props.theme.primary};
 `;
 
 const Wrapper = styled.div`
@@ -81,11 +82,13 @@ const AccountItem = styled.div`
 const Name = styled.span`
   font-size: 0.8rem;
   margin-right: 24px;
+  color: ${props => props.theme.primary};
 `;
 
 const Email = styled.span`
   font-size: 0.8rem;
   margin-right: 24px;
+  color: ${props => props.theme.primary};
 `;
 
 const Password = styled.span`

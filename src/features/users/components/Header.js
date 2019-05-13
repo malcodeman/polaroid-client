@@ -43,6 +43,7 @@ const Overview = styled.div`
 const Text = styled.span`
   font-size: 0.8rem;
   margin: 4px 0;
+  color: ${props => props.theme.primary};
 `;
 
 const Header = props => {
