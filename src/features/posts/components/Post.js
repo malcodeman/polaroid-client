@@ -7,6 +7,7 @@ import Actions from "../components/Actions";
 import Likes from "./Likes";
 import Comments from "./Comments";
 import CommentForm from "../containers/CommentForm";
+import { ProfilePhoto, NameFirstLetter } from "../styles/postsStyles";
 
 const Article = styled.article`
   display: flex;
@@ -17,33 +18,11 @@ const Article = styled.article`
 
 const Header = styled.header`
   padding: 16px;
-  border-left: 1px solid ${props => props.theme.borderColor};
   border-top: 1px solid ${props => props.theme.borderColor};
   border-right: 1px solid ${props => props.theme.borderColor};
-  border-top-left-radius: ${props => props.theme.borderRadius};
+  border-left: 1px solid ${props => props.theme.borderColor};
   border-top-right-radius: ${props => props.theme.borderRadius};
-`;
-
-const ProfilePhoto = styled.img`
-  height: 34px;
-  width: 34px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 10px;
-`;
-
-const NameFirstLetter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 34px;
-  width: 34px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 10px;
-  color: #fff;
-  font-size: 0.8rem;
-  background-color: #007aff;
+  border-top-left-radius: ${props => props.theme.borderRadius};
 `;
 
 const StyledLink = styled(Link)`
@@ -80,7 +59,7 @@ const Footer = styled.footer`
 `;
 
 const Post = props => {
-  const { post } = props;
+  const { post, me } = props;
 
   return (
     <Article>
@@ -112,7 +91,11 @@ const Post = props => {
         />
         <Comments comments={post.comments} />
         <Time>{distanceInWordsToNow(post.createdAt)} ago</Time>
-        <CommentForm createComment={props.createComment} postId={post.id} />
+        <CommentForm
+          createComment={props.createComment}
+          postId={post.id}
+          me={me}
+        />
       </Footer>
     </Article>
   );

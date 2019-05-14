@@ -3,6 +3,8 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 
+import { ProfilePhoto, NameFirstLetter } from "../styles/postsStyles";
+
 const StyledForm = styled(Form)`
   display: flex;
   align-items: center;
@@ -15,33 +17,27 @@ const StyledForm = styled(Form)`
 const Input = styled(Field)`
   min-height: 36px;
   font-size: 0.8rem;
-  padding: 0;
   outline: 0;
   border: 0;
   width: 100%;
+  padding: 8px 12px;
+  border-radius: 16px;
   color: ${props => props.theme.primary};
+  border: 1px solid ${props => props.theme.borderColor};
   background-color: ${props => props.theme.backgroundSecondary};
 `;
 
-const Submit = styled.button`
-  font-size: 0.8rem;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  background-color: transparent;
-  color: ${props => props.theme.brand};
-  &:disabled {
-    opacity: 0.4;
-  }
-`;
-
 const FormikForm = props => {
-  const { values } = props;
+  const { me } = props;
 
   return (
     <StyledForm>
+      {me.profilePhotoURL ? (
+        <ProfilePhoto src={me.profilePhotoURL} />
+      ) : (
+        <NameFirstLetter>{me.nameFirstLetter}</NameFirstLetter>
+      )}
       <Input type="text" name="body" placeholder="Add a comment..." />
-      <Submit disabled={values.body === ""}>Post</Submit>
     </StyledForm>
   );
 };

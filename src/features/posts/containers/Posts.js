@@ -90,6 +90,7 @@ class Posts extends React.Component {
   render() {
     const {
       posts,
+      me,
       loading,
       createComment,
       createBookmark,
@@ -108,6 +109,7 @@ class Posts extends React.Component {
               <Post
                 key={post.id}
                 post={post}
+                me={me}
                 createComment={createComment}
                 createBookmark={createBookmark}
                 createLike={createLike}
@@ -142,7 +144,8 @@ class Posts extends React.Component {
 const mapStateToProps = state => {
   return {
     posts: state.posts.posts,
-    loading: state.posts.loading
+    loading: state.posts.loading,
+    me: state.users.me
   };
 };
 

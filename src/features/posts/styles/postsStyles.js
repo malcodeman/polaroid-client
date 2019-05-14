@@ -36,3 +36,25 @@ export const BookmarkIcon = styled(bookmarkIcon)`
   width: ${props => props.width || "20px"};
   height: ${props => props.height || "20px"};
 `;
+
+export const ProfilePhoto = styled.img`
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+`;
+
+export const NameFirstLetter = styled.div`
+  height: 34px;
+  min-width: 34px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-right: 10px;
+  background-color: ${props => props.theme.brand};
+`;
