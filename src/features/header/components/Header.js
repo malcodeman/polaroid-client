@@ -10,8 +10,9 @@ const StyledHeader = styled.header`
   top: 0;
   position: fixed;
   width: 100%;
-  background-color: ${props => props.theme.backgroundSecondary};
   border-bottom: 1px solid ${props => props.theme.borderColor};
+  transition: ${props => props.theme.backgroundColorTransition};
+  background-color: ${props => props.theme.backgroundSecondary};
 `;
 
 const Nav = styled.nav`

@@ -12,7 +12,9 @@ import RootUser from "../../users/components/RootUser";
 const Main = styled.main`
   margin-top: 64px;
   min-height: calc(100vh - 64px);
+  transition: background-color 0.2s ease;
   background-color: ${props => props.theme.backgroundPrimary};
+  transition: ${props => props.theme.backgroundColorTransition};
 `;
 
 const Container = styled.div`

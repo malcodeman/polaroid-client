@@ -4,6 +4,7 @@ export default {
   secondary: "#999",
   backgroundPrimary: "#fff",
   backgroundSecondary: "#fff",
+  backgroundColorTransition: "background-color 0.2s ease",
   error: "#b00e23",
   link: "#1B95E0",
   borderColor: "#efefef",

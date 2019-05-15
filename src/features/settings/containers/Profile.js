@@ -8,10 +8,11 @@ import EmailForm from "../components/EmailForm";
 import PasswordForm from "../components/PasswordForm";
 import Modal from "../../commonComponents/Modal";
 import ProfilePhotoModal from "../components/ProfilePhotoModal";
+import ThemeForm from "../components/ThemeForm";
 
 const StyledProfile = styled.div``;
 
-const Title = styled.h2`
+const Title = styled.h1`
   font-size: 1rem;
   margin-bottom: 24px;
   color: ${props => props.theme.primary};
@@ -20,6 +21,7 @@ const Title = styled.h2`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 24px;
 `;
 
 const NameFirstLatter = styled.div`
@@ -208,6 +210,7 @@ class Profile extends React.Component {
         {passwordForm && (
           <PasswordForm togglePasswordForm={this.togglePasswordForm} />
         )}
+        <ThemeForm />
         {profilePhotoForm && (
           <Modal dismiss={this.toggleProfilePhotoForm}>
             <ProfilePhotoModal
