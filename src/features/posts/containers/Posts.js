@@ -102,7 +102,7 @@ class Posts extends React.Component {
     return (
       <Container>
         <PostsContainer>
-          <NewPostForm />
+          <NewPostForm me={me} />
           {posts.length === 0 && loading && <PostLoading />}
           {posts.map(post => {
             return (

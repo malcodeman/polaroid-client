@@ -2,7 +2,7 @@ export default {
   brand: "#0095ff",
   primary: "#262626",
   secondary: "#999",
-  backgroundPrimary: "#fff",
+  backgroundPrimary: "#fafafa",
   backgroundSecondary: "#fff",
   backgroundColorTransition: "background-color 0.2s ease",
   error: "#b00e23",

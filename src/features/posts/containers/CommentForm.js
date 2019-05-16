@@ -22,9 +22,9 @@ const Input = styled(Field)`
   width: 100%;
   padding: 8px 12px;
   border-radius: 16px;
+  border: 0;
   color: ${props => props.theme.primary};
-  border: 1px solid ${props => props.theme.borderColor};
-  background-color: ${props => props.theme.backgroundSecondary};
+  background-color: ${props => props.theme.backgroundPrimary};
 `;
 
 const FormikForm = props => {
