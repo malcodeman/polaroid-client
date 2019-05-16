@@ -13,16 +13,13 @@ const Article = styled.article`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
+  border-radius: ${props => props.theme.borderRadius};
+  border: 1px solid ${props => props.theme.borderColor};
   background-color: ${props => props.theme.backgroundSecondary};
 `;
 
 const Header = styled.header`
   padding: 16px;
-  border-top: 1px solid ${props => props.theme.borderColor};
-  border-right: 1px solid ${props => props.theme.borderColor};
-  border-left: 1px solid ${props => props.theme.borderColor};
-  border-top-right-radius: ${props => props.theme.borderRadius};
-  border-top-left-radius: ${props => props.theme.borderRadius};
 `;
 
 const StyledLink = styled(Link)`
@@ -51,11 +48,6 @@ const Time = styled.time`
 const Footer = styled.footer`
   display: flex;
   flex-direction: column;
-  border-left: 1px solid ${props => props.theme.borderColor};
-  border-right: 1px solid ${props => props.theme.borderColor};
-  border-bottom: 1px solid ${props => props.theme.borderColor};
-  border-bottom-left-radius: ${props => props.theme.borderRadius};
-  border-bottom-right-radius: ${props => props.theme.borderRadius};
 `;
 
 const Post = props => {
