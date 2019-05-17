@@ -8,24 +8,25 @@ const Wrapper = styled.div`
   display: grid;
   width: 100vw;
   height: 100vh;
+  transition: width 0.3s cubic-bezier(0.84, 0.02, 0.37, 0.74),
+    height 0.3s cubic-bezier(0.84, 0.02, 0.37, 0.74);
   @media (min-width: 768px) {
     width: 50vw;
     height: 50vh;
   }
-  transition: all 0.3s cubic-bezier(0.84, 0.02, 0.37, 0.74);
 `;
 
 const Main = styled.main`
   display: grid;
   grid-template-rows: auto 1fr;
-  padding: 10px;
-  background-color: ${props => props.theme.backgroundPrimary};
+  padding: 16px;
+  background-color: ${props => props.theme.backgroundSecondary};
 `;
 
 const Header = styled.header`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 `;
 
 const Title = styled.h2`

@@ -71,10 +71,10 @@ export const Input = styled(Field)`
   padding: 0 4px;
   outline: 0;
   width: 100%;
-  background-color: ${props => props.theme.backgroundSecondary};
-  border-radius: ${props => props.theme.borderRadius};
-  border: 1px solid ${props => props.theme.borderColor};
+  border: 0;
   color: ${props => props.theme.primary};
+  border-radius: ${props => props.theme.borderRadius};
+  background-color: ${props => props.theme.backgroundPrimary};
 `;
 
 export const Footer = styled.footer`

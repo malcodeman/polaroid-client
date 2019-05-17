@@ -2,24 +2,24 @@ import React from "react";
 import styled from "styled-components";
 
 const Article = styled.div`
-  border-radius: 3px;
-  border: 1px solid #e6e6e6;
-  background-color: #fff;
   margin-bottom: 40px;
   padding: 10px;
+  border-radius: ${props => props.theme.borderRadius};
+  border: 1px solid ${props => props.theme.borderColor};
+  background-color: ${props => props.theme.backgroundSecondary};
 `;
 
 const Text = styled.div`
   height: 0.8rem;
-  background-color: rgba(0, 0, 0, 0.1);
   width: 25%;
   margin-bottom: 10px;
+  background-color: ${props => props.theme.backgroundPrimary};
 `;
 
 const Time = styled.div`
   height: 0.6rem;
-  background-color: rgba(0, 0, 0, 0.1);
   width: 10%;
+  background-color: ${props => props.theme.backgroundPrimary};
 `;
 
 const PostLoading = () => {

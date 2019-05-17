@@ -20,7 +20,7 @@ import Suggestions from "../components/Suggestions";
 
 const Container = styled.div`
   display: grid;
-  padding: 0 32px;
+  padding: 0 24px;
   @media (min-width: 768px) {
     padding: 0;
   }

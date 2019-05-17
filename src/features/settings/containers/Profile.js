@@ -10,7 +10,12 @@ import Modal from "../../commonComponents/Modal";
 import ProfilePhotoModal from "../components/ProfilePhotoModal";
 import ThemeForm from "../components/ThemeForm";
 
-const StyledProfile = styled.div``;
+const StyledProfile = styled.div`
+  padding: 16px;
+  border-radius: ${props => props.theme.borderRadius};
+  border: 1px solid ${props => props.theme.borderColor};
+  background-color ${props => props.theme.backgroundSecondary};
+`;
 
 const Title = styled.h1`
   font-size: 1rem;
@@ -20,8 +25,12 @@ const Title = styled.h1`
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
-  margin-bottom: 24px;
+  flex-direction: column;
+  @media (min-width: 576px) {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 24px;
+  }
 `;
 
 const NameFirstLatter = styled.div`
@@ -35,8 +44,14 @@ const NameFirstLatter = styled.div`
   justify-content: center;
   font-size: 1rem;
   text-transform: uppercase;
+  align-self: center;
+  margin-bottom: 24px;
   :hover {
     box-shadow: 0 0 0 6px hsla(0, 0%, 0%, 0.06);
+  }
+  @media (min-width: 576px) {
+    align-self: initial
+    margin-bottom: 0;
   }
   transition: 0.06s box-shadow ease-in;
   background-color: ${props => props.theme.brand};
@@ -52,8 +67,14 @@ const ProfileImage = styled.div`
   align-items: flex-end;
   justify-content: flex-end;
   transition: 0.06s box-shadow ease-in;
+  align-self: center;
+  margin-bottom: 24px;
   :hover {
     box-shadow: 0 0 0 6px hsla(0, 0%, 0%, 0.06);
+  }
+  @media (min-width: 576px) {
+    align-self: initial
+    margin-bottom: 0;
   }
   background-image: url(${props => props.bg});
 `;
@@ -72,7 +93,10 @@ const EditIconWrapper = styled.div`
 const Account = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 24px;
+  margin-bottom: 24px;
+  @media (min-width: 576px) {
+    margin: 0 24px;
+  }
 `;
 
 const AccountItem = styled.div`
@@ -83,13 +107,11 @@ const AccountItem = styled.div`
 
 const Name = styled.span`
   font-size: 0.8rem;
-  margin-right: 24px;
   color: ${props => props.theme.primary};
 `;
 
 const Email = styled.span`
   font-size: 0.8rem;
-  margin-right: 24px;
   color: ${props => props.theme.primary};
 `;
 
@@ -104,6 +126,10 @@ const Edit = styled.span`
   align-items: center;
   font-size: 0.8rem;
   cursor: pointer;
+  margin-left: auto;
+  @media (min-width: 576px) {
+    margin-left: 24px;
+  }
   color: ${props => props.theme.secondary};
 `;
 

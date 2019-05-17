@@ -31,11 +31,11 @@ const Input = styled(Field)`
   padding: 0 4px;
   outline: 0;
   width: 100%;
-  background-color: ${props => props.theme.backgroundSecondary};
+  border: 0;
+  color: ${props => props.theme.primary};
   border-radius: ${props => props.theme.borderRadius} 0 0
     ${props => props.theme.borderRadius};
-  border: 1px solid ${props => props.theme.borderColor};
-  color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.backgroundPrimary};
 `;
 
 const Submit = styled.button`
