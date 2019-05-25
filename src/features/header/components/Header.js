@@ -10,6 +10,7 @@ const StyledHeader = styled.header`
   top: 0;
   position: fixed;
   width: 100%;
+  z-index: 1;
   border-bottom: 1px solid ${props => props.theme.borderColor};
   transition: ${props => props.theme.backgroundColorTransition};
   background-color: ${props => props.theme.backgroundSecondary};
