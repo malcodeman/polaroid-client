@@ -1,42 +1,31 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../components/Header";
 import Posts from "../components/Posts";
 import { findUserByUsername } from "../actions/usersActionCreators";
 
-class User extends React.Component {
-  componentDidMount = () => {
-    const { username, findUserByUsername } = this.props;
+const User = (props) => {
+  const { username } = props;
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.users.user);
 
-    findUserByUsername(username);
-  };
+  React.useEffect(() => {
+    dispatch(findUserByUsername(username));
+  }, [username, dispatch]);
 
-  render() {
-    const { user } = this.props;
-
-    return (
-      <>
-        <Header
-          profilePhotoURL={user.profilePhotoURL}
-          nameFirstLetter={user.nameFirstLetter}
-          username={user.username}
-          name={user.name}
-          postsLength={user.posts.length}
-        />
-        <Posts posts={user.posts} />
-      </>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    user: state.users.user
-  };
+  return (
+    <>
+      <Header
+        profilePhotoURL={user.profilePhotoURL}
+        nameFirstLetter={user.nameFirstLetter}
+        username={user.username}
+        name={user.name}
+        postsLength={user.posts.length}
+      />
+      <Posts posts={user.posts} />
+    </>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  { findUserByUsername }
-)(User);
+export default User;

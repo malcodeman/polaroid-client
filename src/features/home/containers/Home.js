@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { findMe } from "../../users/actions/usersActionCreators";
 import Header from "../../header/components/Header";
@@ -13,8 +13,8 @@ const Main = styled.main`
   margin-top: 64px;
   min-height: calc(100vh - 64px);
   transition: background-color 0.2s ease;
-  background-color: ${props => props.theme.backgroundPrimary};
-  transition: ${props => props.theme.backgroundColorTransition};
+  background-color: ${(props) => props.theme.backgroundPrimary};
+  transition: ${(props) => props.theme.backgroundColorTransition};
 `;
 
 const Container = styled.div`
@@ -26,40 +26,30 @@ const Container = styled.div`
   }
 `;
 
-class Home extends React.Component {
-  componentDidMount = () => {
-    const { me, findMe } = this.props;
+const Home = () => {
+  const dispatch = useDispatch();
+  const me = useSelector((state) => state.users.me);
 
+  React.useEffect(() => {
     if (me.email === "" && localStorage.getItem("token") !== null) {
-      findMe();
+      dispatch(findMe());
     }
-  };
+  }, [me.email, dispatch]);
 
-  render() {
-    return (
-      <>
-        <Header />
-        <Main>
-          <Container>
-            <Switch>
-              <Route exact path="/" component={Posts} />
-              <Route path="/settings" component={Settings} />
-              <Route path="/:username" component={RootUser} />
-            </Switch>
-          </Container>
-        </Main>
-      </>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    me: state.users.me
-  };
+  return (
+    <>
+      <Header />
+      <Main>
+        <Container>
+          <Switch>
+            <Route exact path="/" component={Posts} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/:username" component={RootUser} />
+          </Switch>
+        </Container>
+      </Main>
+    </>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  { findMe }
-)(Home);
+export default Home;
