@@ -1,26 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import NameForm from "../components/NameForm";
+import { Modal } from "@malcodeman/react-modal";
 
 import { EditIcon } from "../styles/settingsStyles";
 import EmailForm from "../components/EmailForm";
 import PasswordForm from "../components/PasswordForm";
-import Modal from "../../commonComponents/Modal";
 import ProfilePhotoModal from "../components/ProfilePhotoModal";
 import ThemeForm from "../components/ThemeForm";
+import NameForm from "../components/NameForm";
+
+const MODAL_ROOT = document.getElementById("modal-root");
 
 const StyledProfile = styled.div`
   padding: 16px;
-  border-radius: ${props => props.theme.borderRadius};
-  border: 1px solid ${props => props.theme.borderColor};
-  background-color ${props => props.theme.backgroundSecondary};
+  border-radius: ${(props) => props.theme.borderRadius};
+  border: 1px solid ${(props) => props.theme.borderColor};
+  background-color: ${(props) => props.theme.backgroundSecondary};
 `;
 
 const Title = styled.h1`
   font-size: 1rem;
   margin-bottom: 24px;
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `;
 
 const Wrapper = styled.div`
@@ -50,11 +52,11 @@ const NameFirstLatter = styled.div`
     box-shadow: 0 0 0 6px hsla(0, 0%, 0%, 0.06);
   }
   @media (min-width: 576px) {
-    align-self: initial
+    align-self: initial;
     margin-bottom: 0;
   }
   transition: 0.06s box-shadow ease-in;
-  background-color: ${props => props.theme.brand};
+  background-color: ${(props) => props.theme.brand};
 `;
 
 const ProfileImage = styled.div`
@@ -73,10 +75,10 @@ const ProfileImage = styled.div`
     box-shadow: 0 0 0 6px hsla(0, 0%, 0%, 0.06);
   }
   @media (min-width: 576px) {
-    align-self: initial
+    align-self: initial;
     margin-bottom: 0;
   }
-  background-image: url(${props => props.bg});
+  background-image: url(${(props) => props.bg});
 `;
 
 const EditIconWrapper = styled.div`
@@ -86,8 +88,8 @@ const EditIconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${props => props.theme.secondary};
-  background-color: ${props => props.theme.backgroundPrimary};
+  color: ${(props) => props.theme.secondary};
+  background-color: ${(props) => props.theme.backgroundPrimary};
 `;
 
 const Account = styled.div`
@@ -107,18 +109,18 @@ const AccountItem = styled.div`
 
 const Name = styled.span`
   font-size: 0.8rem;
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `;
 
 const Email = styled.span`
   font-size: 0.8rem;
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `;
 
 const Password = styled.span`
   font-size: 0.8rem;
   cursor: pointer;
-  color: ${props => props.theme.brand};
+  color: ${(props) => props.theme.brand};
 `;
 
 const Edit = styled.span`
@@ -130,7 +132,7 @@ const Edit = styled.span`
   @media (min-width: 576px) {
     margin-left: 24px;
   }
-  color: ${props => props.theme.secondary};
+  color: ${(props) => props.theme.secondary};
 `;
 
 class Profile extends React.Component {
@@ -138,7 +140,7 @@ class Profile extends React.Component {
     nameForm: false,
     emailForm: false,
     passwordForm: false,
-    profilePhotoForm: false
+    profilePhotoForm: false,
   };
 
   componentDidMount = () => {
@@ -149,39 +151,45 @@ class Profile extends React.Component {
     document.removeEventListener("keydown", this.handleEscape);
   };
 
-  handleEscape = event => {
+  handleEscape = (event) => {
     if (event.keyCode === 27) {
       this.setState({ profilePhotoForm: false });
     }
   };
 
   toggleNameForm = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       nameForm: !prevState.nameForm,
       emailForm: false,
-      passwordForm: false
+      passwordForm: false,
     }));
   };
 
   toggleEmailForm = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       nameForm: false,
       emailForm: !prevState.emailForm,
-      passwordForm: false
+      passwordForm: false,
     }));
   };
 
   togglePasswordForm = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       nameForm: false,
       emailForm: false,
-      passwordForm: !prevState.passwordForm
+      passwordForm: !prevState.passwordForm,
     }));
   };
 
   toggleProfilePhotoForm = () => {
-    this.setState(prevState => ({
-      profilePhotoForm: !prevState.profilePhotoForm
+    this.setState((prevState) => ({
+      profilePhotoForm: !prevState.profilePhotoForm,
+    }));
+  };
+
+  closeProfilePhotoForm = () => {
+    this.setState(() => ({
+      profilePhotoForm: false,
     }));
   };
 
@@ -237,25 +245,26 @@ class Profile extends React.Component {
           <PasswordForm togglePasswordForm={this.togglePasswordForm} />
         )}
         <ThemeForm />
-        {profilePhotoForm && (
-          <Modal dismiss={this.toggleProfilePhotoForm}>
+        <Modal
+          mountNode={MODAL_ROOT}
+          isOpen={profilePhotoForm}
+          onClose={this.closeProfilePhotoForm}
+        >
+          <div>
             <ProfilePhotoModal
               toggleProfilePhotoForm={this.toggleProfilePhotoForm}
             />
-          </Modal>
-        )}
+          </div>
+        </Modal>
       </StyledProfile>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    me: state.users.me
+    me: state.users.me,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(Profile);
+export default connect(mapStateToProps, null)(Profile);
