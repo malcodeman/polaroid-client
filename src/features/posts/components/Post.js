@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { distanceInWordsToNow } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 import { Link } from "react-router-dom";
 
 import Actions from "../components/Actions";
@@ -13,9 +13,9 @@ const Article = styled.article`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
-  border-radius: ${props => props.theme.borderRadius};
-  border: 1px solid ${props => props.theme.borderColor};
-  background-color: ${props => props.theme.backgroundSecondary};
+  border-radius: ${(props) => props.theme.borderRadius};
+  border: 1px solid ${(props) => props.theme.borderColor};
+  background-color: ${(props) => props.theme.backgroundSecondary};
 `;
 
 const Header = styled.header`
@@ -29,7 +29,7 @@ const StyledLink = styled(Link)`
 
 const Username = styled.span`
   font-size: 0.8rem;
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `;
 
 const Photo = styled.img`
@@ -42,7 +42,7 @@ const Time = styled.time`
   text-transform: uppercase;
   padding: 0 16px;
   margin-bottom: 8px;
-  color: ${props => props.theme.secondary};
+  color: ${(props) => props.theme.secondary};
 `;
 
 const Footer = styled.footer`
@@ -50,7 +50,7 @@ const Footer = styled.footer`
   flex-direction: column;
 `;
 
-const Post = props => {
+const Post = (props) => {
   const { post, me } = props;
 
   return (
@@ -82,7 +82,7 @@ const Post = props => {
           createLike={props.createLike}
         />
         <Comments comments={post.comments} />
-        <Time>{distanceInWordsToNow(post.createdAt)} ago</Time>
+        <Time>{formatDistanceToNow(new Date(post.createdAt))} ago</Time>
         <CommentForm
           createComment={props.createComment}
           postId={post.id}

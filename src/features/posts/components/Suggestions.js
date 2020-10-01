@@ -9,9 +9,9 @@ import { findSuggestions } from "../../users/actions/usersActionCreators";
 const Wrapper = styled.div`
   padding: 16px;
   margin-bottom: 24px;
-  background-color: ${props => props.theme.backgroundSecondary};
-  border-radius: ${props => props.theme.borderRadius};
-  border: 1px solid ${props => props.theme.borderColor};
+  background-color: ${(props) => props.theme.backgroundSecondary};
+  border-radius: ${(props) => props.theme.borderRadius};
+  border: 1px solid ${(props) => props.theme.borderColor};
 `;
 
 const Header = styled.header`
@@ -23,12 +23,12 @@ const Header = styled.header`
 const Title = styled.h2`
   font-size: 0.8rem;
   font-weight: normal;
-  color: ${props => props.theme.secondary};
+  color: ${(props) => props.theme.secondary};
 `;
 
 const StyledLink = styled(Link)`
   font-size: 0.8rem;
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `;
 
 const StyledUser = styled.div`
@@ -50,7 +50,7 @@ const NameFirstLatter = styled.div`
   font-size: 1rem;
   text-transform: uppercase;
   margin-right: 10px;
-  background-color: ${props => props.theme.brand};
+  background-color: ${(props) => props.theme.brand};
 `;
 
 const ProfileImage = styled.div`
@@ -59,12 +59,12 @@ const ProfileImage = styled.div`
   border-radius: 50%;
   background-size: cover;
   margin-right: 10px;
-  background-image: url(${props => props.bg});
+  background-image: url(${(props) => props.bg});
 `;
 
 const Username = styled.span`
   font-size: 0.8rem;
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `;
 
 const Follow = styled.button`
@@ -74,7 +74,7 @@ const Follow = styled.button`
   cursor: pointer;
   background-color: transparent;
   margin-left: auto;
-  color: ${props => props.theme.brand};
+  color: ${(props) => props.theme.brand};
 `;
 
 function User(props) {
@@ -96,7 +96,7 @@ function Suggestions(props) {
     if (props.followSuggestions.length === 0) {
       props.findSuggestions();
     }
-  }, []);
+  }, [props]);
 
   return (
     <Wrapper>
@@ -104,7 +104,7 @@ function Suggestions(props) {
         <Title>Suggestions For You</Title>
         <StyledLink to="/explore/people">See All</StyledLink>
       </Header>
-      {props.followSuggestions.map(user => {
+      {props.followSuggestions.map((user) => {
         return (
           <User
             key={user.username}
@@ -118,13 +118,10 @@ function Suggestions(props) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    followSuggestions: state.users.followSuggestions
+    followSuggestions: state.users.followSuggestions,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { findSuggestions }
-)(Suggestions);
+export default connect(mapStateToProps, { findSuggestions })(Suggestions);
