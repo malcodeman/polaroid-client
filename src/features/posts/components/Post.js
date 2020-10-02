@@ -68,10 +68,6 @@ const Post = (props) => {
       <Photo src={post.photoURL} />
       <Footer>
         <Actions
-          createLike={props.createLike}
-          createBookmark={props.createBookmark}
-          destroyBookmark={props.destroyBookmark}
-          destroyLike={props.destroyLike}
           postId={post.id}
           liked={post.liked}
           bookmarked={post.bookmarked}
@@ -83,11 +79,7 @@ const Post = (props) => {
         />
         <Comments comments={post.comments} />
         <Time>{formatDistanceToNow(new Date(post.createdAt))} ago</Time>
-        <CommentForm
-          createComment={props.createComment}
-          postId={post.id}
-          me={me}
-        />
+        <CommentForm postId={post.id} me={me} />
       </Footer>
     </Article>
   );

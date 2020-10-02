@@ -1,12 +1,19 @@
 import React from "react";
-import styled, { withTheme } from "styled-components";
+import styled, { useTheme } from "styled-components";
+import { useDispatch } from "react-redux";
 
 import {
   LikeIcon,
   CommentIcon,
   ShareIcon,
-  BookmarkIcon
+  BookmarkIcon,
 } from "../styles/postsStyles";
+import {
+  createLike,
+  destroyLike,
+  createBookmark,
+  destroyBookmark,
+} from "../actions/postsActionCreators";
 
 const Section = styled.section`
   padding: 0 16px;
@@ -20,42 +27,38 @@ const Section = styled.section`
   }
 `;
 
-const Actions = props => {
-  const {
-    postId,
-    liked,
-    bookmarked,
-    createLike,
-    destroyLike,
-    createBookmark,
-    destroyBookmark,
-    theme
-  } = props;
+const Actions = (props) => {
+  const { postId, liked, bookmarked } = props;
+  const dispatch = useDispatch();
+  const theme = useTheme();
 
   return (
     <Section>
       {liked ? (
         <LikeIcon
-          onClick={() => destroyLike(postId)}
+          onClick={() => dispatch(destroyLike(postId))}
           fill="#ed4956"
           stroke="#ed4956"
           data-cy="unlike-btn"
         />
       ) : (
-        <LikeIcon onClick={() => createLike(postId)} data-cy="like-btn" />
+        <LikeIcon
+          onClick={() => dispatch(createLike(postId))}
+          data-cy="like-btn"
+        />
       )}
       <CommentIcon />
       <ShareIcon />
       {bookmarked ? (
         <BookmarkIcon
-          onClick={() => destroyBookmark(postId)}
+          onClick={() => dispatch(destroyBookmark(postId))}
           fill={theme.primary}
           stroke={theme.primary}
           data-cy="unbookmark-btn"
         />
       ) : (
         <BookmarkIcon
-          onClick={() => createBookmark(postId)}
+          onClick={() => dispatch(createBookmark(postId))}
           data-cy="bookmark-btn"
         />
       )}
@@ -63,4 +66,4 @@ const Actions = props => {
   );
 };
 
-export default withTheme(Actions);
+export default Actions;

@@ -1,22 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import PostLoading from "../components/PostLoading";
 import Post from "../components/Post";
 import NewPostForm from "./PostsNewForm";
+import Suggestions from "../components/Suggestions";
 import footerLinks from "../data/footerLinks";
 
-import {
-  getPosts,
-  createComment,
-  createLike,
-  destroyLike,
-  createBookmark,
-  destroyBookmark
-} from "../actions/postsActionCreators";
-import Suggestions from "../components/Suggestions";
+import { getPosts } from "../actions/postsActionCreators";
 
 const Container = styled.div`
   display: grid;
@@ -71,92 +64,53 @@ const ListItem = styled.li`
 
 const StyledLink = styled(Link)`
   font-size: 0.8rem;
-  color: ${props => props.theme.secondary};
+  color: ${(props) => props.theme.secondary};
 `;
 
 const Copyright = styled.span`
   font-size: 0.8rem;
   text-transform: uppercase;
-  color: ${props => props.theme.secondary};
+  color: ${(props) => props.theme.secondary};
 `;
 
-class Posts extends React.Component {
-  componentDidMount = () => {
-    const { getPosts } = this.props;
+const Posts = () => {
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts.posts);
+  const loading = useSelector((state) => state.posts.loading);
+  const me = useSelector((state) => state.users.me);
 
-    getPosts();
-  };
+  React.useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
-  render() {
-    const {
-      posts,
-      me,
-      loading,
-      createComment,
-      createBookmark,
-      destroyBookmark,
-      createLike,
-      destroyLike
-    } = this.props;
-
-    return (
-      <Container>
-        <PostsContainer>
-          <NewPostForm me={me} />
-          {posts.length === 0 && loading && <PostLoading />}
-          {posts.map(post => {
-            return (
-              <Post
-                key={post.id}
-                post={post}
-                me={me}
-                createComment={createComment}
-                createBookmark={createBookmark}
-                createLike={createLike}
-                destroyLike={destroyLike}
-                destroyBookmark={destroyBookmark}
-              />
-            );
-          })}
-        </PostsContainer>
-        <SidebarContainer>
-          <Sidebar>
-            <Suggestions />
-            <Footer>
-              <List>
-                {footerLinks.map(link => {
-                  return (
-                    <ListItem key={link.label}>
-                      <StyledLink to={link.route}>{link.label}</StyledLink>
-                    </ListItem>
-                  );
-                })}
-              </List>
-              <Copyright>© Polaroid</Copyright>
-            </Footer>
-          </Sidebar>
-        </SidebarContainer>
-      </Container>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    posts: state.posts.posts,
-    loading: state.posts.loading,
-    me: state.users.me
-  };
+  return (
+    <Container>
+      <PostsContainer>
+        <NewPostForm me={me} />
+        {posts.length === 0 && loading && <PostLoading />}
+        {posts.map((post) => {
+          return <Post key={post.id} post={post} me={me} />;
+        })}
+      </PostsContainer>
+      <SidebarContainer>
+        <Sidebar>
+          <Suggestions />
+          <Footer>
+            <List>
+              {footerLinks.map((link) => {
+                return (
+                  <ListItem key={link.label}>
+                    <StyledLink to={link.route}>{link.label}</StyledLink>
+                  </ListItem>
+                );
+              })}
+            </List>
+            <Copyright>© Polaroid</Copyright>
+          </Footer>
+        </Sidebar>
+      </SidebarContainer>
+    </Container>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    getPosts,
-    createComment,
-    createLike,
-    destroyLike,
-    createBookmark,
-    destroyBookmark
-  }
-)(Posts);
+export default Posts;
