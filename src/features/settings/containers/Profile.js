@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Modal } from "@malcodeman/react-modal";
 
 import { EditIcon } from "../styles/settingsStyles";
@@ -135,136 +135,94 @@ const Edit = styled.span`
   color: ${(props) => props.theme.secondary};
 `;
 
-class Profile extends React.Component {
-  state = {
-    nameForm: false,
-    emailForm: false,
-    passwordForm: false,
-    profilePhotoForm: false,
-  };
+const Profile = () => {
+  const [nameForm, setNameForm] = React.useState(false);
+  const [emailForm, setEmailForm] = React.useState(false);
+  const [passwordForm, setPasswordForm] = React.useState(false);
+  const [profilePhotoForm, setProfilePhotoForm] = React.useState(false);
+  const me = useSelector((state) => state.users.me);
 
-  componentDidMount = () => {
-    document.addEventListener("keydown", this.handleEscape);
-  };
-
-  componentWillUnmount = () => {
-    document.removeEventListener("keydown", this.handleEscape);
-  };
-
-  handleEscape = (event) => {
-    if (event.keyCode === 27) {
-      this.setState({ profilePhotoForm: false });
-    }
-  };
-
-  toggleNameForm = () => {
-    this.setState((prevState) => ({
-      nameForm: !prevState.nameForm,
-      emailForm: false,
-      passwordForm: false,
-    }));
-  };
-
-  toggleEmailForm = () => {
-    this.setState((prevState) => ({
-      nameForm: false,
-      emailForm: !prevState.emailForm,
-      passwordForm: false,
-    }));
-  };
-
-  togglePasswordForm = () => {
-    this.setState((prevState) => ({
-      nameForm: false,
-      emailForm: false,
-      passwordForm: !prevState.passwordForm,
-    }));
-  };
-
-  toggleProfilePhotoForm = () => {
-    this.setState((prevState) => ({
-      profilePhotoForm: !prevState.profilePhotoForm,
-    }));
-  };
-
-  closeProfilePhotoForm = () => {
-    this.setState(() => ({
-      profilePhotoForm: false,
-    }));
-  };
-
-  render() {
-    const { me } = this.props;
-    const { nameForm, emailForm, passwordForm, profilePhotoForm } = this.state;
-
-    return (
-      <StyledProfile>
-        <Title>Profile overview</Title>
-        <Wrapper>
-          {me.profilePhotoURL ? (
-            <ProfileImage
-              bg={me.profilePhotoURL}
-              onClick={this.toggleProfilePhotoForm}
-            >
-              <EditIconWrapper>
-                <EditIcon width="12px" height="12px" />
-              </EditIconWrapper>
-            </ProfileImage>
-          ) : (
-            <NameFirstLatter onClick={this.toggleProfilePhotoForm}>
-              {me.nameFirstLetter}
-            </NameFirstLatter>
-          )}
-          <Account>
-            <AccountItem>
-              <Name>{me.name}</Name>
-              {!nameForm && (
-                <Edit onClick={this.toggleNameForm}>
-                  <EditIcon width="12px" height="12px" margin="0 4px 0 0" />
-                  Edit name
-                </Edit>
-              )}
-            </AccountItem>
-            <AccountItem>
-              <Email>{me.email}</Email>
-              {!emailForm && (
-                <Edit onClick={this.toggleEmailForm}>
-                  <EditIcon width="12px" height="12px" margin="0 4px 0 0" />
-                  Edit email
-                </Edit>
-              )}
-            </AccountItem>
-            <Password onClick={this.togglePasswordForm}>
-              Update password
-            </Password>
-          </Account>
-        </Wrapper>
-        {nameForm && <NameForm toggleNameForm={this.toggleNameForm} />}
-        {emailForm && <EmailForm toggleEmailForm={this.toggleEmailForm} />}
-        {passwordForm && (
-          <PasswordForm togglePasswordForm={this.togglePasswordForm} />
-        )}
-        <ThemeForm />
-        <Modal
-          mountNode={MODAL_ROOT}
-          isOpen={profilePhotoForm}
-          onClose={this.closeProfilePhotoForm}
-        >
-          <div>
-            <ProfilePhotoModal
-              toggleProfilePhotoForm={this.toggleProfilePhotoForm}
-            />
-          </div>
-        </Modal>
-      </StyledProfile>
-    );
+  function toggleNameForm() {
+    setNameForm(!nameForm);
+    setEmailForm(false);
+    setPasswordForm(false);
   }
-}
 
-const mapStateToProps = (state) => {
-  return {
-    me: state.users.me,
-  };
+  function toggleEmailForm() {
+    setNameForm(false);
+    setEmailForm(!emailForm);
+    setPasswordForm(false);
+  }
+
+  function togglePasswordForm() {
+    setNameForm(false);
+    setEmailForm(false);
+    setPasswordForm(!passwordForm);
+  }
+
+  function toggleProfilePhotoForm() {
+    setProfilePhotoForm(!profilePhotoForm);
+  }
+
+  function closeProfilePhotoForm() {
+    setProfilePhotoForm(false);
+  }
+
+  return (
+    <StyledProfile>
+      <Title>Profile overview</Title>
+      <Wrapper>
+        {me.profilePhotoURL ? (
+          <ProfileImage
+            bg={me.profilePhotoURL}
+            onClick={toggleProfilePhotoForm}
+          >
+            <EditIconWrapper>
+              <EditIcon width="12px" height="12px" />
+            </EditIconWrapper>
+          </ProfileImage>
+        ) : (
+          <NameFirstLatter onClick={toggleProfilePhotoForm}>
+            {me.nameFirstLetter}
+          </NameFirstLatter>
+        )}
+        <Account>
+          <AccountItem>
+            <Name>{me.name}</Name>
+            {!nameForm && (
+              <Edit onClick={toggleNameForm}>
+                <EditIcon width="12px" height="12px" margin="0 4px 0 0" />
+                Edit name
+              </Edit>
+            )}
+          </AccountItem>
+          <AccountItem>
+            <Email>{me.email}</Email>
+            {!emailForm && (
+              <Edit onClick={toggleEmailForm}>
+                <EditIcon width="12px" height="12px" margin="0 4px 0 0" />
+                Edit email
+              </Edit>
+            )}
+          </AccountItem>
+          <Password onClick={togglePasswordForm}>Update password</Password>
+        </Account>
+      </Wrapper>
+      {nameForm && <NameForm toggleNameForm={toggleNameForm} />}
+      {emailForm && <EmailForm toggleEmailForm={toggleEmailForm} />}
+      {passwordForm && <PasswordForm togglePasswordForm={togglePasswordForm} />}
+      <ThemeForm />
+      <Modal
+        mountNode={MODAL_ROOT}
+        isOpen={profilePhotoForm}
+        onClose={closeProfilePhotoForm}
+      >
+        <div>
+          <ProfilePhotoModal toggleProfilePhotoForm={toggleProfilePhotoForm} />
+        </div>
+      </Modal>
+    </StyledProfile>
+  );
 };
 
-export default connect(mapStateToProps, null)(Profile);
+export default Profile;
