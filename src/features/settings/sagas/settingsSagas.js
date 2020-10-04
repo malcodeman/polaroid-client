@@ -13,38 +13,37 @@ import {
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PROFILE_PHOTO_URL_SUCCESS,
   UPDATE_PROFILE_PHOTO_URL_FAILURE,
-  UPDATE_PROFILE_PHOTO_URL_REQUEST
+  UPDATE_PROFILE_PHOTO_URL_REQUEST,
 } from "../actions/settingsActionTypes";
 
-const updateNameApi = name => {
+const updateNameApi = (name) => {
   return axios.put(`/users/me/name`, name);
 };
 
-const updateEmailApi = data => {
+const updateEmailApi = (data) => {
   return axios.put(`/users/me/email`, data);
 };
 
-const updatePasswordApi = data => {
+const updatePasswordApi = (data) => {
   return axios.put(`/users/me/password`, data);
 };
 
-const updateProfilePhotoURLApi = profilePhotoURL => {
+const updateProfilePhotoURLApi = (profilePhotoURL) => {
   return axios.put(`/users/me/profilePhotoURL`, profilePhotoURL);
 };
 
 function* updateName(action) {
   try {
-    const { toggleNameForm } = action.meta;
     const updated = yield call(updateNameApi, action.payload);
 
-    toggleNameForm();
     yield put({ type: UPDATE_NAME_SUCCESS, payload: updated.data });
   } catch (error) {
     yield put({ type: UPDATE_NAME_FAILURE, error });
   } finally {
-    const { setSubmitting } = action.meta;
+    const { setSubmitting, toggleNameForm } = action.meta;
 
     setSubmitting(false);
+    toggleNameForm();
   }
 }
 
@@ -110,7 +109,7 @@ function* updateProfilePhotoURL(action) {
     toggleProfilePhotoForm();
     yield put({
       type: UPDATE_PROFILE_PHOTO_URL_SUCCESS,
-      payload: updated.data
+      payload: updated.data,
     });
   } catch (error) {
     const { setFieldError } = action.meta;
@@ -138,7 +137,7 @@ function* updateProfilePhotoURL(action) {
   }
 }
 
-const saga = function*() {
+const saga = function* () {
   yield takeLatest(UPDATE_NAME_REQUEST, updateName);
   yield takeLatest(UPDATE_EMAIL_REQUEST, updateEmail);
   yield takeLatest(UPDATE_PASSWORD_REQUEST, updatePassword);

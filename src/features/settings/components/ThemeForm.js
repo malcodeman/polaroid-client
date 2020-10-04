@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Switch from "../../commonComponents/Switch";
 import { toggleDarkMode } from "../actions/settingsActionCreators";
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const Title = styled.h2`
   font-size: 0.8rem;
   margin-bottom: 24px;
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `;
 
 const SwitchWrapper = styled.div`
@@ -23,36 +23,25 @@ const SwitchWrapper = styled.div`
 const Label = styled.label`
   font-size: 0.8rem;
   margin-left: 24px;
-  color: ${props => props.theme.secondary};
+  color: ${(props) => props.theme.secondary};
 `;
 
-const ThemeForm = props => {
-  const { darkMode, toggleDarkMode } = props;
-
-  function toggleState() {
-    const state = darkMode ? false : true;
-
-    toggleDarkMode(state);
-  }
+const ThemeForm = (props) => {
+  const dispatch = useDispatch();
+  const darkMode = useSelector((state) => state.settings.darkMode);
 
   return (
     <Wrapper>
       <Title>Theme</Title>
       <SwitchWrapper>
-        <Switch state={darkMode} toggleState={toggleState} />
+        <Switch
+          state={darkMode}
+          toggleState={() => dispatch(toggleDarkMode(!darkMode))}
+        />
         <Label>Dark mode</Label>
       </SwitchWrapper>
     </Wrapper>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    darkMode: state.settings.darkMode
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  { toggleDarkMode }
-)(ThemeForm);
+export default ThemeForm;

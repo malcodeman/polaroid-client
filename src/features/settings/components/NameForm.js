@@ -1,8 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
-import { withFormik } from "formik";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../../loader/components/Loader";
 import {
@@ -14,60 +13,64 @@ import {
   ErrorMessage,
   Footer,
   Cancel,
-  Submit
+  Submit,
 } from "../styles/settingsStyles";
 import { updateName } from "../actions/settingsActionCreators";
 
-const FormikForm = props => {
-  const { errors, touched, isSubmitting, toggleNameForm } = props;
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+});
+
+const NameForm = (props) => {
+  const { toggleNameForm } = props;
+  const dispatch = useDispatch();
+  const me = useSelector((state) => state.users.me);
+  const initialValues = {
+    name: me.name || "",
+  };
+  const formik = useFormik({
+    validationSchema,
+    initialValues,
+    enableReinitialize: true,
+    onSubmit,
+  });
+
+  function onSubmit() {
+    const payload = formik.values;
+    const meta = {
+      setSubmitting: formik.setSubmitting,
+      setFieldError: formik.setFieldError,
+      toggleNameForm,
+    };
+
+    dispatch(updateName(payload, meta));
+  }
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={formik.handleSubmit}>
       <Description>What’s your name?</Description>
       <FormItem>
         <Label>Name</Label>
-        <Input type="text" name="name" />
-        {touched.name && errors.name && (
-          <ErrorMessage>{errors.name}</ErrorMessage>
+        <Input
+          type="text"
+          name="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.name && formik.errors.name && (
+          <ErrorMessage>{formik.errors.name}</ErrorMessage>
         )}
       </FormItem>
-      <ErrorMessage>{errors.general}</ErrorMessage>
+      <ErrorMessage>{formik.errors.general}</ErrorMessage>
       <Footer>
         <Cancel onClick={toggleNameForm}>Cancel</Cancel>
-        <Submit disabled={isSubmitting}>
-          {isSubmitting ? <Loader /> : "Save name"}
+        <Submit disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? <Loader /> : "Save name"}
         </Submit>
       </Footer>
     </StyledForm>
   );
 };
 
-const NameForm = withFormik({
-  enableReinitialize: true,
-  validationSchema: Yup.object().shape({
-    name: Yup.string().required("Name is required")
-  }),
-  mapPropsToValues: props => ({
-    name: props.me.name || ""
-  }),
-  handleSubmit(payload, bag) {
-    bag.props.updateName(payload, {
-      setSubmitting: bag.setSubmitting,
-      setFieldError: bag.setFieldError,
-      toggleNameForm: bag.props.toggleNameForm
-    });
-  }
-})(FormikForm);
-
-const mapStateToProps = state => {
-  return {
-    me: state.users.me
-  };
-};
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { updateName }
-  )(NameForm)
-);
+export default NameForm;

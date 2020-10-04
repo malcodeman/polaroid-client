@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Form, Field } from "formik";
 
 import { ReactComponent as editIcon } from "../assets/icons/edit.svg";
 import { ReactComponent as linkIcon } from "../assets/icons/link.svg";
@@ -8,39 +7,39 @@ import { ReactComponent as xIcon } from "../assets/icons/x.svg";
 
 export const EditIcon = styled(editIcon)`
   cursor: pointer;
-  fill: ${props => props.fill};
-  stroke: ${props => props.stroke};
-  margin: ${props => props.margin};
-  width: ${props => props.width || "20px"};
-  height: ${props => props.height || "20px"};
+  fill: ${(props) => props.fill};
+  stroke: ${(props) => props.stroke};
+  margin: ${(props) => props.margin};
+  width: ${(props) => props.width || "20px"};
+  height: ${(props) => props.height || "20px"};
 `;
 
 export const LinkIcon = styled(linkIcon)`
   cursor: pointer;
-  fill: ${props => props.fill};
-  stroke: ${props => props.stroke};
-  width: ${props => props.width || "20px"};
-  height: ${props => props.height || "20px"};
+  fill: ${(props) => props.fill};
+  stroke: ${(props) => props.stroke};
+  width: ${(props) => props.width || "20px"};
+  height: ${(props) => props.height || "20px"};
 `;
 
 export const AttachmentIcon = styled(attachmentIcon)`
   cursor: pointer;
-  fill: ${props => props.fill};
-  stroke: ${props => props.stroke};
-  width: ${props => props.width || "20px"};
-  height: ${props => props.height || "20px"};
+  fill: ${(props) => props.fill};
+  stroke: ${(props) => props.stroke};
+  width: ${(props) => props.width || "20px"};
+  height: ${(props) => props.height || "20px"};
 `;
 
 export const XIcon = styled(xIcon)`
   margin-left: auto;
   cursor: pointer;
-  fill: ${props => props.fill};
-  stroke: ${props => props.stroke || props.theme.primary};
-  width: ${props => props.width || "20px"};
-  height: ${props => props.height || "20px"};
+  fill: ${(props) => props.fill};
+  stroke: ${(props) => props.stroke || props.theme.primary};
+  width: ${(props) => props.width || "20px"};
+  height: ${(props) => props.height || "20px"};
 `;
 
-export const StyledForm = styled(Form)`
+export const StyledForm = styled.form`
   margin: 24px 0;
   width: 100%;
   @media (min-width: 768px) {
@@ -51,7 +50,7 @@ export const StyledForm = styled(Form)`
 export const Description = styled.p`
   font-size: 0.8rem;
   margin-bottom: 8px;
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `;
 
 export const FormItem = styled.div`
@@ -62,19 +61,19 @@ export const Label = styled.label`
   display: block;
   font-size: 0.8rem;
   margin-bottom: 4px;
-  color: ${props => props.theme.secondary};
+  color: ${(props) => props.theme.secondary};
 `;
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   min-height: 36px;
   font-size: 0.8rem;
   padding: 0 4px;
   outline: 0;
   width: 100%;
   border: 0;
-  color: ${props => props.theme.primary};
-  border-radius: ${props => props.theme.borderRadius};
-  background-color: ${props => props.theme.backgroundPrimary};
+  color: ${(props) => props.theme.primary};
+  border-radius: ${(props) => props.theme.borderRadius};
+  background-color: ${(props) => props.theme.backgroundPrimary};
 `;
 
 export const Footer = styled.footer`
@@ -89,7 +88,7 @@ export const Cancel = styled.button`
   font-size: 0.8rem;
   padding: 0 16px;
   background-color: transparent;
-  color: ${props => props.theme.secondary};
+  color: ${(props) => props.theme.secondary};
 `;
 
 export const Submit = styled.button`
@@ -102,12 +101,12 @@ export const Submit = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.theme.brand};
-  border-radius: ${props => props.theme.borderRadius};
+  background-color: ${(props) => props.theme.brand};
+  border-radius: ${(props) => props.theme.borderRadius};
 `;
 
 export const ErrorMessage = styled.span`
   margin: 4px 0;
   font-size: 0.8rem;
-  color: ${props => props.theme.error};
+  color: ${(props) => props.theme.error};
 `;
