@@ -1,23 +1,23 @@
 import React from "react";
-import { withFormik, Form, Field } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ProfilePhoto, NameFirstLetter } from "../styles/postsStyles";
 import { createPost } from "../actions/postsActionCreators";
 
-const StyledForm = styled(Form)`
+const StyledForm = styled.form`
   display: flex;
   padding: 16px;
   align-items: center;
   margin-bottom: 24px;
-  border-radius: ${props => props.theme.borderRadius};
-  border: 1px solid ${props => props.theme.borderColor};
-  background-color: ${props => props.theme.backgroundSecondary};
+  border-radius: ${(props) => props.theme.borderRadius};
+  border: 1px solid ${(props) => props.theme.borderColor};
+  background-color: ${(props) => props.theme.backgroundSecondary};
 `;
 
-const Input = styled(Field)`
+const Input = styled.input`
   min-height: 36px;
   font-size: 0.8rem;
   outline: 0;
@@ -26,15 +26,39 @@ const Input = styled(Field)`
   padding: 8px 12px;
   border-radius: 16px;
   border: 0;
-  color: ${props => props.theme.primary};
-  background-color: ${props => props.theme.backgroundPrimary};
+  color: ${(props) => props.theme.primary};
+  background-color: ${(props) => props.theme.backgroundPrimary};
 `;
 
-const FormikForm = props => {
+const validationSchema = Yup.object().shape({
+  photoURL: Yup.string()
+    .required("Photo URL can't be empty")
+    .url("Not a valid URL"),
+});
+const initialValues = {
+  photoURL: "",
+};
+
+const PostNewForm = (props) => {
   const { me } = props;
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
+
+  function onSubmit() {
+    const meta = {
+      setSubmitting: formik.setSubmitting,
+      resetForm: formik.resetForm,
+    };
+
+    dispatch(createPost(formik.values, meta));
+  }
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={formik.handleSubmit}>
       {me.profilePhotoURL ? (
         <ProfilePhoto src={me.profilePhotoURL} />
       ) : (
@@ -45,29 +69,12 @@ const FormikForm = props => {
         name="photoURL"
         placeholder="Paste a URL"
         data-cy="photo-url-input"
+        value={formik.values.photoURL}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
       />
     </StyledForm>
   );
 };
 
-const PostNewForm = withFormik({
-  validationSchema: Yup.object().shape({
-    photoURL: Yup.string()
-      .required("Photo URL can't be empty")
-      .url("Not a valid URL")
-  }),
-  mapPropsToValues: props => ({
-    photoURL: props.photoURL || ""
-  }),
-  handleSubmit(payload, bag) {
-    bag.props.createPost(payload, {
-      setSubmitting: bag.setSubmitting,
-      resetForm: bag.resetForm
-    });
-  }
-})(FormikForm);
-
-export default connect(
-  null,
-  { createPost }
-)(PostNewForm);
+export default PostNewForm;
