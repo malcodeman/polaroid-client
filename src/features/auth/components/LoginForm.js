@@ -1,8 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
-import { withFormik } from "formik";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 
 import Loader from "../../loader/components/Loader";
 import { login } from "../actions/authActionCreators";
@@ -11,55 +10,72 @@ import {
   FormItem,
   Input,
   ErrorMessage,
-  Button
+  Button,
 } from "../styles/authStyles";
+import { useHistory } from "react-router-dom";
 
-const FormikForm = props => {
-  const { errors, touched, isSubmitting } = props;
+const initialValues = {
+  username: "",
+  password: "",
+};
+const validationSchema = Yup.object().shape({
+  username: Yup.string().required("Username or email is required"),
+  password: Yup.string().required("Password is required"),
+});
+
+const LoginForm = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const formik = useFormik({
+    validationSchema,
+    initialValues,
+    onSubmit,
+  });
+
+  function onSubmit() {
+    const meta = {
+      setSubmitting: formik.setSubmitting,
+      setFieldError: formik.setFieldError,
+      history,
+    };
+
+    dispatch(login(formik.values, meta));
+  }
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={formik.handleSubmit}>
       <FormItem>
-        <Input type="text" name="username" placeholder="Username or email" />
-        {touched.username && errors.username && (
-          <ErrorMessage>{errors.username}</ErrorMessage>
+        <Input
+          type="text"
+          name="username"
+          placeholder="Username or email"
+          values={formik.values.username}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.username && formik.errors.username && (
+          <ErrorMessage>{formik.errors.username}</ErrorMessage>
         )}
       </FormItem>
       <FormItem>
-        <Input type="password" name="password" placeholder="Password" />
-        {touched.password && errors.password && (
-          <ErrorMessage>{errors.password}</ErrorMessage>
+        <Input
+          type="password"
+          name="password"
+          placeholder="Password"
+          values={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.password && formik.errors.password && (
+          <ErrorMessage>{formik.errors.password}</ErrorMessage>
         )}
       </FormItem>
-      <Button disabled={isSubmitting}>
-        {isSubmitting ? <Loader /> : "Log in"}
+      <Button disabled={formik.isSubmitting}>
+        {formik.isSubmitting ? <Loader /> : "Log in"}
       </Button>
-      <ErrorMessage>{errors.general}</ErrorMessage>
+      <ErrorMessage>{formik.errors.general}</ErrorMessage>
     </StyledForm>
   );
 };
 
-const LoginForm = withFormik({
-  mapPropsToValues: props => ({
-    username: props.username || "",
-    password: props.password || ""
-  }),
-  validationSchema: Yup.object().shape({
-    username: Yup.string().required("Username or email is required"),
-    password: Yup.string().required("Password is required")
-  }),
-  handleSubmit(payload, bag) {
-    bag.props.login(payload, {
-      setSubmitting: bag.setSubmitting,
-      setFieldError: bag.setFieldError,
-      history: bag.props.history
-    });
-  }
-})(FormikForm);
-
-export default withRouter(
-  connect(
-    null,
-    { login }
-  )(LoginForm)
-);
+export default LoginForm;
