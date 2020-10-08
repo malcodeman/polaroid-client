@@ -1,8 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
-import { withFormik } from "formik";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../../loader/components/Loader";
 import {
@@ -14,69 +13,78 @@ import {
   ErrorMessage,
   Footer,
   Cancel,
-  Submit
+  Submit,
 } from "../styles/settingsStyles";
 import { updateEmail } from "../actions/settingsActionCreators";
 
-const FormikForm = props => {
-  const { errors, touched, isSubmitting, toggleEmailForm } = props;
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required("Email is required"),
+  password: Yup.string().required("Password is required"),
+});
+
+const NameForm = (props) => {
+  const { toggleEmailForm } = props;
+  const dispatch = useDispatch();
+  const me = useSelector((state) => state.users.me);
+  const initialValues = {
+    email: me.email || "",
+    password: "",
+  };
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    enableReinitialize: true,
+    onSubmit,
+  });
+
+  function onSubmit() {
+    const meta = {
+      toggleEmailForm,
+      setSubmitting: formik.setSubmitting,
+      setFieldError: formik.setFieldError,
+    };
+
+    dispatch(updateEmail(formik.values, meta));
+  }
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={formik.handleSubmit}>
       <Description>Update your email address</Description>
       <FormItem>
         <Label>Email</Label>
-        <Input type="email" name="email" />
-        {touched.email && errors.email && (
-          <ErrorMessage>{errors.email}</ErrorMessage>
+        <Input
+          type="email"
+          name="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.email && formik.errors.email && (
+          <ErrorMessage>{formik.errors.email}</ErrorMessage>
         )}
       </FormItem>
       <FormItem>
         <Label>Password</Label>
-        <Input type="password" name="password" />
-        {touched.password && errors.password && (
-          <ErrorMessage>{errors.password}</ErrorMessage>
+        <Input
+          type="password"
+          name="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.password && formik.errors.password && (
+          <ErrorMessage>{formik.errors.password}</ErrorMessage>
         )}
       </FormItem>
-      <ErrorMessage>{errors.general}</ErrorMessage>
+      <ErrorMessage>{formik.errors.general}</ErrorMessage>
       <Footer>
         <Cancel onClick={toggleEmailForm}>Cancel</Cancel>
-        <Submit disabled={isSubmitting}>
-          {isSubmitting ? <Loader /> : "Save email"}
+        <Submit disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? <Loader /> : "Save email"}
         </Submit>
       </Footer>
     </StyledForm>
   );
 };
 
-const NameForm = withFormik({
-  enableReinitialize: true,
-  validationSchema: Yup.object().shape({
-    email: Yup.string().required("Email is required"),
-    password: Yup.string().required("Password is required")
-  }),
-  mapPropsToValues: props => ({
-    email: props.me.email || "",
-    password: props.password || ""
-  }),
-  handleSubmit(payload, bag) {
-    bag.props.updateEmail(payload, {
-      setSubmitting: bag.setSubmitting,
-      setFieldError: bag.setFieldError,
-      toggleEmailForm: bag.props.toggleEmailForm
-    });
-  }
-})(FormikForm);
-
-const mapStateToProps = state => {
-  return {
-    me: state.users.me
-  };
-};
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { updateEmail }
-  )(NameForm)
-);
+export default NameForm;
