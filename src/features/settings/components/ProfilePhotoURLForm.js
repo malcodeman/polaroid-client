@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
-import { Form, Field, withFormik } from "formik";
-import { connect } from "react-redux";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import Loader from "../../loader/components/Loader";
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const StyledForm = styled(Form)`
+const StyledForm = styled.form`
   width: 100%;
   @media (min-width: 992px) {
     width: 50%;
@@ -25,17 +25,17 @@ const FormItem = styled.div`
   display: flex;
 `;
 
-const Input = styled(Field)`
+const Input = styled.input`
   min-height: 36px;
   font-size: 0.8rem;
   padding: 0 4px;
   outline: 0;
   width: 100%;
   border: 0;
-  color: ${props => props.theme.primary};
-  border-radius: ${props => props.theme.borderRadius} 0 0
-    ${props => props.theme.borderRadius};
-  background-color: ${props => props.theme.backgroundPrimary};
+  color: ${(props) => props.theme.primary};
+  border-radius: ${(props) => props.theme.borderRadius} 0 0
+    ${(props) => props.theme.borderRadius};
+  background-color: ${(props) => props.theme.backgroundPrimary};
 `;
 
 const Submit = styled.button`
@@ -48,54 +48,64 @@ const Submit = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.theme.brand};
-  border-radius: 0px ${props => props.theme.borderRadius}
-    ${props => props.theme.borderRadius} 0px;
+  background-color: ${(props) => props.theme.brand};
+  border-radius: 0px ${(props) => props.theme.borderRadius}
+    ${(props) => props.theme.borderRadius} 0px;
 `;
 
-const FormikForm = props => {
-  const { errors, touched, isSubmitting } = props;
+const validationSchema = Yup.object().shape({
+  profilePhotoURL: Yup.string()
+    .required("URL is required")
+    .url("Please enter a URL"),
+});
+const initialValues = {
+  profilePhotoURL: "",
+};
+
+const ProfilePhotoURLForm = (props) => {
+  const { toggleProfilePhotoForm } = props;
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
+
+  function onSubmit() {
+    const meta = {
+      toggleProfilePhotoForm,
+      setSubmitting: formik.setSubmitting,
+      setFieldError: formik.setFieldError,
+    };
+
+    dispatch(updateProfilePhotoURL(formik.values, meta));
+  }
 
   return (
     <Wrapper>
-      <StyledForm>
+      <StyledForm onSubmit={formik.handleSubmit}>
         <FormItem>
-          <Input type="text" name="profilePhotoURL" placeholder="Enter a URL" />
-          <Submit disabled={isSubmitting}>
-            {isSubmitting ? <Loader /> : <LinkIcon />}
+          <Input
+            type="text"
+            name="profilePhotoURL"
+            placeholder="Enter a URL"
+            values={formik.values.profilePhotoURL}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <Submit disabled={formik.isSubmitting}>
+            {formik.isSubmitting ? <Loader /> : <LinkIcon />}
           </Submit>
         </FormItem>
         <ErrorMessage>
-          {(touched.profilePhotoURL && errors.profilePhotoURL && (
-            <ErrorMessage>{errors.profilePhotoURL}</ErrorMessage>
+          {(formik.touched.profilePhotoURL && formik.errors.profilePhotoURL && (
+            <ErrorMessage>{formik.errors.profilePhotoURL}</ErrorMessage>
           )) ||
-            errors.general}
+            formik.errors.general}
         </ErrorMessage>
       </StyledForm>
     </Wrapper>
   );
 };
 
-const ProfilePhotoURLForm = withFormik({
-  enableReinitialize: true,
-  validationSchema: Yup.object().shape({
-    profilePhotoURL: Yup.string()
-      .required("URL is required")
-      .url("Please enter a URL")
-  }),
-  mapPropsToValues: props => ({
-    profilePhotoURL: ""
-  }),
-  handleSubmit(payload, bag) {
-    bag.props.updateProfilePhotoURL(payload, {
-      setSubmitting: bag.setSubmitting,
-      setFieldError: bag.setFieldError,
-      toggleProfilePhotoForm: bag.props.toggleProfilePhotoForm
-    });
-  }
-})(FormikForm);
-
-export default connect(
-  null,
-  { updateProfilePhotoURL }
-)(ProfilePhotoURLForm);
+export default ProfilePhotoURLForm;
