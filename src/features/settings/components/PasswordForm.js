@@ -1,8 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
-import { withFormik } from "formik";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 
 import Loader from "../../loader/components/Loader";
 import {
@@ -14,69 +13,76 @@ import {
   ErrorMessage,
   Footer,
   Cancel,
-  Submit
+  Submit,
 } from "../styles/settingsStyles";
 import { updatePassword } from "../actions/settingsActionCreators";
 
-const FormikForm = props => {
-  const { errors, touched, isSubmitting, togglePasswordForm } = props;
+const validationSchema = Yup.object().shape({
+  newPassword: Yup.string().required("New password is required"),
+  currentPassword: Yup.string().required("Current password is required"),
+});
+const initialValues = {
+  newPassword: "",
+  currentPassword: "",
+};
+
+const NameForm = (props) => {
+  const { togglePasswordForm } = props;
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
+
+  function onSubmit() {
+    const meta = {
+      togglePasswordForm,
+      setSubmitting: formik.setSubmitting,
+      setFieldError: formik.setFieldError,
+    };
+
+    dispatch(updatePassword(formik.values, meta));
+  }
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={formik.handleSubmit}>
       <Description>Update your password</Description>
       <FormItem>
         <Label>New password</Label>
-        <Input type="password" name="newPassword" />
-        {touched.newPassword && errors.newPassword && (
-          <ErrorMessage>{errors.newPassword}</ErrorMessage>
+        <Input
+          type="password"
+          name="newPassword"
+          value={formik.values.newPassword}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.newPassword && formik.errors.newPassword && (
+          <ErrorMessage>{formik.errors.newPassword}</ErrorMessage>
         )}
       </FormItem>
       <FormItem>
         <Label>Current password</Label>
-        <Input type="password" name="currentPassword" />
-        {touched.currentPassword && errors.currentPassword && (
-          <ErrorMessage>{errors.currentPassword}</ErrorMessage>
+        <Input
+          type="password"
+          name="currentPassword"
+          value={formik.values.currentPassword}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.currentPassword && formik.errors.currentPassword && (
+          <ErrorMessage>{formik.errors.currentPassword}</ErrorMessage>
         )}
       </FormItem>
-      <ErrorMessage>{errors.general}</ErrorMessage>
+      <ErrorMessage>{formik.errors.general}</ErrorMessage>
       <Footer>
         <Cancel onClick={togglePasswordForm}>Cancel</Cancel>
-        <Submit disabled={isSubmitting}>
-          {isSubmitting ? <Loader /> : "Save new password"}
+        <Submit disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? <Loader /> : "Save new password"}
         </Submit>
       </Footer>
     </StyledForm>
   );
 };
 
-const NameForm = withFormik({
-  enableReinitialize: true,
-  validationSchema: Yup.object().shape({
-    newPassword: Yup.string().required("New password is required"),
-    currentPassword: Yup.string().required("Current password is required")
-  }),
-  mapPropsToValues: props => ({
-    newPassword: props.newPassword || "",
-    currentPassword: props.currentPassword || ""
-  }),
-  handleSubmit(payload, bag) {
-    bag.props.updatePassword(payload, {
-      setSubmitting: bag.setSubmitting,
-      setFieldError: bag.setFieldError,
-      togglePasswordForm: bag.props.togglePasswordForm
-    });
-  }
-})(FormikForm);
-
-const mapStateToProps = state => {
-  return {
-    me: state.users.me
-  };
-};
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { updatePassword }
-  )(NameForm)
-);
+export default NameForm;
