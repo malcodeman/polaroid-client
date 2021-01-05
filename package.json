@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@malcodeman/react-modal": "^1.0.6",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "date-fns": "^2.16.1",
     "formik": "^2.1.6",
     "history": "^4.9.0",
